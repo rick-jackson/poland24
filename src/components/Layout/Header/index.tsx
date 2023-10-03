@@ -21,6 +21,8 @@ import Avatar from "@components/UI/Avatar";
 import * as Styled from "./Header.styled";
 import { getExchangeRate } from "@gateways/getExchangeRate";
 import { useEffect, useState } from "react";
+import TemporaryDrawer from "@components/Drawer";
+import IconButton from "@components/UI/buttons/IconButton";
 
 const Header: React.FC = () => {
   const [exchangeRate, setExchangeRate] = useState([]);
@@ -109,13 +111,11 @@ const Header: React.FC = () => {
                 lastName={userData.lastName}
               />
             ) : (
-              <Styled.Burger onClick={handleOpen}>
+              <IconButton onClick={handleOpen}>
                 <User style={{ height: "24px" }} />
-              </Styled.Burger>
+              </IconButton>
             )}
-            <Styled.Burger>
-              <Menu />
-            </Styled.Burger>
+            <TemporaryDrawer />
           </div>
         )}
       </Styled.Header>

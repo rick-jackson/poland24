@@ -1,4 +1,6 @@
 import Button from "@components/UI/buttons";
+import { useMediaQuery } from "@mui/material";
+import theme from "@theme/index";
 import styled from "styled-components";
 
 export const Navigation = styled.nav`
@@ -8,13 +10,25 @@ export const Navigation = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding-bottom: 12px;
+
+  ${theme.breakpoints.down("md")} {
+    flex-direction: column;
+  }
 `;
 
-export const NavLink = styled(({ children }) => (
-  <Button size="small" variant="text">
-    {children}
-  </Button>
-))`
+export const NavLink = styled(({ children }) => {
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+
+  return (
+    <Button
+      {...(!matches && { fullwidth: true })}
+      size={!matches ? "medium" : "small"}
+      variant="text"
+    >
+      {children}
+    </Button>
+  );
+})`
   &:nth-child(1) {
     padding-left: 0;
   }

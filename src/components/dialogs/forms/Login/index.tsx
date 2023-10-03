@@ -1,11 +1,12 @@
 import Button from "@components/UI/buttons";
-import { ButtonText } from "../../Authorization.styled";
+
 import CheckBox from "@components/UI/inputs/Checkbox";
 import { useForm } from "react-hook-form";
 import DialogTextField from "@components/dialogs/inputs/TextField";
 import useSignIn from "@gateways/signIn";
 import { useMediaQuery } from "@mui/material";
 import theme from "@theme/index";
+import { ButtonText } from "@components/Modal/Authorization/Authorization.styled";
 
 type FormProps = {
   onClose: () => void;

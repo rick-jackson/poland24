@@ -1,6 +1,6 @@
 import Button from "@components/UI/buttons";
 import { ButtonText } from "../Authorization.styled";
-import Form from "./Form";
+import Form from "@components/dialogs/forms/Register";
 import { Buttons } from "../Login/Login.styled";
 import Google from "public/images/icons/socials/google.svg";
 import Faceboock from "public/images/icons/socials/u_facebook-f.svg";

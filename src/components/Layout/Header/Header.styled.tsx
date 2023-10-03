@@ -29,14 +29,6 @@ export const Logo = styled.div`
   gap: 5px;
 `;
 
-export const Burger = styled.button`
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  background: #95a4aa;
-  border: none;
-`;
-
 export const Socials = styled.div`
   font-size: 16px;
   font-weight: 400;
