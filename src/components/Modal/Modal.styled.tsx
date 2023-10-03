@@ -9,9 +9,13 @@ export const Container = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 32px;
+  max-width: 550px;
 
-  ${theme.breakpoints.up("md")} {
-    padding: 32px;
+  ${theme.breakpoints.down("md")} {
+    padding: 0px;
+    width: calc(100% - 12px);
   }
 `;
 

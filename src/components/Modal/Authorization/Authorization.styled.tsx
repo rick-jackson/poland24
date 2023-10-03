@@ -3,6 +3,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   padding: 24px;
+  width: 100%;
+
+  ${theme.breakpoints.down("md")} {
+    padding: 12px;
+  }
 `;
 
 export const Head = styled.div`
@@ -16,6 +21,7 @@ export const Head = styled.div`
 
 export const Content = styled.div`
   text-align: center;
+
   ${theme.breakpoints.up("md")} {
     min-width: 460px;
   }

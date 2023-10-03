@@ -8,6 +8,7 @@ export const Label = styled.label<{ $error: boolean }>`
   color: ${({ $error }) => ($error ? "#fbcece" : "#2d2d2de5")};
   cursor: pointer;
   letter-spacing: 0;
+  text-align: left;
 `;
 
 export const Checkbox = styled.input`
