@@ -1,3 +1,4 @@
+import MessengerButton from "@components/UI/buttons/Messenger";
 import Telegram from "public/images/icons/socials/017-telegram.svg";
 import Viber from "public/images/icons/socials/014-viber.svg";
 import Mail from "public/images/icons/mail_outline_grey.svg";
@@ -10,12 +11,12 @@ const Socials: React.FC = () => {
       <Styled.Messangers>
         Наши мессенджеры
         <Styled.Icons>
-          <Styled.IconButton>
+          <MessengerButton>
             <Viber />
-          </Styled.IconButton>
-          <Styled.IconButton>
+          </MessengerButton>
+          <MessengerButton>
             <Telegram />
-          </Styled.IconButton>
+          </MessengerButton>
         </Styled.Icons>
       </Styled.Messangers>
       <Styled.Mail>

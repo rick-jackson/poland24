@@ -3,7 +3,7 @@ import Remove from "public/images/icons/remove.svg";
 import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
 import DialogTextField from "@components/dialogs/inputs/TextField";
 import Button from "@components/UI/buttons";
-import { Divider } from "../Title/Title.styled";
+import { Divider } from "../../../Title/Title.styled";
 
 import * as Styled from "./Article.styled";
 import { defaultArticle } from "@common/data/defaultArticle";
@@ -76,19 +76,7 @@ const Article: React.FC<ArticleProps> = ({
           fullWidth
           style={{ height: "100%" }}
         />
-        <Styled.Feedback>
-          <span>Доставка по Украине : Новой почтой</span>
-          <span>Удобный канал для обратной связи:</span>
-          <Styled.Checkboxes>
-            <DialogCheckBox control={control} name="email" label="Почта" />
-            <DialogCheckBox control={control} name="viber" label="Вайбер" />
-            <DialogCheckBox
-              control={control}
-              name="telegram"
-              label="Телеграм"
-            />
-          </Styled.Checkboxes>
-          <Divider style={{ margin: 0 }} />
+        <Styled.Total>
           <div
             style={{
               display: "flex",
@@ -118,7 +106,7 @@ const Article: React.FC<ArticleProps> = ({
               </Button>
             )}
           </div>
-        </Styled.Feedback>
+        </Styled.Total>
       </Styled.Comment>
     </Styled.Article>
   );

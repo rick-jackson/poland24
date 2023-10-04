@@ -17,6 +17,8 @@ import { auth } from "../firebase";
 
 import { deleteCookie } from "cookies-next";
 import useUserData from "@gateways/getUserData";
+import dynamic from "next/dynamic";
+const Layout = dynamic(() => import("@components/Layout"), { ssr: false });
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -55,7 +57,9 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
           <SnackbarProvider maxSnack={3}>
             <CssBaseline />
             <I18nextProvider i18n={i18n}>
-              <Component {...pageProps} />
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
             </I18nextProvider>
           </SnackbarProvider>
         </ThemeProvider>

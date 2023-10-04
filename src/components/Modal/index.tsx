@@ -13,6 +13,7 @@ type ModalProps = {
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
   return (
     <MuiModal
+      sx={{ overflow: "scroll" }}
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
       open={isOpen}

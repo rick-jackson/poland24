@@ -38,7 +38,9 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
-        onClick={!email && handleClick}
+        onClick={(e) => {
+          email ? router.push("/profile") : handleClick(e);
+        }}
       >
         <Styled.Circle>
           {firstName[0]}
@@ -57,7 +59,12 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <Styled.MenuItem onClick={handleClose}>
+        <Styled.MenuItem
+          onClick={() => {
+            handleClose();
+            router.push("/profile");
+          }}
+        >
           <Styled.Icon>
             <Setting />
           </Styled.Icon>
@@ -77,7 +84,10 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
         </Styled.MenuItem>
         <Styled.MenuItem
           onClick={handleLogout}
-          sx={{ justifyContent: "space-between", paddingLeft: "16px !important" }}
+          sx={{
+            justifyContent: "space-between",
+            paddingLeft: "16px !important",
+          }}
         >
           Виход <Logout />
         </Styled.MenuItem>

@@ -38,6 +38,9 @@ export const FullName = styled.span`
 
 export const Email = styled.div`
   font-weight: 400;
+  max-width: 150px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 `;
 
 export const Menu = styled(MuiMenu)`

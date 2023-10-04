@@ -11,7 +11,7 @@ const BlockTitle: React.FC<BlockTitleProps> = ({ title, subtitle }) => {
       <Styled.Divider />
       <Styled.Text>
         <Styled.Title>{title}</Styled.Title>
-        <Styled.Subtitle>{subtitle}</Styled.Subtitle>
+        {subtitle && <Styled.Subtitle>{subtitle}</Styled.Subtitle>}
       </Styled.Text>
     </Styled.Container>
   );

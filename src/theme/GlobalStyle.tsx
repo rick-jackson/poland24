@@ -11,6 +11,12 @@ const GlobalStyle = createGlobalStyle<any>`
 
   }
 
+  #__next{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
   body {
     background: #F2F2F2;
   }

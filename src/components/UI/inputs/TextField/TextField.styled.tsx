@@ -20,7 +20,7 @@ export const TextField = styled(({ textArea, ...props }) =>
   $error: boolean;
   textArea: boolean;
 }>`
-  border: none;
+  border: 1px solid #bdbdbd;
   outline: none;
   background: ${({ $error }) => ($error ? "#fbcece" : "#f2f2f2")};
   border-radius: 8px;
@@ -34,7 +34,7 @@ export const TextField = styled(({ textArea, ...props }) =>
   }
 
   &:focus {
-    outline: 6px solid #fbcece;
+    border: 1px solid #fbcece;
   }
 
   &[type="number"] {

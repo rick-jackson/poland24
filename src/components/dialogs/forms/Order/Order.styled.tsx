@@ -22,3 +22,9 @@ export const License = styled.div`
     margin-top: 12px;
   }
 `;
+
+export const Checkboxes = styled.div`
+  display: flex;
+  gap: 16px;
+  font-weight: 400;
+`;

@@ -11,9 +11,7 @@ const useSignIn = () => {
     setLoading(true);
     const auth = getAuth();
     await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        getUser(user.uid);
+      .then(() => {
         setLoading(false);
         enqueueSnackbar("User login!", { variant: "success" });
       })

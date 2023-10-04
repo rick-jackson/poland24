@@ -1,5 +1,5 @@
 import { useFieldArray, useForm } from "react-hook-form";
-import Title from "./Title";
+import Title from "../../Title";
 import Article from "./Article";
 import { defaultArticle } from "@common/data/defaultArticle";
 import DialogTextField from "@components/dialogs/inputs/TextField";
@@ -8,7 +8,11 @@ import Button from "@components/UI/buttons";
 import * as Styled from "./Order.styled";
 
 const OrderForm: React.FC = () => {
-  const { control, register } = useForm({
+  const {
+    control,
+    handleSubmit: onSubmit,
+    register,
+  } = useForm({
     defaultValues: {
       articles: [defaultArticle],
     },
@@ -19,8 +23,15 @@ const OrderForm: React.FC = () => {
     name: "articles",
   });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit((data) => {
+      console.log(data);
+    })();
+  };
+
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <Title title="Заказ" />
       {fields.map((_, index: number) => (
         <Article
@@ -32,6 +43,31 @@ const OrderForm: React.FC = () => {
           isLastField={fields.length - 1 === index}
         />
       ))}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "12px",
+        }}
+      >
+        <span>Доставка по Украине : Новой почтой</span>
+        <div>
+          <span>Удобный канал для обратной связи:</span>
+          <Styled.Checkboxes>
+            <DialogCheckBox control={control} name="email" label="Почта" />
+            <DialogCheckBox control={control} name="viber" label="Вайбер" />
+            <DialogCheckBox
+              control={control}
+              name="telegram"
+              label="Телеграм"
+            />
+          </Styled.Checkboxes>
+        </div>
+        <div style={{ display: "flex", gap: "8px", fontWeight: 500 }}>
+          <span>Ориентировочно, zł</span>
+          <span>Ориентировочно, ₴</span>
+        </div>
+      </div>
       <Title title="Данные заказчика" />
       <Styled.Customer>
         <DialogTextField
@@ -120,7 +156,7 @@ const OrderForm: React.FC = () => {
       <Button style={{ margin: "auto", marginTop: "16px" }} type="submit">
         Отправить
       </Button>
-    </div>
+    </form>
   );
 };
 

@@ -34,14 +34,8 @@ export const Comment = styled.div`
   }
 `;
 
-export const Feedback = styled.div`
+export const Total = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-`;
-
-export const Checkboxes = styled.div`
-  display: flex;
-  gap: 16px;
-  font-weight: 400;
 `;
