@@ -10,7 +10,9 @@ const Navigation: React.FC = () => {
       <Styled.NavLink>О компании</Styled.NavLink>
       <Styled.NavLink>Список магазину</Styled.NavLink>
       <Styled.NavLink>Отзывы</Styled.NavLink>
-      <Styled.NavLink>Вопрос -ответ</Styled.NavLink>
+      <Link href="/faq">
+        <Styled.NavLink>Вопрос -ответ</Styled.NavLink>
+      </Link>
       <Link
         href={{
           pathname: "/",
