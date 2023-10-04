@@ -42,13 +42,17 @@ const GlobalStyle = createGlobalStyle<any>`
 
   *{
     box-sizing: border-box;
+
     &::-webkit-scrollbar {
       width: 7px;
+      position: fixed;
+     
     
     }
   
     &::-webkit-scrollbar-track {
       background: #f1f1f1;
+      
     }
   
     &::-webkit-scrollbar-thumb {

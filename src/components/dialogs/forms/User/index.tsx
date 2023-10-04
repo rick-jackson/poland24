@@ -12,6 +12,7 @@ import { db } from "../../../../../firebase";
 import { useRouter } from "next/router";
 import { setUserInLocalStorage } from "@common/utils/setUserInLocalStorage";
 import { enqueueSnackbar } from "notistack";
+import { defaultUser } from "@common/data/defaultUser";
 
 const UserForm: React.FC<{ userData: User }> = ({ userData }) => {
   const router = useRouter();
@@ -19,7 +20,7 @@ const UserForm: React.FC<{ userData: User }> = ({ userData }) => {
     control,
     formState: { errors },
     handleSubmit: onSubmit,
-  } = useForm({ defaultValues: userData });
+  } = useForm({ defaultValues: defaultUser(userData) });
 
   const handleSubmit = (e) => {
     e.preventDefault();

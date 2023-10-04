@@ -2,6 +2,7 @@ import Help from "public/images/icons/help_outline.svg";
 
 import * as Styled from "./Navigation.styled";
 import Button from "@components/UI/buttons";
+import Link from "@components/Link";
 
 const Navigation: React.FC = () => {
   return (
@@ -10,9 +11,14 @@ const Navigation: React.FC = () => {
       <Styled.NavLink>Список магазину</Styled.NavLink>
       <Styled.NavLink>Отзывы</Styled.NavLink>
       <Styled.NavLink>Вопрос -ответ</Styled.NavLink>
-      <a style={{ textDecoration: "none" }} href="#calculator">
+      <Link
+        href={{
+          pathname: "/",
+          hash: "calculator",
+        }}
+      >
         <Styled.NavLink>Калькулятор</Styled.NavLink>
-      </a>
+      </Link>
 
       <Styled.NavLink>Контакты</Styled.NavLink>
       <Button size="small" variant="green">

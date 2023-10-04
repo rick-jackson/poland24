@@ -19,7 +19,7 @@ const Header: React.FC = () => {
   return (
     <Styled.Wrapper>
       <Styled.Header>
-        <Styled.Logo>
+        <Styled.Logo href="/">
           {matches ? <Logo /> : <LargeLogo />}
           {matches ? <LogoText /> : <LargeLogoText />}
         </Styled.Logo>

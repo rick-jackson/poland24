@@ -7,6 +7,7 @@ import Telegram from "public/images/icons/socials/017-telegram.svg";
 import { Icon, MenuItem } from "@components/UI/Avatar/Avatar.styled";
 import MessengerButton from "@components/UI/buttons/Messenger";
 import * as Styled from "./Aside.styled";
+import Link from "@components/Link";
 
 type AsideProps = {
   userData: User;
@@ -21,18 +22,22 @@ const Aside: React.FC<AsideProps> = ({ userData }) => {
         </Styled.User>
         <Styled.Divider />
         <Styled.Navigation>
-          <MenuItem>
-            <Icon>
-              <TeaDrink />
-            </Icon>
-            Мои закази
-          </MenuItem>
-          <MenuItem>
-            <Icon>
-              <Message />
-            </Icon>
-            Мои отзиви
-          </MenuItem>
+          <Link href="/orders">
+            <MenuItem>
+              <Icon>
+                <TeaDrink />
+              </Icon>
+              Мои закази
+            </MenuItem>
+          </Link>
+          <Link href="/reviews">
+            <MenuItem>
+              <Icon>
+                <Message />
+              </Icon>
+              Мои отзиви
+            </MenuItem>
+          </Link>
         </Styled.Navigation>
         <p
           style={{ margin: 0, padding: "8px", fontWeight: 500, lineHeight: 1 }}

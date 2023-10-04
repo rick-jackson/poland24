@@ -1,3 +1,4 @@
+import Link from "@components/Link";
 import { Box } from "@mui/material";
 import theme from "@theme/index";
 import styled from "styled-components";
@@ -23,7 +24,7 @@ export const Header = styled((props) => <Box component="header" {...props} />)`
   }
 `;
 
-export const Logo = styled.div`
+export const Logo = styled(Link)`
   display: flex;
   align-items: center;
   gap: 5px;

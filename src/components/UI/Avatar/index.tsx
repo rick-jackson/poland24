@@ -70,13 +70,23 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
           </Styled.Icon>
           Редактировать профиль
         </Styled.MenuItem>
-        <Styled.MenuItem onClick={handleClose}>
+        <Styled.MenuItem
+          onClick={() => {
+            handleClose();
+            router.push("/orders");
+          }}
+        >
           <Styled.Icon>
             <TeaDrink />
           </Styled.Icon>
           Мои закази
         </Styled.MenuItem>
-        <Styled.MenuItem onClick={handleClose}>
+        <Styled.MenuItem
+          onClick={() => {
+            handleClose();
+            router.push("/reviews");
+          }}
+        >
           <Styled.Icon>
             <Message />
           </Styled.Icon>
