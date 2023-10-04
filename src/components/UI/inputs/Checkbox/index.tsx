@@ -11,10 +11,11 @@ const CheckBox: React.FC<CheckBoxProps> = ({
   name,
   label = "",
   error = false,
+  style,
   ...props
 }) => {
   return (
-    <Styled.Label $error={error} id={name}>
+    <Styled.Label style={style} $error={error} id={name}>
       <Styled.Checkbox id={name} type="checkbox" {...props} />
       {label}
     </Styled.Label>

@@ -1,16 +1,11 @@
-import { useMediaQuery } from "@mui/material";
-
 import OrderProduct from "./OrderProduct";
 import Description from "./Description";
-import theme from "@theme/index";
 import { useTranslation } from "next-i18next";
 
 import * as Styled from "./Banner.styled";
 
 const Delivery: React.FC = () => {
-  const matches = useMediaQuery(theme.breakpoints.up("md"));
-
-  const { t } = useTranslation('banner');
+  const { t } = useTranslation("banner");
 
   return (
     <Styled.Wrapper>

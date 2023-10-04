@@ -16,6 +16,7 @@ type ButtonVariant = {
   secondary: ButtonParam;
   subtle: ButtonParam;
   text: ButtonParam;
+  green: ButtonParam;
 };
 
 type ButtonOption = {
@@ -23,6 +24,7 @@ type ButtonOption = {
   fontSize: string;
   outline: string;
   borderRadius: string;
+  height: string;
 };
 
 type ButtonSize = {

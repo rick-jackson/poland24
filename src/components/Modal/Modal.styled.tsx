@@ -9,12 +9,12 @@ export const Container = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
   padding: 32px;
-  max-width: 550px;
+  max-height: calc(100vh - 50px);
+  overflow: auto;
 
   ${theme.breakpoints.down("md")} {
-    padding: 0px;
+    padding: 8px;
     width: calc(100% - 12px);
   }
 `;

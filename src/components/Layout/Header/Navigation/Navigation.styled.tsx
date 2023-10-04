@@ -13,6 +13,8 @@ export const Navigation = styled.nav`
 
   ${theme.breakpoints.down("md")} {
     flex-direction: column;
+    padding: 0 12px;
+    gap: 18px;
   }
 `;
 
@@ -22,7 +24,7 @@ export const NavLink = styled(({ children }) => {
   return (
     <Button
       {...(!matches && { fullwidth: true })}
-      size={!matches ? "medium" : "small"}
+      size={ "small"}
       variant="text"
     >
       {children}

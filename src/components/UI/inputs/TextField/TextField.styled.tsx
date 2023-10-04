@@ -12,10 +12,13 @@ export const Label = styled.label<{ $fullWidth: boolean }>`
   ${({ $fullWidth }) => $fullWidth && "width: 100%;"}
 `;
 
-export const TextField = styled.input<{
+export const TextField = styled(({ textArea, ...props }) =>
+  textArea ? <textarea {...props} /> : <input {...props} />
+)<{
   $fullWidth: boolean;
   $size: "small" | "large";
   $error: boolean;
+  textArea: boolean;
 }>`
   border: none;
   outline: none;

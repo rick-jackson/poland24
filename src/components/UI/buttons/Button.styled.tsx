@@ -2,19 +2,26 @@ import { buttonConfig } from "@common/configs/button";
 import styled from "styled-components";
 
 export const Button = styled.button<{
-  $variant?: "primary" | "secondary" | "subtle" | "text";
+  $variant?: "primary" | "secondary" | "subtle" | "text" | "green";
   $size?: "large" | "medium" | "small";
   $fullwidth?: boolean;
+  $form: "default" | "circle";
 }>`
-  padding: ${({ $size }) => buttonConfig.size[$size].padding};
+  ${({ $size, $form }) =>
+    $form === "default" && `padding: ${buttonConfig.size[$size].padding};`}
   background: ${({ $variant }) =>
     buttonConfig.variant[$variant].initial.background};
   color: ${({ $variant }) => buttonConfig.variant[$variant].initial.color};
   font-size: ${({ $size }) => buttonConfig.size[$size].fontSize};
-  border-radius: ${({ $size }) => buttonConfig.size[$size].borderRadius};
+  border-radius: ${({ $size, $form }) =>
+    $form === "circle" ? "50px" : buttonConfig.size[$size].borderRadius};
   ${({ $size }) => $size === "large" && " text-transform: upperCase;"}
   ${({ $fullwidth }) => $fullwidth && "width: 100%;"}
   ${({ $variant }) => $variant === "subtle" && "outline: 2px solid #95A4AA;"}
+  ${({ $form, $size }) =>
+    $form === "circle" &&
+    `width: ${buttonConfig.size[$size].height}; 
+     height: ${buttonConfig.size[$size].height};`}
   font-weight: 700;
   display: flex;
   align-items: center;

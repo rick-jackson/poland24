@@ -9,6 +9,7 @@ export type TextFieldProps = {
   placeholder?: string;
   size?: "small" | "large";
   type?: "text" | "number" | "counter" | "password" | "email" | "tel";
+  textArea?: boolean;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "type">;
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -19,14 +20,17 @@ const TextField: React.FC<TextFieldProps> = ({
   type = "text",
   placeholder = "",
   fullWidth = false,
+  textArea,
+  style,
   ...props
 }) => {
   return (
-    <Styled.Label id={name} $fullWidth={fullWidth}>
+    <Styled.Label id={name} $fullWidth={fullWidth} style={style}>
       {label}
       <Styled.TextField
         id={name}
         type={type}
+        textArea={textArea}
         $size={size}
         $error={error}
         $fullWidth={fullWidth}

@@ -1,6 +1,7 @@
 import Help from "public/images/icons/help_outline.svg";
 
 import * as Styled from "./Navigation.styled";
+import Button from "@components/UI/buttons";
 
 const Navigation: React.FC = () => {
   return (
@@ -14,10 +15,10 @@ const Navigation: React.FC = () => {
       </a>
 
       <Styled.NavLink>Контакты</Styled.NavLink>
-      <Styled.HelperButton>
+      <Button size="small" variant="green">
         <Help />
         Помощь в поиске товаров
-      </Styled.HelperButton>
+      </Button>
     </Styled.Navigation>
   );
 };

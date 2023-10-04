@@ -26,6 +26,12 @@ export const buttonConfig: ButtonConfig = {
       hover: { background: "none", color: "#2D2D2D", outline: "#EAEDEE" },
       disabled: { background: "none", color: "#EAEDEE" },
     },
+    green: {
+      initial: { background: "#00BA88", color: "#FFFFFF" },
+      active: { background: "#00956d", color: "#FFFFFF" },
+      hover: { background: "#007051", color: "#FFFFFF", outline: "#EAEDEE" },
+      disabled: { background: "#004a36", color: "#FFFFFF" },
+    },
   },
   size: {
     large: {
@@ -33,18 +39,21 @@ export const buttonConfig: ButtonConfig = {
       fontSize: "20px",
       outline: "8px",
       borderRadius: "10px",
+      height: "56px",
     },
     medium: {
       padding: "14px 24px",
       fontSize: "14px",
       outline: "6px",
       borderRadius: "8px",
+      height: "40px",
     },
     small: {
       padding: "8px 16px",
       fontSize: "14px",
       outline: "6px",
       borderRadius: "6px",
+      height: "20px",
     },
   },
 };

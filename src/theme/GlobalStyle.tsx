@@ -33,6 +33,26 @@ const GlobalStyle = createGlobalStyle<any>`
     padding: 0;
     font-weight: 500;
   }
+
+  *{
+    box-sizing: border-box;
+    &::-webkit-scrollbar {
+      width: 7px;
+    
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+  
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  }
 `;
 
 export default GlobalStyle;

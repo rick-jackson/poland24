@@ -1,15 +1,15 @@
-import Close from "public/images/icons/close-small.svg";
-
-import * as Styled from "./Close.styled";
 import { ButtonHTMLAttributes } from "react";
+
+import Close from "public/images/icons/close-small.svg";
+import Button from "@components/UI/buttons";
 
 const CloseButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
   ...props
 }) => {
   return (
-    <Styled.CloseButton {...props}>
+    <Button {...props} form="circle" size="medium" variant="secondary">
       <Close />
-    </Styled.CloseButton>
+    </Button>
   );
 };
 

@@ -7,11 +7,11 @@ import Logo from "public/images/logo/dark/logo.svg";
 import Menu from "public/images/icons/menu.svg";
 
 import * as Styled from "./Drawer.styled";
-import Button from "@components/UI/buttons";
 import LocaleSwitcher from "@components/LocaleSwitcher";
 import Navigation from "@components/Layout/Header/Navigation";
+import Button from "@components/UI/buttons";
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer({ onOpen }) {
   const [state, setState] = React.useState(false);
 
   const toggleDrawer = () => setState(!state);
@@ -25,7 +25,15 @@ export default function TemporaryDrawer() {
         <Styled.Container>
           <Styled.Head>
             <Logo />
-            <Button size="small">Оформить заказ</Button>
+            <Button
+              size="small"
+              onClick={() => {
+                onOpen();
+                toggleDrawer();
+              }}
+            >
+              Оформить заказ
+            </Button>
             <Close onClick={toggleDrawer} />
           </Styled.Head>
           <Styled.Info>
