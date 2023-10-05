@@ -1,12 +1,12 @@
-import Money from "public/images/icons/Money_perspective_matte_s money.svg";
-import Note from "public/images/icons/Money_perspective_matte_s note.svg";
-import Coin from "public/images/icons/Money_perspective_matte_s coin.svg";
-import Car from "public/images/icons/Money_perspective_matte_s car.svg";
-import Clock from "public/images/icons/perspective_matte clock.svg";
+import theme from "@theme/index";
+import Image from "next/image";
+import { useMediaQuery } from "@mui/material";
 
 import * as Styled from "./Description.styled";
 
 const Description: React.FC = () => {
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
     <Styled.Container>
       <Styled.Item $right={-533} $background="#BB0A0A" style={{ zIndex: 5 }}>
@@ -14,7 +14,12 @@ const Description: React.FC = () => {
           <Styled.Title>
             Возможность оплатить кредитными средствами
           </Styled.Title>
-          <Clock />
+          <Image
+            width={matches ? 300 : 120}
+            height={matches ? 300 : 120}
+            src="images/icons/perspective_matte clock.svg"
+            alt="dfg"
+          />
         </Styled.Head>
         <Styled.Info>
           Оплата за заказы у нас производится посредством платежной системы
@@ -26,7 +31,12 @@ const Description: React.FC = () => {
       <Styled.Item $right={-213} $background="#BB0A0A" style={{ zIndex: 3 }}>
         <Styled.Head>
           <Styled.Title>Доставка товара за 5-10 дней</Styled.Title>
-          <Car />
+          <Image
+            width={matches ? 529 : 156}
+            height={matches ? 290 : 86}
+            src="images/icons/Money_perspective_matte_s car.svg"
+            alt="dfg"
+          />
         </Styled.Head>
         <Styled.Info>
           Доставка товара в Украину 5-10 дней с момента оформления заказа. наша
@@ -38,7 +48,12 @@ const Description: React.FC = () => {
       <Styled.Item $right={114} $background="#EE3D3D" style={{ zIndex: 1 }}>
         <Styled.Head>
           <Styled.Title>Комиссия 6,38%</Styled.Title>
-          <Coin />
+          <Image
+            width={matches ? 300 : 120}
+            height={matches ? 300 : 120}
+            src="images/icons/Money_perspective_matte_s coin.svg"
+            alt="dfg"
+          />
         </Styled.Head>
         <Styled.Info>
           Наша стандартная комиссия 5% + 1,38% комиссия платежной системы для
@@ -52,7 +67,12 @@ const Description: React.FC = () => {
       <Styled.Item $right={-50} $background="#EA0D0D" style={{ zIndex: 2 }}>
         <Styled.Head>
           <Styled.Title>Минимальная предоплаты 30%</Styled.Title>
-          <Money />
+          <Image
+            width={matches ? 300 : 120}
+            height={matches ? 300 : 120}
+            src="images/icons/Money_perspective_matte_s money.svg"
+            alt="dfg"
+          />
         </Styled.Head>
         <Styled.Info>
           Наша компания берет минимальную предоплату 30% от общей суммы заказа
@@ -66,7 +86,12 @@ const Description: React.FC = () => {
       <Styled.Item $right={-373} $background="#EA0D0D" style={{ zIndex: 4 }}>
         <Styled.Head>
           <Styled.Title>доставим заказы до 500€ без пошлин</Styled.Title>
-          <Note />
+          <Image
+            width={matches ? 300 : 120}
+            height={matches ? 300 : 120}
+            src="images/icons/Money_perspective_matte_s note.svg"
+            alt="dfg"
+          />
         </Styled.Head>
         <Styled.Info>
           Наша компания доставляет товар наземным транспортом в Украину и мы

@@ -9,6 +9,7 @@ import Profile from "./Profile";
 import ExchangeRate from "./ExchangeRate";
 import Socials from "./Socials";
 import Order from "./Order";
+import Image from "next/image";
 
 const Header: React.FC = () => {
   const matches = useMediaQuery(theme.breakpoints.down("md"));
@@ -18,17 +19,17 @@ const Header: React.FC = () => {
     <Styled.Wrapper>
       <Styled.Header>
         <Styled.Logo href="/">
-          <LargeLogo
-            {...(matches && {
-              style: { width: "32px", height: "32px" },
-              viewBox: "0 -2 48 48",
-            })}
+          <Image
+            alt="logo"
+            src="images/logo/light/large/logo.svg"
+            width={matches ? 32 : 46}
+            height={matches ? 32 : 46}
           />
-          <LargeLogoText
-            {...(matches && {
-              style: { width: "170px", height: "32px" },
-              viewBox: "80 -3 85 48",
-            })}
+          <Image
+            alt="logo"
+            src="images/logo/light/large/logo-text.svg"
+            width={matches ? 170 : 250}
+            height={matches ? 26 : 42}
           />
         </Styled.Logo>
         {!matches && (

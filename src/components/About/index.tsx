@@ -1,6 +1,6 @@
 import * as Styled from "./About.styled";
-import AboutCompany from "public/images/icons/about-company.svg";
 import { useTranslation } from "next-i18next";
+import Image from "next/image";
 
 const About: React.FC = () => {
   const { t } = useTranslation("about");
@@ -8,7 +8,14 @@ const About: React.FC = () => {
   return (
     <>
       <Styled.Image>
-        <AboutCompany />
+        <Image
+          alt="About Company"
+          src="images/icons/about-company.svg"
+          width={0}
+          height={0}
+          sizes="100vw"
+          style={{ width: "100%", height: "auto" }}
+        />
       </Styled.Image>
       <Styled.Content>
         <Styled.BlockTitle title={t("topic")} />

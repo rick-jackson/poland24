@@ -1,13 +1,9 @@
 import type User from "@entities/user";
 import Avatar from "@components/UI/Avatar";
-import TeaDrink from "public/images/icons/tea-drink.svg";
-import Message from "public/images/icons/message.svg";
-import Viber from "public/images/icons/socials/014-viber.svg";
-import Telegram from "public/images/icons/socials/017-telegram.svg";
 import { Icon, MenuItem } from "@components/UI/Avatar/Avatar.styled";
-import MessengerButton from "@components/UI/buttons/Messenger";
 import * as Styled from "./Aside.styled";
 import Link from "@components/Link";
+import Image from "next/image";
 
 type AsideProps = {
   userData: User;
@@ -25,7 +21,12 @@ const Aside: React.FC<AsideProps> = ({ userData }) => {
           <Link href="/profile/orders">
             <MenuItem>
               <Icon>
-                <TeaDrink />
+                <Image
+                  alt="TeaDrink"
+                  width={24}
+                  height={24}
+                  src="images/icons/tea-drink.svg"
+                />
               </Icon>
               Мои закази
             </MenuItem>
@@ -33,7 +34,12 @@ const Aside: React.FC<AsideProps> = ({ userData }) => {
           <Link href="/profile/reviews">
             <MenuItem>
               <Icon>
-                <Message />
+                <Image
+                  alt="Message"
+                  width={24}
+                  height={24}
+                  src="images/icons/message.svg"
+                />
               </Icon>
               Мои отзиви
             </MenuItem>
@@ -45,12 +51,22 @@ const Aside: React.FC<AsideProps> = ({ userData }) => {
           Связь по поводу информации о заказе через мессенджеры:
         </p>
         <div style={{ display: "flex", gap: "8px", padding: "8px" }}>
-          <MessengerButton disabled>
-            <Viber />
-          </MessengerButton>
-          <MessengerButton disabled>
-            <Telegram />
-          </MessengerButton>
+          <Link href="#">
+            <Image
+              alt="viber"
+              width={32}
+              height={32}
+              src="images/icons/socials/014-viber.svg"
+            />
+          </Link>
+          <Link href="#">
+            <Image
+              alt="telegram"
+              width={32}
+              height={32}
+              src="images/icons/socials/017-telegram.svg"
+            />
+          </Link>
         </div>
       </Styled.Card>
     </Styled.Aside>

@@ -19,6 +19,7 @@ export const Item = styled.div<{ $right: number; $background: string }>`
   align-items: center;
   justify-content: center;
   flex: 1;
+
   ${theme.breakpoints.down("md")} {
     &:nth-child(odd) {
       background: #ea0c0c;
@@ -42,7 +43,7 @@ export const Item = styled.div<{ $right: number; $background: string }>`
     box-shadow: 0px 24px 33px -9px rgba(0, 0, 0, 0.1);
     right: ${({ $right }) => $right}px;
     justify-content: flex-start;
-    padding-bottom: 96px;
+    padding-top: 20px;
     align-items: flex-start;
     background: ${({ $background }) => $background};
 
@@ -59,17 +60,16 @@ export const Head = styled.div`
   justify-content: space-around;
   align-items: flex-start;
 
-  ${theme.breakpoints.up("md")} {
-    svg {
-      position: relative;
-      transform: scale(2.5);
-      left: 80px;
+  // ${theme.breakpoints.up("md")} {
+  //   img {
+  //     position: relative;
+  //     left: 0px;
 
-      &:nth-child(1) {
-        left: 0px;
-      }
-    }
-  }
+  //     &:nth-child(1) {
+  //       left: 0px;
+  //     }
+  //   }
+  // }
 `;
 
 export const Title = styled.div`

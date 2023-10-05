@@ -6,6 +6,7 @@ import Navigations from "./Navigations";
 import Contacts from "./Contacts";
 import { useMediaQuery } from "@mui/material";
 import theme from "@theme/index";
+import Image from "next/image";
 
 import * as Styled from "./Footer.styled";
 
@@ -17,8 +18,18 @@ const Footer: React.FC = () => {
       <Styled.Container>
         {!matches && (
           <Styled.FooterLogo>
-            <Logo />
-            <LogoText />
+            <Image
+              alt="logo"
+              src="images/logo/light/large/logo.svg"
+              width={32}
+              height={32}
+            />
+            <Image
+              alt="logo"
+              src="images/logo/light/large/logo-text.svg"
+              width={170}
+              height={26}
+            />
           </Styled.FooterLogo>
         )}
         <Contacts />

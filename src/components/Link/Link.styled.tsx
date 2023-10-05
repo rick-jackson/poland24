@@ -7,6 +7,7 @@ export const Link = styled(NextLink)`
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  line-height: 0;
 
   &:visited {
     color: inherit;
