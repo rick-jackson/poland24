@@ -19,7 +19,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, description }) => {
     <>
       <Styled.Accordion expanded={expanded} onChange={handleChange}>
         <Styled.AccordionSummary>
-          {title}{" "}
+          {title}
           <Image
             alt="icon"
             width={25}

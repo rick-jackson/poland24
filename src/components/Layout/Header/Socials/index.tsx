@@ -1,12 +1,15 @@
 import * as Styled from "./Socials.styled";
 import Image from "next/image";
 import Link from "@components/Link";
+import { useTranslation } from "next-i18next";
 
 const Socials: React.FC = () => {
+  const { t } = useTranslation("header");
+
   return (
     <Styled.Socials>
       <Styled.Messangers>
-        Наши мессенджеры
+        {t("messengers")}
         <Styled.Icons>
           <Link href="#">
             <Image

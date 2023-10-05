@@ -1,6 +1,7 @@
 import Title from "@components/dialogs/Title";
 import DialogTextField from "@components/dialogs/inputs/TextField";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 
 import * as Styled from "./Inputs.styled";
 
@@ -10,14 +11,16 @@ type InputsProps = {
 };
 
 const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
+  const { t } = useTranslation("profile");
+
   return (
     <>
-      <Title title="Личные данные" />
+      <Title title={t("userData")} />
       <Styled.Inputs>
         <DialogTextField
           control={control}
           name="firstName"
-          placeholder="Имя"
+          placeholder={t("firstName")}
           error={!!errors.firstName}
           fullWidth
           required
@@ -25,7 +28,7 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
         <DialogTextField
           control={control}
           name="lastName"
-          placeholder="Фамилия"
+          placeholder={t("lastName")}
           error={!!errors.lastName}
           fullWidth
           required
@@ -33,7 +36,7 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
         <DialogTextField
           control={control}
           name="email"
-          placeholder="Email"
+          placeholder={t("email")}
           error={!!errors.email}
           fullWidth
           required
@@ -41,7 +44,7 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
         <DialogTextField
           control={control}
           name="phone"
-          placeholder="Номер телефона"
+          placeholder={t("phone")}
           error={!!errors.phone}
           type="number"
           fullWidth
@@ -50,19 +53,19 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
         <DialogTextField
           control={control}
           name="city"
-          placeholder="Город"
+          placeholder={t("city")}
           error={!!errors.city}
           fullWidth
         />
         <DialogTextField
           control={control}
           name="post"
-          placeholder="Відділення НП"
+          placeholder={t("post")}
           error={!!errors.post}
           fullWidth
         />
       </Styled.Inputs>
-      <Title title="Мессенджеры для связи" />
+      <Title title={t("messengers")} />
       <Styled.Messengers>
         <Styled.Messanger>
           <Image
@@ -76,7 +79,7 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
         <DialogTextField
           control={control}
           name="viber"
-          placeholder="Имя пользователя"
+          placeholder={t("userName")}
           error={!!errors.viber}
           fullWidth
         />
@@ -92,7 +95,7 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
         <DialogTextField
           control={control}
           name="telegram"
-          placeholder="Имя пользователя"
+          placeholder={t("userName")}
           error={!!errors.telegram}
           fullWidth
         />

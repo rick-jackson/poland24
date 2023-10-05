@@ -1,15 +1,16 @@
 import Image from "next/image";
 import Link from "@components/Link";
+import { useTranslation } from "next-i18next";
 
 import * as Styled from "./Contacts.styled";
 
 const Contacts: React.FC = () => {
+  const { t } = useTranslation("contacts");
+
   return (
     <Styled.Contacts>
       <Styled.Column>
-        <Styled.ColumnTitle>
-          Контактна інформація щодо замовлень через месенджери:
-        </Styled.ColumnTitle>
+        <Styled.ColumnTitle>{t("messengers")}</Styled.ColumnTitle>
         <Styled.Icons>
           <Link href="#">
             <Image
@@ -30,7 +31,7 @@ const Contacts: React.FC = () => {
         </Styled.Icons>
       </Styled.Column>
       <Styled.Column>
-        <Styled.ColumnTitle>Адреса складу</Styled.ColumnTitle>
+        <Styled.ColumnTitle>{t("adress")}</Styled.ColumnTitle>
         <Styled.ColumnInfo>
           22-600 Томашів
           <br />
@@ -40,20 +41,20 @@ const Contacts: React.FC = () => {
         </Styled.ColumnInfo>
       </Styled.Column>
       <Styled.Column>
-        <Styled.ColumnTitle>Час роботи</Styled.ColumnTitle>
+        <Styled.ColumnTitle>{t("workTime")}</Styled.ColumnTitle>
         <Styled.ColumnInfo>
           Пн-Пт 9:00 - 17:00
           <br />
           Сб 9:00 - 15:00
           <br />
-          Нд - Вих.
+          {t("weekend")}
         </Styled.ColumnInfo>
       </Styled.Column>
 
       <Styled.Column>
-        <Styled.ColumnTitle>електронна пошта</Styled.ColumnTitle>
+        <Styled.ColumnTitle>{t("email")}</Styled.ColumnTitle>
         <Styled.ColumnInfo>info@poland24.com.ua</Styled.ColumnInfo>
-        <Styled.ColumnTitle>Телефон</Styled.ColumnTitle>
+        <Styled.ColumnTitle>{t("phone")}</Styled.ColumnTitle>
         <Styled.ColumnInfo>+38 (093) 496 58 00</Styled.ColumnInfo>
       </Styled.Column>
     </Styled.Contacts>

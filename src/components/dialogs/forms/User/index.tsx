@@ -13,8 +13,11 @@ import { useRouter } from "next/router";
 import { setUserInLocalStorage } from "@common/utils/setUserInLocalStorage";
 import { enqueueSnackbar } from "notistack";
 import { defaultUser } from "@common/data/defaultUser";
+import { useTranslation } from "next-i18next";
 
 const UserForm: React.FC<{ userData: User }> = ({ userData }) => {
+  const { t } = useTranslation("profile");
+
   const router = useRouter();
   const {
     control,
@@ -49,7 +52,7 @@ const UserForm: React.FC<{ userData: User }> = ({ userData }) => {
         size="medium"
         style={{ margin: "auto", marginTop: "16px" }}
       >
-        <Save /> Сохранить
+        <Save /> {t("save")}
       </Button>
     </Styled.Form>
   );

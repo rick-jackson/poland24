@@ -1,23 +1,26 @@
 import Help from "public/images/icons/help_outline.svg";
+import { useTranslation } from "next-i18next";
 
 import * as Styled from "./Navigation.styled";
 import Button from "@components/UI/buttons";
 import Link from "@components/Link";
 
 const Navigation: React.FC = () => {
+  const { t } = useTranslation("navigation");
+
   return (
     <Styled.Navigation>
       <Link href="/about">
-        <Styled.NavLink>О компании</Styled.NavLink>
+        <Styled.NavLink>{t("about")}</Styled.NavLink>
       </Link>
       <Link href="/shops">
-        <Styled.NavLink>Список магазину</Styled.NavLink>
+        <Styled.NavLink>{t("shops")}</Styled.NavLink>
       </Link>
       <Link href="/reviews">
-        <Styled.NavLink>Отзывы</Styled.NavLink>
+        <Styled.NavLink>{t("reviews")}</Styled.NavLink>
       </Link>
       <Link href="/faq">
-        <Styled.NavLink>Вопрос -ответ</Styled.NavLink>
+        <Styled.NavLink>{t("faq")}</Styled.NavLink>
       </Link>
       <Link
         href={{
@@ -25,14 +28,14 @@ const Navigation: React.FC = () => {
           hash: "calculator",
         }}
       >
-        <Styled.NavLink>Калькулятор</Styled.NavLink>
+        <Styled.NavLink>{t("calculator")}</Styled.NavLink>
       </Link>
       <Link href="/contacts">
-        <Styled.NavLink>Контакты</Styled.NavLink>
+        <Styled.NavLink>{t("contacts")}</Styled.NavLink>
       </Link>
       <Button size="small" variant="green">
         <Help />
-        Помощь в поиске товаров
+        {t("request")}
       </Button>
     </Styled.Navigation>
   );

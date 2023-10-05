@@ -5,11 +5,13 @@ import { auth } from "../../../../firebase";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 
 type AvatarProps = Partial<Pick<User, "firstName" | "lastName" | "email">>;
 
 const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
   const router = useRouter();
+  const { t } = useTranslation("header");
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -70,7 +72,7 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
               alt="setting"
             />
           </Styled.Icon>
-          Редактировать профиль
+          {t("editProfile")}
         </Styled.MenuItem>
         <Styled.MenuItem
           onClick={() => {
@@ -86,7 +88,7 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
               alt="order"
             />
           </Styled.Icon>
-          Мои закази
+          {t("myOrders")}
         </Styled.MenuItem>
         <Styled.MenuItem
           onClick={() => {
@@ -102,7 +104,7 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
               alt="message"
             />
           </Styled.Icon>
-          Мои отзиви
+          {t("myReviews")}
         </Styled.MenuItem>
         <Styled.MenuItem
           onClick={handleLogout}
@@ -111,7 +113,7 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
             paddingLeft: "16px !important",
           }}
         >
-          Виход{" "}
+          {t("logout")}{" "}
           <Image
             src="/images/icons/exit_to_app.svg"
             width={24}

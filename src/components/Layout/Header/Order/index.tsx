@@ -4,6 +4,7 @@ import Modal from "@components/Modal";
 import { getCookie } from "cookies-next";
 import Authorization from "@components/Modal/Authorization";
 import OrderForm from "@components/dialogs/forms/Order";
+import { useTranslation } from "next-i18next";
 
 type OrderProps = {
   text: string;
@@ -12,6 +13,7 @@ type OrderProps = {
 
 const Order: React.FC<OrderProps> = ({ text, size = "large" }) => {
   const { open, handleOpen, handleClose } = useModal();
+  const { t } = useTranslation("header");
   const userId = getCookie("userId");
 
   return (

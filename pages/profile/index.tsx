@@ -4,14 +4,17 @@ import { NextPage } from "next";
 import type User from "@entities/user";
 import UserPageLayout from "@components/Layout/UserPage";
 import Profile from "@components/Profile";
+import { useTranslation } from "next-i18next";
 
 type ProfilePageProps = {
   userData: User;
 };
 
 const ProfilePage: NextPage<ProfilePageProps> = ({ userData }) => {
+  const { t } = useTranslation("header");
+
   return (
-    <UserPageLayout title="Редактировать профиль">
+    <UserPageLayout title={t("editProfile")}>
       <Profile userData={userData} />
     </UserPageLayout>
   );

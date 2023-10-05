@@ -10,11 +10,13 @@ import User from "public/images/icons/white-user.svg";
 import Modal from "@components/Modal";
 import Authorization from "@components/Modal/Authorization";
 import OrderForm from "@components/dialogs/forms/Order";
+import { useTranslation } from "next-i18next";
 
 const Profile = () => {
   const userId = getCookie("userId");
   const userData = JSON.parse(localStorage.getItem("userData"));
   const matches = useMediaQuery(theme.breakpoints.down("md"));
+  const { t } = useTranslation("header");
 
   const Desktop = () => {
     const { open, handleOpen, handleClose } = useModal();
@@ -29,7 +31,7 @@ const Profile = () => {
             variant="text"
             onClick={handleOpen}
           >
-            Вход /Реестрация
+            {t("signin")}
           </Button>
         )}
         <Modal isOpen={open} onClose={handleClose}>

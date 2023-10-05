@@ -5,9 +5,12 @@ const GlobalStyle = createGlobalStyle<any>`
   body,
   #root {
     height: 100%;
-
-
   }
+
+  textarea
+{
+   resize: none;
+}
 
   #__next{
     display: flex;

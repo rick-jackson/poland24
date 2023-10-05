@@ -8,6 +8,14 @@ import ruNavigation from "./public/static/locales/ru/navigation.json";
 import ukNavigation from "./public/static/locales/uk/navigation.json";
 import ruAbout from "./public/static/locales/ru/about.json";
 import ukAbout from "./public/static/locales/uk/about.json";
+import ruReviews from "./public/static/locales/ru/reviews.json";
+import ukReviews from "./public/static/locales/uk/reviews.json";
+import ruContacts from "./public/static/locales/ru/contacts.json";
+import ukContacts from "./public/static/locales/uk/contacts.json";
+import ruHeader from "./public/static/locales/ru/header.json";
+import ukHeader from "./public/static/locales/uk/header.json";
+import ruProfile from "./public/static/locales/ru/profile.json";
+import ukProfile from "./public/static/locales/uk/profile.json";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -16,12 +24,20 @@ i18n.use(initReactI18next).init({
       faq: ruFaq,
       navigation: ruNavigation,
       about: ruAbout,
+      reviews: ruReviews,
+      contacts: ruContacts,
+      header: ruHeader,
+      profile: ruProfile,
     },
     uk: {
       banner: ukBanner,
       faq: ukFaq,
       navigation: ukNavigation,
       about: ukAbout,
+      reviews: ukReviews,
+      contacts: ukContacts,
+      header: ukHeader,
+      profile: ukProfile,
     },
   },
   fallbackLng: "ru",

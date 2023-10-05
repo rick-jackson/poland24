@@ -4,12 +4,15 @@ import { Icon, MenuItem } from "@components/UI/Avatar/Avatar.styled";
 import * as Styled from "./Aside.styled";
 import Link from "@components/Link";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 
 type AsideProps = {
   userData: User;
 };
 
 const Aside: React.FC<AsideProps> = ({ userData }) => {
+  const { t } = useTranslation("header");
+
   return (
     <Styled.Aside>
       <Styled.Card>
@@ -28,7 +31,7 @@ const Aside: React.FC<AsideProps> = ({ userData }) => {
                   src="/images/icons/tea-drink.svg"
                 />
               </Icon>
-              Мои закази
+              {t("myOrders")}
             </MenuItem>
           </Link>
           <Link href="/profile/reviews">
@@ -41,14 +44,14 @@ const Aside: React.FC<AsideProps> = ({ userData }) => {
                   src="/images/icons/message.svg"
                 />
               </Icon>
-              Мои отзиви
+              {t("myReviews")}
             </MenuItem>
           </Link>
         </Styled.Navigation>
         <p
           style={{ margin: 0, padding: "8px", fontWeight: 500, lineHeight: 1 }}
         >
-          Связь по поводу информации о заказе через мессенджеры:
+          {t("asideMessengers")}
         </p>
         <div style={{ display: "flex", gap: "8px", padding: "8px" }}>
           <Link href="#">

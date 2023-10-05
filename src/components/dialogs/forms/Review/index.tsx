@@ -11,6 +11,7 @@ import { db } from "../../../../../firebase";
 import { getCookie } from "cookies-next";
 import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 const ReviewForm: React.FC = () => {
   const {
@@ -22,6 +23,7 @@ const ReviewForm: React.FC = () => {
     defaultValues: defaultReview(),
   });
 
+  const { t } = useTranslation("reviews");
   const router = useRouter();
 
   const handleSubmit = (e) => {
@@ -49,12 +51,12 @@ const ReviewForm: React.FC = () => {
 
   return (
     <div>
-      <BlockTitle title="Оставить отзыв" />
+      <BlockTitle title={t("saveReview")} />
       <Styled.Form onSubmit={handleSubmit}>
         <DialogTextField
           control={control}
           name="fullName"
-          placeholder="Ваше имя"
+          placeholder={t("userName")}
           error={!!errors.fullName}
           fullWidth
           required
@@ -62,14 +64,14 @@ const ReviewForm: React.FC = () => {
         <DialogTextField
           control={control}
           name="email"
-          placeholder="Ваша почта"
+          placeholder={t("userEmail")}
           error={!!errors.email}
           fullWidth
         />
         <DialogTextField
           control={control}
           name="text"
-          placeholder="Ваш отзив"
+          placeholder={t("userReview")}
           error={!!errors.text}
           fullWidth
           textArea
@@ -78,15 +80,15 @@ const ReviewForm: React.FC = () => {
         <DialogTextField
           control={control}
           name="store"
-          placeholder="Магазин"
+          placeholder={t("store")}
           error={!!errors.store}
           fullWidth
         />
         <Styled.Rating>
-          Ваша оценка: <DialogRating name="rating" control={control} />
+          {t("rating")} <DialogRating name="rating" control={control} />
         </Styled.Rating>
         <Button type="submit" size="medium">
-          Отправить
+          {t("send")}
         </Button>
       </Styled.Form>
     </div>

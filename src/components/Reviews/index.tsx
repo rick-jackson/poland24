@@ -3,6 +3,7 @@ import * as Styled from "./Reviews.styled";
 import { format } from "date-fns";
 import { Rating } from "@mui/material";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 type ReviewsProps = {
   reviewsData: Review[];
@@ -10,6 +11,7 @@ type ReviewsProps = {
 
 const Reviews: React.FC<ReviewsProps> = ({ reviewsData }) => {
   const router = useRouter();
+  const { t } = useTranslation("reviews");
   const isUserPage = router.asPath.includes("profile");
 
   return (
@@ -24,7 +26,7 @@ const Reviews: React.FC<ReviewsProps> = ({ reviewsData }) => {
 
                 {store && (
                   <Styled.Store>
-                    <Styled.Date>Покупка в магазине: </Styled.Date>
+                    <Styled.Date>{t("shoppingInStores")} </Styled.Date>
                     {store}
                   </Styled.Store>
                 )}

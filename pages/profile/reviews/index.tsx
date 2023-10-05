@@ -6,14 +6,17 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { NextPage } from "next";
 import BlockTitle from "@components/BlockTitle";
 import { UserReviews } from "@components/Reviews/Reviews.styled";
+import { useTranslation } from "next-i18next";
 
 type ReviewsPageProps = { reviewsData: Review[] };
 
 const ReviewsPage: NextPage<ReviewsPageProps> = ({ reviewsData }) => {
+  const { t } = useTranslation("header");
+
   return (
     <UserReviews>
       <div>
-        <BlockTitle title="Мои отзывы" />
+        <BlockTitle title={t("myReviews")} />
         <Reviews reviewsData={reviewsData} />
       </div>
       <ReviewForm />
