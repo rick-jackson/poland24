@@ -6,6 +6,8 @@ import ruBanner from "./public/static/locales/ru/banner.json";
 import ukBanner from "./public/static/locales/uk/banner.json";
 import ruNavigation from "./public/static/locales/ru/navigation.json";
 import ukNavigation from "./public/static/locales/uk/navigation.json";
+import ruAbout from "./public/static/locales/ru/about.json";
+import ukAbout from "./public/static/locales/uk/about.json";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -13,11 +15,13 @@ i18n.use(initReactI18next).init({
       banner: ruBanner,
       faq: ruFaq,
       navigation: ruNavigation,
+      about: ruAbout,
     },
     uk: {
       banner: ukBanner,
       faq: ukFaq,
       navigation: ukNavigation,
+      about: ukAbout,
     },
   },
   fallbackLng: "ru",

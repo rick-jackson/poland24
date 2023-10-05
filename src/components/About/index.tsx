@@ -1,24 +1,27 @@
 import * as Styled from "./About.styled";
 import AboutCompany from "public/images/icons/about-company.svg";
+import { useTranslation } from "next-i18next";
 
 const About: React.FC = () => {
+  const { t } = useTranslation("about");
+
+  console.log(t("title"));
+
   return (
     <>
-      <div
-        style={{ maxHeight: "360px", maxWidth: "800px", marginLeft: "auto" }}
-      >
+      <Styled.Image>
         <AboutCompany />
-      </div>
-      <div style={{ display: "flex", marginTop: "30px", gap: "16px" }}>
+      </Styled.Image>
+      <Styled.Content>
         <Styled.BlockTitle title="Можете оформить запрос и в кратчайшие сроки постараемся найти необходимы товар в странах Евросоюза." />
-        <p style={{ fontSize: "24px", fontWeight: 400 }}>
-          Компания Poland24 является одной из первых на территории Украины
-          предложившей своим клиентам услуги по доставке товаров из Польши в
-          Украину. Мы начали свою деятельность в 2012 году. Изначально наша
-          компания занимались доставкой компьютерной техники для ряда клиентов в
-          Украине.
-        </p>
-      </div>
+        <div>
+          {new Array(9).fill(null).map((_, index) => (
+            <Styled.Paragraph key={index}>
+              {t(`paragraph${index + 1}`)}
+            </Styled.Paragraph>
+          ))}
+        </div>
+      </Styled.Content>
     </>
   );
 };
