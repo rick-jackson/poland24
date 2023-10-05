@@ -1,5 +1,3 @@
-import LogoText from "public/images/logo/dark/logo-text.svg";
-import Logo from "public/images/logo/dark/logo.svg";
 import LargeLogoText from "public/images/logo/light/large/logo-text.svg";
 import LargeLogo from "public/images/logo/light/large/logo.svg";
 import { useMediaQuery } from "@mui/material";
@@ -20,8 +18,18 @@ const Header: React.FC = () => {
     <Styled.Wrapper>
       <Styled.Header>
         <Styled.Logo href="/">
-          {matches ? <Logo /> : <LargeLogo />}
-          {matches ? <LogoText /> : <LargeLogoText />}
+          <LargeLogo
+            {...(matches && {
+              style: { width: "32px", height: "32px" },
+              viewBox: "0 -2 48 48",
+            })}
+          />
+          <LargeLogoText
+            {...(matches && {
+              style: { width: "170px", height: "32px" },
+              viewBox: "80 -3 85 48",
+            })}
+          />
         </Styled.Logo>
         {!matches && (
           <>

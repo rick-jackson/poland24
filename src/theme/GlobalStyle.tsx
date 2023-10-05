@@ -5,9 +5,7 @@ const GlobalStyle = createGlobalStyle<any>`
   body,
   #root {
     height: 100%;
-    font-size: 14px;
-    font-family: Rubik;
-    color: #2D2D2D;
+
 
   }
 
@@ -15,6 +13,9 @@ const GlobalStyle = createGlobalStyle<any>`
     display: flex;
     flex-direction: column;
     height: 100%;
+    font-size: 14px;
+    font-family: Rubik;
+    color: #2D2D2D;
   }
 
   body {
