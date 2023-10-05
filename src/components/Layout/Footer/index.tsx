@@ -1,5 +1,3 @@
-import LogoText from "public/images/logo/light/logo-text.svg";
-import Logo from "public/images/logo/light/logo.svg";
 import Instagram from "public/images/icons/socials/instagram.svg";
 import VK from "public/images/icons/socials/vk.svg";
 import Navigations from "./Navigations";
@@ -13,25 +11,27 @@ import * as Styled from "./Footer.styled";
 const Footer: React.FC = () => {
   const matches = useMediaQuery(theme.breakpoints.up("md"));
 
+  const footerLogo = (
+    <Styled.FooterLogo>
+      <Image
+        alt="logo"
+        src="/images/logo/light/logo.svg"
+        width={46}
+        height={46}
+      />
+      <Image
+        alt="logo"
+        src="/images/logo/light/logo-text.svg"
+        width={250}
+        height={42}
+      />
+    </Styled.FooterLogo>
+  );
+
   return (
     <Styled.Wrapper>
       <Styled.Container>
-        {!matches && (
-          <Styled.FooterLogo>
-            <Image
-              alt="logo"
-              src="images/logo/light/large/logo.svg"
-              width={32}
-              height={32}
-            />
-            <Image
-              alt="logo"
-              src="images/logo/light/large/logo-text.svg"
-              width={170}
-              height={26}
-            />
-          </Styled.FooterLogo>
-        )}
+        {!matches && footerLogo}
         <Contacts />
         <Styled.Socials>
           <span>Мы в соц.сетяц:</span>
@@ -43,12 +43,7 @@ const Footer: React.FC = () => {
         <Navigations />
         <Styled.Divider />
         <div>
-          {matches && (
-            <Styled.FooterLogo>
-              <Logo />
-              <LogoText />
-            </Styled.FooterLogo>
-          )}
+          {matches && footerLogo}
           <Styled.Copyright>
             Copyright © 2022 Poland24.com.ua. Все права защищены.
           </Styled.Copyright>
