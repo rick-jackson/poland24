@@ -24,6 +24,7 @@ const Footer: React.FC = () => {
         src="/images/logo/light/logo-text.svg"
         width={250}
         height={42}
+        priority
       />
     </Styled.FooterLogo>
   );

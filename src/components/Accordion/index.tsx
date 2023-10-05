@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Open from "public/images/icons/add_black.svg";
-import Close from "public/images/icons/remove_black.svg";
 
 import * as Styled from "./Accordion.styled";
 import Image from "next/image";
@@ -26,6 +24,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, description }) => {
             alt="icon"
             width={25}
             height={25}
+            style={{ width: "auto", height: "auto" }}
             src={
               expanded
                 ? "/images/icons/remove_black.svg"

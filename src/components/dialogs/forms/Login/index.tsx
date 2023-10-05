@@ -3,10 +3,12 @@ import Button from "@components/UI/buttons";
 import CheckBox from "@components/UI/inputs/Checkbox";
 import { useForm } from "react-hook-form";
 import DialogTextField from "@components/dialogs/inputs/TextField";
-import useSignIn from "@gateways/signIn";
+
 import { useMediaQuery } from "@mui/material";
 import theme from "@theme/index";
 import { ButtonText } from "@components/Modal/Authorization/Authorization.styled";
+import { login } from "@gateways/signIn";
+import { enqueueSnackbar } from "notistack";
 
 type FormProps = {
   onClose: () => void;
@@ -14,7 +16,6 @@ type FormProps = {
 
 const Form: React.FC<FormProps> = ({ onClose }) => {
   const matches = useMediaQuery(theme.breakpoints.up("md"));
-  const { login, isLoading } = useSignIn();
 
   const {
     control,
@@ -24,11 +25,17 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
     defaultValues: { email: "", password: "", remember: false },
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await onSubmit((data) => {
-      login(data);
-      onClose();
+    onSubmit(async (data) => {
+      try {
+        await login(data);
+        onClose();
+        enqueueSnackbar("Login!", { variant: "success" });
+      } catch (e) {
+        console.log(e.code)
+        enqueueSnackbar(`${e.message}`, { variant: "error" });
+      }
     })();
   };
 
@@ -75,7 +82,7 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
       </div>
 
       <Button {...(!matches && { size: "medium" })} type="submit">
-        {isLoading ? "loading" : "Войти"}
+        Войти
       </Button>
     </form>
   );

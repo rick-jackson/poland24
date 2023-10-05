@@ -36,6 +36,7 @@ const Description: React.FC = () => {
             height={matches ? 290 : 86}
             src="/images/icons/Money_perspective_matte_s car.svg"
             alt="dfg"
+            priority
           />
         </Styled.Head>
         <Styled.Info>
