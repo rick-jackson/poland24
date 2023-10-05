@@ -8,7 +8,7 @@ import * as Styled from "./Home.styled";
 const Home: React.FC = () => {
   return (
     <Styled.Container>
-      <Delivery />
+      {/* <Delivery /> */}
       <HowItWorks />
       <AboutUs />
       <CalculatePrice />
