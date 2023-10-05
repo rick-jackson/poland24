@@ -10,7 +10,7 @@ const About: React.FC = () => {
       <Styled.Image>
         <Image
           alt="About Company"
-          src="images/icons/about-company.svg"
+          src="/images/icons/about-company.svg"
           width={0}
           height={0}
           sizes="100vw"

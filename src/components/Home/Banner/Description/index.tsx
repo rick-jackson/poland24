@@ -17,7 +17,7 @@ const Description: React.FC = () => {
           <Image
             width={matches ? 300 : 120}
             height={matches ? 300 : 120}
-            src="images/icons/perspective_matte clock.svg"
+            src="/images/icons/perspective_matte clock.svg"
             alt="dfg"
           />
         </Styled.Head>
@@ -34,7 +34,7 @@ const Description: React.FC = () => {
           <Image
             width={matches ? 529 : 156}
             height={matches ? 290 : 86}
-            src="images/icons/Money_perspective_matte_s car.svg"
+            src="/images/icons/Money_perspective_matte_s car.svg"
             alt="dfg"
           />
         </Styled.Head>
@@ -51,7 +51,7 @@ const Description: React.FC = () => {
           <Image
             width={matches ? 300 : 120}
             height={matches ? 300 : 120}
-            src="images/icons/Money_perspective_matte_s coin.svg"
+            src="/images/icons/Money_perspective_matte_s coin.svg"
             alt="dfg"
           />
         </Styled.Head>
@@ -70,7 +70,7 @@ const Description: React.FC = () => {
           <Image
             width={matches ? 300 : 120}
             height={matches ? 300 : 120}
-            src="images/icons/Money_perspective_matte_s money.svg"
+            src="/images/icons/Money_perspective_matte_s money.svg"
             alt="dfg"
           />
         </Styled.Head>
@@ -89,7 +89,7 @@ const Description: React.FC = () => {
           <Image
             width={matches ? 300 : 120}
             height={matches ? 300 : 120}
-            src="images/icons/Money_perspective_matte_s note.svg"
+            src="/images/icons/Money_perspective_matte_s note.svg"
             alt="dfg"
           />
         </Styled.Head>

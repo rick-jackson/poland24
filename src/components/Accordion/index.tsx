@@ -28,8 +28,8 @@ const Accordion: React.FC<AccordionProps> = ({ title, description }) => {
             height={25}
             src={
               expanded
-                ? "images/icons/remove_black.svg"
-                : "images/icons/add_black.svg"
+                ? "/images/icons/remove_black.svg"
+                : "/images/icons/add_black.svg"
             }
           />
         </Styled.AccordionSummary>

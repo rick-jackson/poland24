@@ -25,7 +25,7 @@ const Aside: React.FC<AsideProps> = ({ userData }) => {
                   alt="TeaDrink"
                   width={24}
                   height={24}
-                  src="images/icons/tea-drink.svg"
+                  src="/images/icons/tea-drink.svg"
                 />
               </Icon>
               Мои закази
@@ -38,7 +38,7 @@ const Aside: React.FC<AsideProps> = ({ userData }) => {
                   alt="Message"
                   width={24}
                   height={24}
-                  src="images/icons/message.svg"
+                  src="/images/icons/message.svg"
                 />
               </Icon>
               Мои отзиви
@@ -56,7 +56,7 @@ const Aside: React.FC<AsideProps> = ({ userData }) => {
               alt="viber"
               width={32}
               height={32}
-              src="images/icons/socials/014-viber.svg"
+              src="/images/icons/socials/014-viber.svg"
             />
           </Link>
           <Link href="#">
@@ -64,7 +64,7 @@ const Aside: React.FC<AsideProps> = ({ userData }) => {
               alt="telegram"
               width={32}
               height={32}
-              src="images/icons/socials/017-telegram.svg"
+              src="/images/icons/socials/017-telegram.svg"
             />
           </Link>
         </div>

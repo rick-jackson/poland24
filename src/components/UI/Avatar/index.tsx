@@ -4,10 +4,7 @@ import * as Styled from "./Avatar.styled";
 import { auth } from "../../../../firebase";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Setting from "public/images/icons/settings_input_composite.svg";
-import TeaDrink from "public/images/icons/tea-drink.svg";
-import Message from "public/images/icons/message.svg";
-import Logout from "public/images/icons/exit_to_app.svg";
+import Image from "next/image";
 
 type AvatarProps = Partial<Pick<User, "firstName" | "lastName" | "email">>;
 
@@ -66,7 +63,12 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
           }}
         >
           <Styled.Icon>
-            <Setting />
+            <Image
+              src="/images/icons/settings_input_composite.svg"
+              width={24}
+              height={24}
+              alt="setting"
+            />
           </Styled.Icon>
           Редактировать профиль
         </Styled.MenuItem>
@@ -77,7 +79,12 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
           }}
         >
           <Styled.Icon>
-            <TeaDrink />
+            <Image
+              src="/images/icons/tea-drink.svg"
+              width={24}
+              height={24}
+              alt="order"
+            />
           </Styled.Icon>
           Мои закази
         </Styled.MenuItem>
@@ -88,7 +95,12 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
           }}
         >
           <Styled.Icon>
-            <Message />
+            <Image
+              src="/images/icons/message.svg"
+              width={24}
+              height={24}
+              alt="message"
+            />
           </Styled.Icon>
           Мои отзиви
         </Styled.MenuItem>
@@ -99,7 +111,13 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
             paddingLeft: "16px !important",
           }}
         >
-          Виход <Logout />
+          Виход{" "}
+          <Image
+            src="/images/icons/exit_to_app.svg"
+            width={24}
+            height={24}
+            alt="logout"
+          />
         </Styled.MenuItem>
       </Styled.Menu>
     </>

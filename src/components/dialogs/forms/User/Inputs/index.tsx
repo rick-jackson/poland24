@@ -1,8 +1,6 @@
-import Telegram from "public/images/icons/socials/017-telegram.svg";
-import Viber from "public/images/icons/socials/014-viber.svg";
-import MessengerButton from "@components/UI/buttons/Messenger";
 import Title from "@components/dialogs/Title";
 import DialogTextField from "@components/dialogs/inputs/TextField";
+import Image from "next/image";
 
 import * as Styled from "./Inputs.styled";
 
@@ -67,9 +65,12 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
       <Title title="Мессенджеры для связи" />
       <Styled.Messengers>
         <Styled.Messanger>
-          <MessengerButton disabled>
-            <Viber />
-          </MessengerButton>
+          <Image
+            alt="viber"
+            width={32}
+            height={32}
+            src="/images/icons/socials/014-viber.svg"
+          />
           Viber
         </Styled.Messanger>
         <DialogTextField
@@ -80,9 +81,12 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
           fullWidth
         />
         <Styled.Messanger>
-          <MessengerButton disabled>
-            <Telegram />
-          </MessengerButton>
+          <Image
+            alt="telegram"
+            width={32}
+            height={32}
+            src="/images/icons/socials/017-telegram.svg"
+          />
           Telegram
         </Styled.Messanger>
         <DialogTextField

@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from "react";
 import Ukraine from "public/images/icons/flags/ua.svg";
 import ArrowDown from "public/images/icons/arrow_drop_down.svg";
@@ -14,10 +13,11 @@ import {
 
 import * as Styled from "./LocaleSwitcher.styled";
 import { setCookie } from "cookies-next";
+import Image from "next/image";
 
 const localeConfig = [
-  { locale: "ru", label: "Руz", icon: "images/icons/emoji.png" },
-  { locale: "uk", label: "Укр", icon: "images/icons/flags/ua.png" },
+  { locale: "ru", label: "Руz", icon: "/images/icons/emoji.png" },
+  { locale: "uk", label: "Укр", icon: "/images/icons/flags/ua.png" },
 ];
 
 const LocaleSwitcher: React.FC = () => {
@@ -69,7 +69,12 @@ const LocaleSwitcher: React.FC = () => {
           </>
         ) : (
           <>
-            <img width={24} height={17} src="images/icons/emoji.png" alt="ru" />
+            <Image
+              alt="ru"
+              width={24}
+              height={17}
+              src="/images/icons/emoji.png"
+            />
             Руz
           </>
         )}
@@ -104,7 +109,7 @@ const LocaleSwitcher: React.FC = () => {
                         setCookie("NEXT_LOCALE", locale);
                       }}
                     >
-                      <img width={24} height={17} src={icon} alt={locale} />{" "}
+                      <Image alt={locale} width={24} height={17} src={icon} />{" "}
                       {label}
                     </MenuItem>
                   ))}

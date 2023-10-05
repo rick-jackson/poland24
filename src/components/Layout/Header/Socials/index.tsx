@@ -13,7 +13,7 @@ const Socials: React.FC = () => {
               alt="viber"
               width={32}
               height={32}
-              src="images/icons/socials/014-viber.svg"
+              src="/images/icons/socials/014-viber.svg"
             />
           </Link>
           <Link href="#">
@@ -21,7 +21,7 @@ const Socials: React.FC = () => {
               alt="telegram"
               width={32}
               height={32}
-              src="images/icons/socials/017-telegram.svg"
+              src="/images/icons/socials/017-telegram.svg"
             />
           </Link>
         </Styled.Icons>
@@ -31,7 +31,7 @@ const Socials: React.FC = () => {
           alt="mail"
           width={17}
           height={17}
-          src="images/icons/mail_outline_grey.svg"
+          src="/images/icons/mail_outline_grey.svg"
         />
         info@poland24.com.ua
       </Styled.Mail>
