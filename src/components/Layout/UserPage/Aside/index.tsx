@@ -22,7 +22,7 @@ const Aside: React.FC<AsideProps> = ({ userData }) => {
         </Styled.User>
         <Styled.Divider />
         <Styled.Navigation>
-          <Link href="/orders">
+          <Link href="/profile/orders">
             <MenuItem>
               <Icon>
                 <TeaDrink />
@@ -30,7 +30,7 @@ const Aside: React.FC<AsideProps> = ({ userData }) => {
               Мои закази
             </MenuItem>
           </Link>
-          <Link href="/reviews">
+          <Link href="/profile/reviews">
             <MenuItem>
               <Icon>
                 <Message />

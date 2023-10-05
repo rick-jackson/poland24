@@ -23,6 +23,11 @@ export const AccordionSummary = styled(MuiAccordionSummary)`
   padding: 0;
   margin: 0;
 
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+
   ${theme.breakpoints.down("md")} {
     font-size: 16px;
   }

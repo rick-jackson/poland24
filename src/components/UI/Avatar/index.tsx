@@ -73,7 +73,7 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
         <Styled.MenuItem
           onClick={() => {
             handleClose();
-            router.push("/orders");
+            router.push("/profile/orders");
           }}
         >
           <Styled.Icon>
@@ -84,7 +84,7 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
         <Styled.MenuItem
           onClick={() => {
             handleClose();
-            router.push("/reviews");
+            router.push("/profile/reviews");
           }}
         >
           <Styled.Icon>

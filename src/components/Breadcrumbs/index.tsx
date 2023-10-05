@@ -1,8 +1,21 @@
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import Arrow from "public/images/icons/down.svg";
+
+import * as Styled from "./Breadcrumbs.styled";
+
 const Breadcrumbs: React.FC = () => {
+  const { pathname } = useRouter();
+  const { t } = useTranslation("navigation");
+
   return (
-    <div style={{ marginTop: "4px", marginBottom: "8px" }}>
-      Главная - Вопрос — ответ
-    </div>
+    <Styled.Breadcrumbs>
+      <Styled.Link href="/">
+        {t("home")}
+        <Arrow />
+      </Styled.Link>
+      <Styled.Item>{t(`${pathname.split("/")[1]}`)}</Styled.Item>
+    </Styled.Breadcrumbs>
   );
 };
 

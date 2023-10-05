@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Open from "public/images/icons/add_black.svg";
+import Close from "public/images/icons/remove_black.svg";
 
 import * as Styled from "./Accordion.styled";
 
@@ -17,7 +19,9 @@ const Accordion: React.FC<AccordionProps> = ({ title, description }) => {
   return (
     <>
       <Styled.Accordion expanded={expanded} onChange={handleChange}>
-        <Styled.AccordionSummary>{title}</Styled.AccordionSummary>
+        <Styled.AccordionSummary>
+          {title} <div>{expanded ? <Close /> : <Open />}</div>
+        </Styled.AccordionSummary>
         <Styled.AccordionDetails>{description}</Styled.AccordionDetails>
       </Styled.Accordion>
     </>

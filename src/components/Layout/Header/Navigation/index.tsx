@@ -7,9 +7,15 @@ import Link from "@components/Link";
 const Navigation: React.FC = () => {
   return (
     <Styled.Navigation>
-      <Styled.NavLink>О компании</Styled.NavLink>
-      <Styled.NavLink>Список магазину</Styled.NavLink>
-      <Styled.NavLink>Отзывы</Styled.NavLink>
+      <Link href="/about">
+        <Styled.NavLink>О компании</Styled.NavLink>
+      </Link>
+      <Link href="/shops">
+        <Styled.NavLink>Список магазину</Styled.NavLink>
+      </Link>
+      <Link href="/reviews">
+        <Styled.NavLink>Отзывы</Styled.NavLink>
+      </Link>
       <Link href="/faq">
         <Styled.NavLink>Вопрос -ответ</Styled.NavLink>
       </Link>
@@ -21,8 +27,9 @@ const Navigation: React.FC = () => {
       >
         <Styled.NavLink>Калькулятор</Styled.NavLink>
       </Link>
-
-      <Styled.NavLink>Контакты</Styled.NavLink>
+      <Link href="/contacts">
+        <Styled.NavLink>Контакты</Styled.NavLink>
+      </Link>
       <Button size="small" variant="green">
         <Help />
         Помощь в поиске товаров

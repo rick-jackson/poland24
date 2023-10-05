@@ -1,13 +1,18 @@
+import { HtmlHTMLAttributes } from "react";
 import * as Styled from "./BlockTitle.styled";
 
 type BlockTitleProps = {
   title: string;
   subtitle?: string;
-};
+} & HtmlHTMLAttributes<HTMLDivElement>;
 
-const BlockTitle: React.FC<BlockTitleProps> = ({ title, subtitle }) => {
+const BlockTitle: React.FC<BlockTitleProps> = ({
+  title,
+  subtitle,
+  ...props
+}) => {
   return (
-    <Styled.Container>
+    <Styled.Container {...props}>
       <Styled.Divider />
       <Styled.Text>
         <Styled.Title>{title}</Styled.Title>
