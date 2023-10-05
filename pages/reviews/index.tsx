@@ -5,6 +5,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { useTranslation } from "next-i18next";
 import { NextPage } from "next";
 import Reviews from "@components/Reviews";
+import ReviewForm from "@components/dialogs/forms/Review";
 
 type ReviewsPageProps = {
   reviewsData: Review[];
@@ -16,6 +17,7 @@ const ReviewsPage: NextPage<ReviewsPageProps> = ({ reviewsData }) => {
   return (
     <PageLayout title={t("reviews")}>
       <Reviews reviewsData={reviewsData} />
+      <ReviewForm />
     </PageLayout>
   );
 };

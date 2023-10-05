@@ -2,14 +2,16 @@ import type Review from "@entities/review";
 import * as Styled from "./Reviews.styled";
 import { format } from "date-fns";
 import { Rating } from "@mui/material";
-import ReviewForm from "@components/dialogs/forms/Review";
+import { useRouter } from "next/router";
 
 type ReviewsProps = {
   reviewsData: Review[];
 };
 
 const Reviews: React.FC<ReviewsProps> = ({ reviewsData }) => {
-  console.log(reviewsData);
+  const router = useRouter();
+  const isUserPage = router.asPath.includes("profile");
+
   return (
     <section>
       <Styled.ReviewsList>
@@ -17,7 +19,7 @@ const Reviews: React.FC<ReviewsProps> = ({ reviewsData }) => {
           ({ id, fullName, dateCreated, store, text, rating }) => (
             <Styled.ReviewItem key={id}>
               <Styled.ReviewInfo>
-                <Styled.UserName>{fullName}</Styled.UserName>
+                {!isUserPage && <Styled.UserName>{fullName}</Styled.UserName>}
                 <Styled.Date>{format(+dateCreated, "dd.MM.yyyy")}</Styled.Date>
 
                 {store && (
@@ -33,7 +35,6 @@ const Reviews: React.FC<ReviewsProps> = ({ reviewsData }) => {
           )
         )}
       </Styled.ReviewsList>
-      <ReviewForm />
     </section>
   );
 };

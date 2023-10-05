@@ -5,7 +5,7 @@ export const Content = styled.div`
   background: #fff;
   padding: 16px;
   padding-top: 8px;
-  margin-top: 16px;
+  margin-top: 24px;
   width: 100%;
   max-width: 750px;
 `;

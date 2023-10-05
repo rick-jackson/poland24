@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
+  height: fit-content;
 `;
 
 export const Divider = styled.div`
@@ -12,7 +13,6 @@ export const Divider = styled.div`
 
   ${theme.breakpoints.up("md")} {
     width: 8px;
-    min-height: 48px;
   }
 `;
 
