@@ -1,0 +1,22 @@
+import styled from "styled-components";
+
+export const Form = styled.form`
+  box-shadow: 0px 12px 19px -5px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  max-width: 590px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  margin: 24px 0px;
+`;
+
+export const Rating = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 400;
+`;
