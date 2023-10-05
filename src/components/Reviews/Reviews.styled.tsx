@@ -1,3 +1,4 @@
+import UserPageLayout from "@components/Layout/UserPage";
 import theme from "@theme/index";
 import styled from "styled-components";
 
@@ -54,4 +55,13 @@ export const Store = styled.span`
 export const Description = styled.p`
   font-size: 16px;
   font-weight: 400;
+`;
+
+export const UserReviews = styled(UserPageLayout)`
+  gap: 13px;
+
+  ${theme.breakpoints.up("md")} {
+    padding-right: 0;
+    display: flex;
+  }
 `;

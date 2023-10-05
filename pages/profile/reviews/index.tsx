@@ -1,4 +1,3 @@
-import * as Styled from "./UserReviews.styled";
 import type Review from "@entities/review";
 import Reviews from "@components/Reviews";
 import ReviewForm from "@components/dialogs/forms/Review";
@@ -6,18 +5,19 @@ import { db } from "../../../firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { NextPage } from "next";
 import BlockTitle from "@components/BlockTitle";
+import { UserReviews } from "@components/Reviews/Reviews.styled";
 
 type ReviewsPageProps = { reviewsData: Review[] };
 
 const ReviewsPage: NextPage<ReviewsPageProps> = ({ reviewsData }) => {
   return (
-    <Styled.UserReviews>
+    <UserReviews>
       <div>
         <BlockTitle title="Мои отзывы" />
         <Reviews reviewsData={reviewsData} />
       </div>
       <ReviewForm />
-    </Styled.UserReviews>
+    </UserReviews>
   );
 };
 
