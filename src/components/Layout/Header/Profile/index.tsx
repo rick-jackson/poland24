@@ -65,7 +65,11 @@ const Profile = () => {
           onClose={handleClose}
           {...(userId && { title: "Сделать заказ" })}
         >
-          {!userId ? <Authorization onClose={handleClose} /> : <OrderForm />}
+          {!userId ? (
+            <Authorization onClose={handleClose} />
+          ) : (
+            <OrderForm onClose={handleClose} />
+          )}
         </Modal>
       </>
     );

@@ -16,6 +16,8 @@ import ruHeader from "./public/static/locales/ru/header.json";
 import ukHeader from "./public/static/locales/uk/header.json";
 import ruProfile from "./public/static/locales/ru/profile.json";
 import ukProfile from "./public/static/locales/uk/profile.json";
+import ruOrder from "./public/static/locales/ru/order.json";
+import ukOrder from "./public/static/locales/uk/order.json";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -28,6 +30,7 @@ i18n.use(initReactI18next).init({
       contacts: ruContacts,
       header: ruHeader,
       profile: ruProfile,
+      order: ruOrder,
     },
     uk: {
       banner: ukBanner,
@@ -38,9 +41,10 @@ i18n.use(initReactI18next).init({
       contacts: ukContacts,
       header: ukHeader,
       profile: ukProfile,
+      order: ukOrder,
     },
   },
-  fallbackLng: "ru",
+  fallbackLng: "uk",
   interpolation: {
     escapeValue: false,
   },

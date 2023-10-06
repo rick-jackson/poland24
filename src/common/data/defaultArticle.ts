@@ -1,11 +1,8 @@
 export const defaultArticle = {
-  article: "",
-  count: null,
-  price: null,
-  delivery: null,
-  isUsed: false,
-  comment: "",
-  email: false,
-  viber: false,
-  telegram: false,
+  articleLink: undefined,
+  articleCount: undefined,
+  articlePrice: undefined,
+  articleDeliveryPrice: undefined,
+  isUsedArticle: false,
+  articleDescription: undefined,
 };

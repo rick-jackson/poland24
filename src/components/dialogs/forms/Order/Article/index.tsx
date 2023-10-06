@@ -3,7 +3,6 @@ import Remove from "public/images/icons/remove.svg";
 import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
 import DialogTextField from "@components/dialogs/inputs/TextField";
 import Button from "@components/UI/buttons";
-import { Divider } from "../../../Title/Title.styled";
 
 import * as Styled from "./Article.styled";
 import { defaultArticle } from "@common/data/defaultArticle";
@@ -15,6 +14,7 @@ type ArticleProps = {
   index: number;
   append: any;
   remove: any;
+  register: any;
   isLastField: boolean;
 } & any;
 
@@ -24,6 +24,8 @@ const Article: React.FC<ArticleProps> = ({
   append,
   remove,
   isLastField,
+  field,
+  errors,
 }) => {
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -32,49 +34,79 @@ const Article: React.FC<ArticleProps> = ({
       <Styled.Detail>
         <DialogTextField
           control={control}
-          name="article"
+          name={`articles[${index}].articleLink`}
           label={`Товар ${index + 1}`}
           placeholder="Вставте ссылку на товар"
           fullWidth
+          defaultValue={field.articleLink}
+          required
+          error={!!errors.articles && errors.articles[index]?.articleLink}
         />
         <DialogTextField
           control={control}
-          name="count"
+          name={`articles[${index}].articleCount`}
           label="Количество"
           type="number"
           fullWidth
+          defaultValue={field.articleCount}
+          required
+          error={!!errors.articles && errors.articles[index]?.articleCount}
         />
         <DialogTextField
           control={control}
-          name="price"
+          name={`articles[${index}].articlePrice`}
           label="Стоимость"
           type="number"
           fullWidth
+          defaultValue={field.articlePrice}
+          required
+          error={!!errors.articles && errors.articles[index]?.articlePrice}
         />
         <DialogTextField
           control={control}
-          name="delivery"
+          name={`articles[${index}].articleDeliveryPrice`}
           label="Доставка"
           type="number"
           fullWidth
+          defaultValue={field.articleDeliveryPrice}
+          required
+          error={
+            !!errors.articles && errors.articles[index]?.articleDeliveryPrice
+          }
         />
         <div>234</div>
       </Styled.Detail>
+      <DialogTextField
+        style={{ marginTop: "8px" }}
+        control={control}
+        name={`articles[${index}].articleName`}
+        placeholder="Название товара"
+        defaultValue={field.articleName}
+        fullWidth
+        required
+        error={!!errors.articles && errors.articles[index]?.articleName}
+      />
       <DialogCheckBox
         style={{ marginTop: "8px" }}
         control={control}
-        name="isUsed"
+        name={`articles[${index}].isUsedArticle`}
         label="Товар б/у (комиссия 15%, предоплата 100%)"
+        defaultValue={field.isUsedArticle}
       />
       <Styled.Comment>
         <DialogTextField
           control={control}
-          name="description"
+          name={`articles[${index}].articleDescription`}
           label="Комментарий к товару"
           placeholder="Описание"
           textArea
           fullWidth
           style={{ height: "100%" }}
+          defaultValue={field.articleDescription}
+          required
+          error={
+            !!errors.articles && errors.articles[index]?.articleDescription
+          }
         />
         <Styled.Total>
           <div

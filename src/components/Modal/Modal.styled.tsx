@@ -8,9 +8,8 @@ export const Container = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,  -50%);
+  transform: translate(-50%, -50%);
   padding: 32px;
-  // max-height: calc(100vh - 50px);
 
   ${theme.breakpoints.down("md")} {
     padding: 8px;

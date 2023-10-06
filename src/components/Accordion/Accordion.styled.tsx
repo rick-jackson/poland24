@@ -26,6 +26,10 @@ export const AccordionSummary = styled(MuiAccordionSummary)`
   div {
     display: flex;
     justify-content: space-between;
+
+    ${theme.breakpoints.down("md")} {
+      align-items: flex-start;
+    }
   }
 
   ${theme.breakpoints.down("md")} {

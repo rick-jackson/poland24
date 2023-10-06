@@ -6,7 +6,7 @@ export const Label = styled.label<{ $fullWidth: boolean }>`
   justify-content: flex-start;
   align-items: flex-start;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   gap: 4px;
   transition: 0.1s;
   ${({ $fullWidth }) => $fullWidth && "width: 100%;"}

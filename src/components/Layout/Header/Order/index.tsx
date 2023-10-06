@@ -26,7 +26,11 @@ const Order: React.FC<OrderProps> = ({ text, size = "large" }) => {
         isOpen={open}
         onClose={handleClose}
       >
-        {!userId ? <Authorization onClose={handleClose} /> : <OrderForm />}
+        {!userId ? (
+          <Authorization onClose={handleClose} />
+        ) : (
+          <OrderForm onClose={handleClose} />
+        )}
       </Modal>
     </>
   );

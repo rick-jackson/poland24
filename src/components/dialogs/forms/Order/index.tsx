@@ -1,158 +1,64 @@
-import { useFieldArray, useForm } from "react-hook-form";
-import Title from "../../Title";
-import Article from "./Article";
-import { defaultArticle } from "@common/data/defaultArticle";
-import DialogTextField from "@components/dialogs/inputs/TextField";
-import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
+import { useForm } from "react-hook-form";
+import { defaultOrder } from "@common/data/defaultOrder";
 import Button from "@components/UI/buttons";
-import * as Styled from "./Order.styled";
+import { getCookie } from "cookies-next";
+import {
+  collection,
+  doc,
+  getCountFromServer,
+  setDoc,
+} from "firebase/firestore";
+import { db } from "../../../../../firebase";
+import { enqueueSnackbar } from "notistack";
+import { filterEmptyParam } from "@common/utils/filterEmpryParams";
+import OrderFormInputs from "./Inputs";
 
-const OrderForm: React.FC = () => {
+type OrderFormProps = {
+  onClose: () => void;
+};
+
+const OrderForm: React.FC<OrderFormProps> = ({ onClose }) => {
   const {
     control,
     handleSubmit: onSubmit,
+    formState: { errors },
     register,
+    reset,
   } = useForm({
-    defaultValues: {
-      articles: [defaultArticle],
-    },
-  });
-
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "articles",
+    defaultValues: defaultOrder(),
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit((data) => {
-      console.log(data);
+
+    onSubmit(async (data: any) => {
+      const userId = getCookie("userId");
+      const ordersRef = doc(collection(db, "orders"));
+      const ordersCount = (
+        await getCountFromServer(collection(db, "orders"))
+      ).data().count;
+
+      try {
+        await setDoc(ordersRef, {
+          ...filterEmptyParam(data),
+          orderNumber: +ordersCount + 1,
+          status: "IN_PROGRESS",
+          userId,
+          id: ordersRef.id,
+          dateCreated: new Date().valueOf(),
+        });
+        onClose();
+        reset(defaultOrder());
+        enqueueSnackbar("Order added!", { variant: "success" });
+      } catch (e) {
+        enqueueSnackbar(e.message, { variant: "error" });
+      }
     })();
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <Title title="Заказ" />
-      {fields.map((_, index: number) => (
-        <Article
-          key={index}
-          control={control}
-          index={index}
-          append={append}
-          remove={remove}
-          isLastField={fields.length - 1 === index}
-        />
-      ))}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: "12px",
-        }}
-      >
-        <span>Доставка по Украине : Новой почтой</span>
-        <div>
-          <span>Удобный канал для обратной связи:</span>
-          <Styled.Checkboxes>
-            <DialogCheckBox control={control} name="email" label="Почта" />
-            <DialogCheckBox control={control} name="viber" label="Вайбер" />
-            <DialogCheckBox
-              control={control}
-              name="telegram"
-              label="Телеграм"
-            />
-          </Styled.Checkboxes>
-        </div>
-        <div style={{ display: "flex", gap: "8px", fontWeight: 500 }}>
-          <span>Ориентировочно, zł</span>
-          <span>Ориентировочно, ₴</span>
-        </div>
-      </div>
-      <Title title="Данные заказчика" />
-      <Styled.Customer>
-        <DialogTextField
-          control={control}
-          name="lastName"
-          placeholder="Фамилия"
-          fullWidth
-        />
-        <DialogTextField
-          control={control}
-          name="phone"
-          placeholder="Номер телефона"
-          type="tel"
-          fullWidth
-        />
-        <DialogTextField
-          control={control}
-          name="email"
-          placeholder="email"
-          type="email"
-          fullWidth
-        />
-      </Styled.Customer>
-      <Styled.License>
-        <DialogTextField
-          textArea
-          control={control}
-          name="comment"
-          placeholder="Комментарий"
-          fullWidth
-          style={{ height: "100%" }}
-        />
-        <div
-          style={{
-            flex: "none",
-            display: "flex",
-            gap: "8px",
-            flexDirection: "column",
-          }}
-        >
-          <DialogCheckBox
-            name="isCall"
-            control={control}
-            label="Не перезванивайте мне, я подтверждаю заказа."
-            style={{ fontSize: "12px" }}
-          />
-          <DialogCheckBox
-            name="license"
-            control={control}
-            label="Я соглашаюсь и принимаю коммерческие условия покупки и доставки*"
-            style={{ fontSize: "12px" }}
-          />
-
-          <ul
-            style={{
-              padding: 0,
-              margin: 0,
-              fontSize: "12px",
-              color: "rgba(45, 45, 45, 0.60)",
-            }}
-          >
-            <li>
-              Комиссия сервиса для товаров с фактурой VAT стоимостью от 250zł:
-              6,38%
-            </li>
-            <li>
-              Комиссия сервиса для товаров с фактурой VAT стоимостью до 250zl :
-              50zł.
-            </li>
-            <li>
-              Комиссия сервиса для товаров без фактуры VAT стоимостью от 250zl:
-              15%
-            </li>
-            <li>
-              Вы должны будете внести предоплату в размере(для новых товаров):
-              30%
-            </li>
-            <li>
-              Вы должны будете внести предоплату в размере(для б/у товаров):
-              100%
-            </li>
-            <li>Крупногабаритные и б/у товары не подлежат возврату.</li>
-          </ul>
-        </div>
-      </Styled.License>
+      <OrderFormInputs control={control} register={register} errors={errors} />
       <Button style={{ margin: "auto", marginTop: "16px" }} type="submit">
         Отправить
       </Button>

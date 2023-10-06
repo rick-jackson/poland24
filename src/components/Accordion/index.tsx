@@ -2,13 +2,18 @@ import { useState } from "react";
 
 import * as Styled from "./Accordion.styled";
 import Image from "next/image";
+import { AccordionProps as AccordionPropsType } from "@mui/material";
 
 type AccordionProps = {
-  title: string;
-  description: string;
-};
+  title: React.ReactNode;
+  description: React.ReactNode;
+} & AccordionPropsType;
 
-const Accordion: React.FC<AccordionProps> = ({ title, description }) => {
+const Accordion: React.FC<AccordionProps> = ({
+  title,
+  description,
+  ...props
+}) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = () => {
@@ -17,7 +22,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, description }) => {
 
   return (
     <>
-      <Styled.Accordion expanded={expanded} onChange={handleChange}>
+      <Styled.Accordion expanded={expanded} onChange={handleChange} {...props}>
         <Styled.AccordionSummary>
           {title}
           <Image
