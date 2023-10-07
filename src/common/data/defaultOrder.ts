@@ -1,19 +1,19 @@
+import type Order from "@entities/order";
 import { defaultArticle } from "./defaultArticle";
 
-export const defaultOrder = () => {
+export const defaultOrder = (orderData?: Order): Partial<Order> => {
   return {
-    articleName: "",
-    isEmail: false,
-    isViber: false,
-    isTelegram: false,
-    fullName: "",
-    phone: "",
-    email: "",
-    post: "",
-    reservedPost: "",
-    comment: "",
-    isCall: false,
-    isLicense: true,
-    articles: [defaultArticle],
+    isEmail: orderData?.isEmail || false,
+    isViber: orderData?.isViber || false,
+    isTelegram: orderData?.isTelegram || false,
+    fullName: orderData?.fullName || "",
+    phone: orderData?.phone || null,
+    email: orderData?.email || "",
+    post: orderData?.post || "",
+    reservedPost: orderData?.reservedPost || "",
+    comment: orderData?.comment || "",
+    isCall: orderData?.isCall || false,
+    isLicense: orderData?.isLicense || true,
+    articles: orderData?.articles || [defaultArticle],
   };
 };

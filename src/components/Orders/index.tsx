@@ -10,16 +10,26 @@ type OrdersProps = {
 const Orders: React.FC<OrdersProps> = ({ ordersData }) => {
   return (
     <section style={{ background: "#fff", marginTop: "16px" }}>
-      {ordersData.map((order) => (
-        //@ts-ignore
-        <Accordion
-          key={order.id}
-          title={<OrderTitle orderData={order} />}
-          sx={{ padding: "0 16px" }}
-        >
-          {<OrderDescription orderData={order} />}
-        </Accordion>
-      ))}
+      {ordersData.map((order) => {
+        const total = order.articles.reduce(
+          (acc, { articlePrice, articleCount }) => {
+            const sum = +articlePrice * articleCount;
+            return (acc += sum);
+          },
+          0
+        );
+
+        return (
+          //@ts-ignore
+          <Accordion
+            key={order.id}
+            title={<OrderTitle orderData={order} total={total} />}
+            sx={{ padding: "0 16px" }}
+          >
+            {<OrderDescription orderData={order} total={total} />}
+          </Accordion>
+        );
+      })}
     </section>
   );
 };

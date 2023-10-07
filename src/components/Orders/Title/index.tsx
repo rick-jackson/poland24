@@ -9,22 +9,18 @@ import theme from "@theme/index";
 
 type OrderTitleProps = {
   orderData: Order;
+  total: number;
 };
 
-const OrderTitle: React.FC<OrderTitleProps> = ({ orderData }) => {
+const OrderTitle: React.FC<OrderTitleProps> = ({ orderData, total }) => {
   const { articles, status, dateCreated, orderNumber } = orderData;
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation("order");
 
-  const total = (
+  const totalBlock = (
     <Styled.ColumnText style={{ marginLeft: "auto" }}>
       <Styled.Text>{t("orderSum")}</Styled.Text>
-      <Styled.BoldText>
-        {articles.reduce((acc, { articlePrice, articleCount }) => {
-          const sum = +articlePrice * articleCount;
-          return (acc += sum);
-        }, 0)}
-      </Styled.BoldText>
+      <Styled.BoldText>{total}</Styled.BoldText>
     </Styled.ColumnText>
   );
 
@@ -38,12 +34,12 @@ const OrderTitle: React.FC<OrderTitleProps> = ({ orderData }) => {
           </Styled.Text>
           <Styled.BoldText>{t(Status[status])}</Styled.BoldText>
         </Styled.ColumnText>
-          {matches && total}
+        {matches && totalBlock}
       </Styled.Info>
       <Styled.OrderName href={articles[0].articleLink}>
         {articles[0].articleName}
       </Styled.OrderName>
-      {!matches && total}
+      {!matches && totalBlock}
     </Styled.Content>
   );
 };

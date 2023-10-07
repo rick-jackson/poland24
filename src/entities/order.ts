@@ -17,6 +17,7 @@ type Order = {
   isTelegram: boolean;
   isEmail: boolean;
   isCall: boolean;
+  isLicense: boolean;
   fullName: string;
   email: string;
   dateCreated: number;
@@ -24,6 +25,7 @@ type Order = {
   articles: Article[];
   status: Status;
   orderNumber: number;
+  reservedPost: string;
 };
 
 export enum Status {
