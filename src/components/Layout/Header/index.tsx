@@ -7,8 +7,8 @@ import * as Styled from "./Header.styled";
 import Profile from "./Profile";
 import ExchangeRate from "./ExchangeRate";
 import Socials from "./Socials";
-import Order from "./Order";
 import Image from "next/image";
+import Order from "./Order";
 
 const Header: React.FC = () => {
   const matches = useMediaQuery(theme.breakpoints.down("md"));

@@ -4,13 +4,12 @@ import Modal from "@components/Modal";
 import { getCookie } from "cookies-next";
 import Authorization from "@components/Modal/Authorization";
 import OrderForm from "@components/dialogs/forms/Order";
-import { useTranslation } from "next-i18next";
-import type Order from "@entities/order";
+import type OrderType from "@entities/order";
 
 type OrderProps = {
   text: string;
   size?: "small" | "medium" | "large";
-  defaultValues?: Order;
+  defaultValues?: OrderType;
 };
 
 const Order: React.FC<OrderProps> = ({
@@ -19,7 +18,6 @@ const Order: React.FC<OrderProps> = ({
   defaultValues,
 }) => {
   const { open, handleOpen, handleClose } = useModal();
-  const { t } = useTranslation("header");
   const userId = getCookie("userId");
 
   return (
