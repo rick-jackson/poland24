@@ -5,15 +5,11 @@ import Image from "next/image";
 import { AccordionProps as AccordionPropsType } from "@mui/material";
 
 type AccordionProps = {
-  title: React.ReactNode;
-  description: React.ReactNode;
+  title: React.ReactNode | any;
+  children: React.ReactNode;
 } & AccordionPropsType;
 
-const Accordion: React.FC<AccordionProps> = ({
-  title,
-  description,
-  ...props
-}) => {
+const Accordion: React.FC<AccordionProps> = ({ title, children, ...props }) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = () => {
@@ -37,7 +33,7 @@ const Accordion: React.FC<AccordionProps> = ({
             }
           />
         </Styled.AccordionSummary>
-        <Styled.AccordionDetails>{description}</Styled.AccordionDetails>
+        <Styled.AccordionDetails>{children}</Styled.AccordionDetails>
       </Styled.Accordion>
     </>
   );

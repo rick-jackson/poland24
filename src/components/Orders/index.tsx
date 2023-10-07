@@ -11,13 +11,14 @@ const Orders: React.FC<OrdersProps> = ({ ordersData }) => {
   return (
     <section style={{ background: "#fff", marginTop: "16px" }}>
       {ordersData.map((order) => (
+        //@ts-ignore
         <Accordion
           key={order.id}
-          //@ts-ignore
           title={<OrderTitle orderData={order} />}
-          description={<OrderDescription orderData={order} />}
           sx={{ padding: "0 16px" }}
-        />
+        >
+          {<OrderDescription orderData={order} />}
+        </Accordion>
       ))}
     </section>
   );
