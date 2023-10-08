@@ -5,6 +5,9 @@ import * as Styled from "./Aside.styled";
 import Link from "@components/Link";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
+import { menuRoutes, adminMenuRoutes } from "@common/configs/menu";
+import { useRouter } from "next/router";
+import { getCookie } from "cookies-next";
 
 type AsideProps = {
   userData: User;
@@ -12,6 +15,10 @@ type AsideProps = {
 
 const Aside: React.FC<AsideProps> = ({ userData }) => {
   const { t } = useTranslation("header");
+  const router = useRouter();
+
+  const routes =
+    getCookie("role") === "ADMIN" ? adminMenuRoutes : menuRoutes;
 
   return (
     <Styled.Aside>
@@ -21,32 +28,16 @@ const Aside: React.FC<AsideProps> = ({ userData }) => {
         </Styled.User>
         <Styled.Divider />
         <Styled.Navigation>
-          <Link href="/profile/orders">
-            <MenuItem>
-              <Icon>
-                <Image
-                  alt="TeaDrink"
-                  width={24}
-                  height={24}
-                  src="/images/icons/tea-drink.svg"
-                />
-              </Icon>
-              {t("myOrders")}
-            </MenuItem>
-          </Link>
-          <Link href="/profile/reviews">
-            <MenuItem>
-              <Icon>
-                <Image
-                  alt="Message"
-                  width={24}
-                  height={24}
-                  src="/images/icons/message.svg"
-                />
-              </Icon>
-              {t("myReviews")}
-            </MenuItem>
-          </Link>
+          {routes.map(({ link, label, icon }) => (
+            <Link key={link} href={link}>
+              <MenuItem $isActive={link === router.asPath}>
+                <Icon>
+                  <Image src={icon} width={24} height={24} alt="order" />
+                </Icon>
+                {t(label)}
+              </MenuItem>
+            </Link>
+          ))}
         </Styled.Navigation>
         <p
           style={{ margin: 0, padding: "8px", fontWeight: 500, lineHeight: 1 }}

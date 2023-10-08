@@ -8,6 +8,7 @@ type User = {
   post?: string;
   viber?: string;
   telegram?: string;
+  role: string;
 };
 
 export default User;

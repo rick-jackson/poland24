@@ -6,6 +6,9 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
+import { adminMenuRoutes, menuRoutes } from "@common/configs/menu";
+import Link from "@components/Link";
+import { getCookie } from "cookies-next";
 
 type AvatarProps = Partial<Pick<User, "firstName" | "lastName" | "email">>;
 
@@ -30,6 +33,8 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
       console.error("Помилка виходу:", error);
     }
   };
+
+  const routes = getCookie("role") === "ADMIN" ? adminMenuRoutes : menuRoutes;
 
   return (
     <>
@@ -74,38 +79,16 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
           </Styled.Icon>
           {t("editProfile")}
         </Styled.MenuItem>
-        <Styled.MenuItem
-          onClick={() => {
-            handleClose();
-            router.push("/profile/orders");
-          }}
-        >
-          <Styled.Icon>
-            <Image
-              src="/images/icons/tea-drink.svg"
-              width={24}
-              height={24}
-              alt="order"
-            />
-          </Styled.Icon>
-          {t("myOrders")}
-        </Styled.MenuItem>
-        <Styled.MenuItem
-          onClick={() => {
-            handleClose();
-            router.push("/profile/reviews");
-          }}
-        >
-          <Styled.Icon>
-            <Image
-              src="/images/icons/message.svg"
-              width={24}
-              height={24}
-              alt="message"
-            />
-          </Styled.Icon>
-          {t("myReviews")}
-        </Styled.MenuItem>
+        {routes.map(({ link, label, icon }) => (
+          <Link key={link} href={link}>
+            <Styled.MenuItem>
+              <Styled.Icon>
+                <Image src={icon} width={24} height={24} alt="order" />
+              </Styled.Icon>
+              {t(label)}
+            </Styled.MenuItem>
+          </Link>
+        ))}
         <Styled.MenuItem
           onClick={handleLogout}
           sx={{

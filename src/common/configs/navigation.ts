@@ -1,27 +1,20 @@
 export const navigation = [
   {
-    link: "/about",
-    label: "about",
+    link: "about",
   },
   {
-    link: "/shops",
-    label: "shops",
+    link: "shops",
   },
   {
-    link: "/reviews",
-    label: "reviews",
+    link: "reviews",
   },
   {
-    link: "/faq",
-    label: "faq",
+    link: "faq",
   },
   {
     hash: "calculator",
-    link: "/",
-    label: "calculator",
   },
   {
-    link: "/contacts",
-    label: "contacts",
+    link: "contacts",
   },
 ];

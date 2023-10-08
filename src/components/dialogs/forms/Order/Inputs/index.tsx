@@ -28,13 +28,7 @@ const OrderFormInputs = ({ control, register, errors }) => {
           errors={errors}
         />
       ))}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: "12px",
-        }}
-      >
+      <Styled.Total>
         <span>Доставка по Украине : Новой почтой</span>
         <div>
           <span>Удобный канал для обратной связи:</span>
@@ -52,7 +46,7 @@ const OrderFormInputs = ({ control, register, errors }) => {
           <span>Ориентировочно, zł</span>
           <span>Ориентировочно, ₴</span>
         </div>
-      </div>
+      </Styled.Total>
       <Title title="Данные заказчика" />
       <Styled.Customer>
         <DialogTextField

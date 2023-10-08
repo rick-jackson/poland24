@@ -58,3 +58,14 @@ export const ListItem = styled.li`
     border-radius: 50px;
   }
 `;
+
+export const Total = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+
+  ${theme.breakpoints.down("md")} {
+    flex-direction: column;
+    gap: 12px;
+  }
+`;

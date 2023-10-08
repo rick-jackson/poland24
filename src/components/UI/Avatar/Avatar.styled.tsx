@@ -39,8 +39,8 @@ export const FullName = styled.span`
 export const Email = styled.div`
   font-weight: 400;
   max-width: 150px;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Menu = styled(MuiMenu)`
@@ -58,12 +58,13 @@ export const Menu = styled(MuiMenu)`
   }
 `;
 
-export const MenuItem = styled(MuiMenuItem)`
+export const MenuItem = styled(MuiMenuItem)<{ $isActive: boolean }>`
   font-size: 14px;
   font-weight: 700;
   padding: 6px 8px;
   color: #2d2d2d;
   gap: 16px;
+  ${({ $isActive }) => $isActive && "background: #eaedee;"}
 
   &:hover {
     background: #eaedee;
