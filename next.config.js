@@ -17,4 +17,7 @@ module.exports = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    domains: ['poland24.com.ua'],
+  },
 };

@@ -13,6 +13,10 @@ export const Link = styled(CustomLinkLink)`
   align-items: center;
   gap: 8px;
   font-size: 16px;
+
+  &:hover {
+    color: red;
+  }
 `;
 
 export const Item = styled.span`
