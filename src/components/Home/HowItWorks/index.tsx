@@ -6,6 +6,7 @@ import InfoItem from "./InfoItem";
 import theme from "@theme/index";
 
 import * as Styled from "./HowItWorks.styled";
+import Order from "@components/Layout/Header/Order";
 
 const HowItWorks: React.FC = () => {
   const matches = useMediaQuery(theme.breakpoints.up("md"));
@@ -46,11 +47,9 @@ const HowItWorks: React.FC = () => {
             text="Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов."
           />
         </Styled.InfoList>
-        {matches && (
-          <Button style={{ margin: "auto", marginTop: "48px" }}>
-            Заказать
-          </Button>
-        )}
+        <div style={{ margin: "auto", marginTop: "48px" }}>
+          <Order text="Заказать" />
+        </div>
       </Styled.Container>
     </Styled.Wrapper>
   );

@@ -1,7 +1,9 @@
 import BlockTitle from "@components/BlockTitle";
 import * as Styled from "./AboutUs.styled";
+import { useRouter } from "next/router";
 
 const AboutUs: React.FC = () => {
+  const router = useRouter();
   return (
     <Styled.Container>
       <div>
@@ -14,7 +16,11 @@ const AboutUs: React.FC = () => {
           магазина/поставщика/производителя стран Евросоюза, которые
           осуществляют доставку товара курьером в Польшу.
         </Styled.Description>
-        <Styled.Button variant="subtle" size="medium">
+        <Styled.Button
+          variant="subtle"
+          size="medium"
+          onClick={() => router.push("/about")}
+        >
           Подробнее
         </Styled.Button>
       </div>
