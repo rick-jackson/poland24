@@ -1,41 +1,53 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  documentId,
+  getCountFromServer,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import { app, db } from "../../firebase";
+import { useState } from "react";
+import { enqueueSnackbar } from "notistack";
 
-export const signInWithGoogle = async () => {
-  const provider = new GoogleAuthProvider();
+export const useSignInWithGoogle = () => {
+  const [loading, setLoading] = useState(false);
 
-  const auth = getAuth(app);
-  await signInWithPopup(auth, provider)
-    .then((result) => {
-      const user = result.user;
-      const [firstName, lastName] = user.displayName.split(" ");
+  const handleSignIn = async () => {
+    setLoading(true);
+    const provider = new GoogleAuthProvider();
 
-      const userRef = doc(db, "users", user.uid);
+    const auth = getAuth(app);
+    await signInWithPopup(auth, provider)
+      .then(async (result) => {
+        const user = result.user;
+        const [firstName, lastName] = user.displayName.split(" ");
 
-      (async () => {
-        await getDoc(userRef).then((res) => {
-          //@ts-ignore
-          if (!res.email) {
-            setDoc(userRef, {
-              id: user.uid,
-              email: user.email,
-              firstName,
-              lastName,
-              phone: user.phoneNumber,
-            });
-          }
-        });
-      })();
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
+        const userRef = doc(db, "users", user.uid);
+
+        const snap = await getCountFromServer(
+          query(collection(db, "users"), where(documentId(), "==", user.uid))
+        );
+
+        if (!snap.data().count) {
+          await setDoc(userRef, {
+            id: user.uid,
+            email: user.email,
+            firstName,
+            lastName,
+            phone: user.phoneNumber,
+          });
+        }
+        enqueueSnackbar("Login!", { variant: "success" });
+        setLoading(false);
+      })
+      .catch((error) => {
+        enqueueSnackbar(error.message, { variant: "error" });
+        setLoading(false);
+      });
+  };
+
+  return { loading, handleSignIn };
 };
