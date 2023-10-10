@@ -7,6 +7,7 @@ export const ReviewsList = styled.div`
   flex-direction: column;
   gap: 24px;
   padding: 24px 0px;
+  height: 100%;
 `;
 
 export const ReviewItem = styled.div`

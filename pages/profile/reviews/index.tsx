@@ -15,7 +15,7 @@ const ReviewsPage: NextPage<ReviewsPageProps> = ({ reviewsData }) => {
 
   return (
     <UserReviews>
-      <div>
+      <div style={{width: '100%'}}>
         <BlockTitle title={t("myReviews")} />
         <Reviews reviewsData={reviewsData} />
       </div>

@@ -14,4 +14,5 @@ export const Wrapper = styled.section`
 export const Content = styled.div`
   padding: 13px;
   width: 100%;
+  height: 100%;
 `;

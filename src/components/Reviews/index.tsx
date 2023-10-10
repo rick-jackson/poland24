@@ -15,8 +15,13 @@ const Reviews: React.FC<ReviewsProps> = ({ reviewsData }) => {
   const isUserPage = router.asPath.includes("profile");
 
   return (
-    <section>
+    <section style={{ height: "100%" }}>
       <Styled.ReviewsList>
+        {!reviewsData.length && (
+          <span style={{ margin: "auto", fontWeight: 700, fontSize: "18px" }}>
+            {t("emptyList")}
+          </span>
+        )}
         {reviewsData.map(
           ({ id, fullName, dateCreated, store, text, rating }) => (
             <Styled.ReviewItem key={id}>

@@ -13,6 +13,10 @@ type LoginProps = {
 };
 
 const Login: React.FC<LoginProps> = ({ onChangeType, onClose }) => {
+  const handleGoogleLogin = async () => {
+    await signInWithGoogle();
+  };
+
   return (
     <Styled.Container>
       <span style={{ fontSize: "16px" }}>
@@ -20,11 +24,7 @@ const Login: React.FC<LoginProps> = ({ onChangeType, onClose }) => {
         <ButtonText onClick={onChangeType}>Зарегистрируйтесь</ButtonText>
       </span>
       <Styled.Buttons>
-        <Button
-          style={{ flex: 1 }}
-          size="medium"
-          onClick={() => signInWithGoogle()}
-        >
+        <Button style={{ flex: 1 }} size="medium" onClick={handleGoogleLogin}>
           <Google /> Google
         </Button>
         <Button style={{ flex: 1 }} size="medium">
