@@ -9,6 +9,7 @@ import { CircularProgress, useMediaQuery } from "@mui/material";
 import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
 import { useRouter } from "next/router";
 import theme from "@theme/index";
+import { enqueueSnackbar } from "notistack";
 
 type FormProps = {
   onClose: () => void;
@@ -46,10 +47,14 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
         return;
       }
 
-      await createUser(data);
-      onClose();
-
-      router.replace(router.asPath);
+      try {
+        await createUser(data);
+        enqueueSnackbar("User added!", { variant: "success" });
+        onClose();
+        router.replace(router.asPath);
+      } catch (error) {
+        enqueueSnackbar(error.message, { variant: "error" });
+      }
     })();
 
     setIsLoading(false);

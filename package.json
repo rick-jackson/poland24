@@ -32,7 +32,8 @@
     "react-hook-form": "^7.45.1",
     "react-tsparticles": "^2.12.2",
     "sharp": "^0.32.6",
-    "styled-components": "^6.0.3"
+    "styled-components": "^6.0.3",
+    "swiper": "^10.3.1"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.4.0",
