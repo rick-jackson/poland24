@@ -20,13 +20,15 @@ export const Container = styled.div`
 
 export const InfoList = styled.div`
   margin-top: 32px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 8px;
+  grid-template-columns: repeat(1, 1fr);
 
-  ${theme.breakpoints.up("md")} {
-    margin-top: 64px;
-    flex-direction: row;
-    gap: 4px;
+  ${theme.breakpoints.up("sm")} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  ${theme.breakpoints.up('lg')} {
+    grid-template-columns: repeat(6, 1fr);
   }
 `;

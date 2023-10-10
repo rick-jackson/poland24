@@ -21,7 +21,7 @@ export const buttonConfig: ButtonConfig = {
       disabled: { background: "#EAEDEE", color: "#EAEDEE" },
     },
     text: {
-      initial: { background: "none", color: "#95A4AA" },
+      initial: { background: "none", color: "#2d2d2d" },
       active: { background: "none", color: "#596266" },
       hover: { background: "none", color: "#2D2D2D", outline: "#EAEDEE" },
       disabled: { background: "none", color: "#EAEDEE" },

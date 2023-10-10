@@ -15,6 +15,7 @@ const Description: React.FC = () => {
             Возможность оплатить кредитными средствами
           </Styled.Title>
           <Image
+            loading="lazy"
             width={matches ? 300 : 120}
             height={matches ? 300 : 120}
             src="/images/icons/perspective_matte clock.svg"

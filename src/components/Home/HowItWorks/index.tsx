@@ -1,54 +1,29 @@
-import { useMediaQuery } from "@mui/material";
-
+import Order from "@components/Layout/Header/Order";
 import BlockTitle from "@components/BlockTitle";
-import Button from "@components/UI/buttons";
+import { useTranslation } from "next-i18next";
 import InfoItem from "./InfoItem";
-import theme from "@theme/index";
 
 import * as Styled from "./HowItWorks.styled";
-import Order from "@components/Layout/Header/Order";
 
 const HowItWorks: React.FC = () => {
-  const matches = useMediaQuery(theme.breakpoints.up("md"));
+  const { t } = useTranslation("howItWorks");
 
   return (
     <Styled.Wrapper>
       <Styled.Container>
-        <BlockTitle title="Как это работает" />
+        <BlockTitle title={t("title")} />
         <Styled.InfoList>
-          <InfoItem
-            index={"01"}
-            title="Вы выбираете товар"
-            text="Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов."
-          />
-          <InfoItem
-            index={"02"}
-            title="Предоставляете ссылку"
-            text="Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов."
-          />
-          <InfoItem
-            index={"03"}
-            title="Внести предоплату"
-            text="Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов."
-          />
-          <InfoItem
-            index={"04"}
-            title="Выкупаем товар и везем в Украину"
-            text="Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов."
-          />
-          <InfoItem
-            index={"05"}
-            title="Оплатить остаток"
-            text="Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов."
-          />
-          <InfoItem
-            index={"06"}
-            title="Получите товар"
-            text="Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов."
-          />
+          {new Array(6).fill(null).map((_, index) => (
+            <InfoItem
+              key={index}
+              index={`0${index + 1}`}
+              title={t(`itemTitle${index + 1}`)}
+              text={t(`itemDescription${index + 1}`)}
+            />
+          ))}
         </Styled.InfoList>
         <div style={{ margin: "auto", marginTop: "48px" }}>
-          <Order text="Заказать" />
+          <Order text={t("order")}/>
         </div>
       </Styled.Container>
     </Styled.Wrapper>

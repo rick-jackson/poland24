@@ -20,7 +20,7 @@ export const Header = styled((props) => <Box component="header" {...props} />)`
   ${theme.breakpoints.up("md")} {
     max-width: 1290px;
     margin: auto;
-    padding: 25px 0px;
+    padding: 15px 0px;
   }
 `;
 

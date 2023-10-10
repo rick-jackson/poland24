@@ -3,6 +3,7 @@ import { ButtonText } from "../Authorization.styled";
 import Google from "public/images/icons/socials/google.svg";
 import Faceboock from "public/images/icons/socials/u_facebook-f.svg";
 import Form from "@components/dialogs/forms/Login";
+import { signInWithGoogle } from "@gateways/signInGoogle";
 
 import * as Styled from "./Login.styled";
 
@@ -19,7 +20,11 @@ const Login: React.FC<LoginProps> = ({ onChangeType, onClose }) => {
         <ButtonText onClick={onChangeType}>Зарегистрируйтесь</ButtonText>
       </span>
       <Styled.Buttons>
-        <Button style={{ flex: 1 }} size="medium">
+        <Button
+          style={{ flex: 1 }}
+          size="medium"
+          onClick={() => signInWithGoogle()}
+        >
           <Google /> Google
         </Button>
         <Button style={{ flex: 1 }} size="medium">

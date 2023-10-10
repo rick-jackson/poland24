@@ -29,18 +29,21 @@ export const Button = styled.button<{
   gap: 10px;
 
   &:hover {
+
+    background: ${({ $variant }) =>
+    buttonConfig.variant[$variant].active.background};
+  color: ${({ $variant }) => buttonConfig.variant[$variant].active.color};
+ 
+
+
+  }
+
+  &:focus {
     background: ${({ $variant }) =>
       buttonConfig.variant[$variant].hover.background};
     color: ${({ $variant }) => buttonConfig.variant[$variant].hover.color};
     outline: ${({ $variant, $size }) =>
       `${buttonConfig.size[$size].outline} solid ${buttonConfig.variant[$variant].hover.outline}`};
-  }
-
-  &:active {
-    background: ${({ $variant }) =>
-      buttonConfig.variant[$variant].active.background};
-    color: ${({ $variant }) => buttonConfig.variant[$variant].active.color};
-    outline: none;
   }
 
   &:disabled {
