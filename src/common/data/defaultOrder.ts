@@ -1,7 +1,7 @@
 import type Order from "@entities/order";
 import { defaultArticle } from "./defaultArticle";
 
-export const defaultOrder = (orderData?: Order): Partial<Order> => {
+export const defaultOrder = (orderData?: Partial<Order>): Partial<Order> => {
   return {
     isEmail: orderData?.isEmail || false,
     isViber: orderData?.isViber || false,

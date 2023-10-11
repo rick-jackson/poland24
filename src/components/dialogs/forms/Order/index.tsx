@@ -10,7 +10,7 @@ import { editOrder } from "@gateways/order/edit";
 
 type OrderFormProps = {
   onClose: () => void;
-  defaultValues?: Order;
+  defaultValues?: Partial<Order>;
 };
 
 const OrderForm: React.FC<OrderFormProps> = ({ onClose, defaultValues }) => {

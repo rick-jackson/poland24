@@ -1,4 +1,4 @@
-export const menuRoutes = [
+export const menuRoutes: Record<string, string>[] = [
   {
     link: "/profile/orders",
     label: "myOrders",

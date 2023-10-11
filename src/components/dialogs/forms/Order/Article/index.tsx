@@ -41,6 +41,7 @@ const Article: React.FC<ArticleProps> = ({
           defaultValue={field.articleLink}
           required
           error={!!errors.articles && errors.articles[index]?.articleLink}
+          pattern="/^(https?:\/\/)?([\w.]+)\.([a-z]{2,6}\.?)(\/[\w]*)*\/?$/i"
         />
         <DialogTextField
           control={control}

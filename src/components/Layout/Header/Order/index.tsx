@@ -9,20 +9,22 @@ import type OrderType from "@entities/order";
 type OrderProps = {
   text: string;
   size?: "small" | "medium" | "large";
-  defaultValues?: OrderType;
+  defaultValues?: Partial<OrderType>;
+  disabled?: boolean;
 };
 
 const Order: React.FC<OrderProps> = ({
   text,
   size = "large",
   defaultValues,
+  ...props
 }) => {
   const { open, handleOpen, handleClose } = useModal();
   const userId = getCookie("userId");
 
   return (
     <>
-      <Button onClick={handleOpen} size={size}>
+      <Button onClick={handleOpen} size={size} {...props}>
         {text}
       </Button>
       <Modal

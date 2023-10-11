@@ -3,4 +3,4 @@ export const STATUS_LABELS_COLORS = {
   SUCCESS: "#00956D",
   CANCELLED: "#B6B7B9",
   FAILED: "#DF1638",
-};
+} as const;
