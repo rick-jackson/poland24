@@ -50,6 +50,7 @@ export const useSignInWithGoogle = (onClose: () => void) => {
           setLoading(false);
           enqueueSnackbar("Login!", { variant: "success" });
           onClose();
+          router.replace(router.asPath);
         }
       })
       .catch((error) => {
