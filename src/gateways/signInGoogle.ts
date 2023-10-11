@@ -11,9 +11,11 @@ import {
 import { app, db } from "../../firebase";
 import { useState } from "react";
 import { enqueueSnackbar } from "notistack";
+import { useRouter } from "next/router";
 
 export const useSignInWithGoogle = (onClose: () => void) => {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleSignIn = async () => {
     setLoading(true);
@@ -39,6 +41,7 @@ export const useSignInWithGoogle = (onClose: () => void) => {
             lastName,
             phone: user.phoneNumber,
           });
+          router.replace(router.asPath);
         }
         setLoading(false);
         onClose();
