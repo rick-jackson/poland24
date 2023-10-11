@@ -18,6 +18,7 @@ import { auth } from "../firebase";
 import { deleteCookie } from "cookies-next";
 import dynamic from "next/dynamic";
 import { setUserInLocalStorage } from "@common/utils/setUserInLocalStorage";
+import { useRouter } from "next/router";
 const Layout = dynamic(() => import("@components/Layout"), { ssr: false });
 
 interface MyAppProps extends AppProps {
@@ -28,11 +29,13 @@ const clientSideEmotionCache = createEmotionCache();
 
 const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         setUserInLocalStorage(authUser);
+        router.replace(router.asPath);
       } else {
         deleteCookie("userId");
         localStorage.removeItem("userData");

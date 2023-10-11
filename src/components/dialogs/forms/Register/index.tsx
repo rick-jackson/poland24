@@ -3,13 +3,11 @@ import { useForm } from "react-hook-form";
 import Button from "@components/UI/buttons";
 
 import DialogTextField from "@components/dialogs/inputs/TextField";
-import createUser from "@gateways/createUser";
-import { useState } from "react";
 import { CircularProgress, useMediaQuery } from "@mui/material";
 import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
-import { useRouter } from "next/router";
 import theme from "@theme/index";
 import { enqueueSnackbar } from "notistack";
+import useCreateUser from "@gateways/createUser";
 
 type FormProps = {
   onClose: () => void;
@@ -17,8 +15,7 @@ type FormProps = {
 
 const Form: React.FC<FormProps> = ({ onClose }) => {
   const matches = useMediaQuery(theme.breakpoints.up("md"));
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+  const { saveUser, isLoading } = useCreateUser();
 
   const {
     control,
@@ -40,7 +37,6 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setIsLoading(true);
     onSubmit(async ({ license, repeatPassword, ...data }: any) => {
       if (!watch("license")) {
         setError("license", { type: "custom", message: "custom message" });
@@ -48,16 +44,13 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
       }
 
       try {
-        await createUser(data);
+        await saveUser(data);
         enqueueSnackbar("User added!", { variant: "success" });
         onClose();
-        router.replace(router.asPath);
       } catch (error) {
         enqueueSnackbar(error.message, { variant: "error" });
       }
     })();
-
-    setIsLoading(false);
   };
 
   return (
