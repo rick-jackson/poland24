@@ -5,16 +5,17 @@ import IconButton from "@components/UI/buttons/IconButton";
 import Close from "public/images/icons/close-dark.svg";
 import Logo from "public/images/logo/dark/logo.svg";
 import Menu from "public/images/icons/menu.svg";
+import { useTranslation } from "next-i18next";
 
 import * as Styled from "./Drawer.styled";
 import LocaleSwitcher from "@components/LocaleSwitcher";
 import Navigation from "@components/Layout/Header/Navigation";
-import Button from "@components/UI/buttons";
+import Order from "@components/Layout/Header/Order";
 
 export default function TemporaryDrawer({ onOpen }) {
   const [state, setState] = React.useState(false);
-
   const toggleDrawer = () => setState(!state);
+  const { t } = useTranslation("header");
 
   return (
     <>
@@ -25,15 +26,7 @@ export default function TemporaryDrawer({ onOpen }) {
         <Styled.Container>
           <Styled.Head>
             <Logo />
-            <Button
-              size="small"
-              onClick={() => {
-                onOpen();
-                toggleDrawer();
-              }}
-            >
-              Оформить заказ
-            </Button>
+            <Order text={t("toOrder")} size="small" />
             <Close onClick={toggleDrawer} />
           </Styled.Head>
           <Styled.Info>

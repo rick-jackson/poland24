@@ -48,5 +48,7 @@ export const Subtitle = styled.h4`
   ${theme.breakpoints.up("md")} {
     font-size: 24px;
     font-weight: 400;
+    max-width: 590px;
+    line-height: 33.6px;
   }
 `;

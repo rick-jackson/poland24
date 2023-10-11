@@ -31,10 +31,11 @@ const OrderForm: React.FC<OrderFormProps> = ({ onClose, defaultValues }) => {
       try {
         if (!defaultValues) {
           await createOrder(data);
+          enqueueSnackbar("Order added!", { variant: "success" });
         } else {
           await editOrder({ ...defaultValues, ...data });
+          enqueueSnackbar("Order edit!", { variant: "success" });
         }
-        enqueueSnackbar("Order added!", { variant: "success" });
         onClose();
         router.replace(router.asPath);
       } catch (e) {

@@ -39,7 +39,7 @@ const UserForm: React.FC<{ userData: User }> = ({ userData }) => {
           enqueueSnackbar("Save!", { variant: "success" });
         })
         .catch((e) => {
-          enqueueSnackbar("Error!", { variant: "error" });
+          enqueueSnackbar(e.message, { variant: "error" });
         });
     })();
   };

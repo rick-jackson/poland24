@@ -20,6 +20,8 @@ import ruOrder from "./public/static/locales/ru/order.json";
 import ukOrder from "./public/static/locales/uk/order.json";
 import ruHowItWorks from "./public/static/locales/ru/howItWorks.json";
 import ukHowItWorks from "./public/static/locales/uk/howItWorks.json";
+import ruHome from "./public/static/locales/ru/home.json";
+import ukHome from "./public/static/locales/uk/home.json";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -34,6 +36,7 @@ i18n.use(initReactI18next).init({
       profile: ruProfile,
       order: ruOrder,
       howItWorks: ruHowItWorks,
+      home: ruHome,
     },
     uk: {
       banner: ukBanner,
@@ -46,6 +49,7 @@ i18n.use(initReactI18next).init({
       profile: ukProfile,
       order: ukOrder,
       howItWorks: ukHowItWorks,
+      home: ukHome,
     },
   },
   fallbackLng: "uk",

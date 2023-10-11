@@ -44,7 +44,7 @@ const ReviewForm: React.FC = () => {
         reset(defaultReview());
         enqueueSnackbar("Review added!", { variant: "success" });
       } catch (e) {
-        enqueueSnackbar("Error!", { variant: "error" });
+        enqueueSnackbar(e.message, { variant: "error" });
       }
     })();
   };

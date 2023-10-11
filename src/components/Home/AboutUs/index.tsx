@@ -1,27 +1,23 @@
 import BlockTitle from "@components/BlockTitle";
 import * as Styled from "./AboutUs.styled";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 const AboutUs: React.FC = () => {
+  const { t } = useTranslation("home");
   const router = useRouter();
+
   return (
     <Styled.Container>
       <div>
-        <BlockTitle
-          title="О нас"
-          subtitle="15 лет опыт производства. Знаем все доставке"
-        />
-        <Styled.Description>
-          Компания Poland24 осуществляет доставку из любого
-          магазина/поставщика/производителя стран Евросоюза, которые
-          осуществляют доставку товара курьером в Польшу.
-        </Styled.Description>
+        <BlockTitle title={t("aboutTitle")} subtitle={t("aboutSubtitle")} />
+        <Styled.Description>{t("aboutDescription")}</Styled.Description>
         <Styled.Button
           variant="subtle"
           size="medium"
           onClick={() => router.push("/about")}
         >
-          Подробнее
+          {t("aboutDetail")}
         </Styled.Button>
       </div>
       <Styled.Video src="/images/map.png" alt="map" />
