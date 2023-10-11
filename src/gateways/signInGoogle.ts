@@ -41,11 +41,15 @@ export const useSignInWithGoogle = (onClose: () => void) => {
             lastName,
             phone: user.phoneNumber,
           });
+          setLoading(false);
+          enqueueSnackbar("Login!", { variant: "success" });
+          onClose();
           router.replace(router.asPath);
+        } else {
+          setLoading(false);
+          enqueueSnackbar("Login!", { variant: "success" });
+          onClose();
         }
-        setLoading(false);
-        onClose();
-        enqueueSnackbar("Login!", { variant: "success" });
       })
       .catch((error) => {
         enqueueSnackbar(error.message, { variant: "error" });
