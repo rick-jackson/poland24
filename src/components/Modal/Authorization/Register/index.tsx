@@ -13,7 +13,7 @@ type RegisterProps = {
 };
 
 const Register: React.FC<RegisterProps> = ({ onChangeType, onClose }) => {
-  const { loading, handleSignIn } = useSignInWithGoogle();
+  const { loading, handleSignIn } = useSignInWithGoogle(onClose);
 
   return (
     <div>

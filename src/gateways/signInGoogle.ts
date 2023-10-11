@@ -12,7 +12,7 @@ import { app, db } from "../../firebase";
 import { useState } from "react";
 import { enqueueSnackbar } from "notistack";
 
-export const useSignInWithGoogle = () => {
+export const useSignInWithGoogle = (onClose: () => void) => {
   const [loading, setLoading] = useState(false);
 
   const handleSignIn = async () => {
@@ -40,8 +40,9 @@ export const useSignInWithGoogle = () => {
             phone: user.phoneNumber,
           });
         }
-        enqueueSnackbar("Login!", { variant: "success" });
         setLoading(false);
+        onClose();
+        enqueueSnackbar("Login!", { variant: "success" });
       })
       .catch((error) => {
         enqueueSnackbar(error.message, { variant: "error" });

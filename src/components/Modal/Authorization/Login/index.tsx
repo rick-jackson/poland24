@@ -14,7 +14,7 @@ type LoginProps = {
 };
 
 const Login: React.FC<LoginProps> = ({ onChangeType, onClose }) => {
-  const { loading, handleSignIn } = useSignInWithGoogle();
+  const { loading, handleSignIn } = useSignInWithGoogle(onClose);
 
   return (
     <Styled.Container>
