@@ -11,9 +11,9 @@ const Navigation: React.FC = () => {
 
   return (
     <Styled.Navigation>
-      {navigation.map(({ link, hash }) => (
+      {navigation.map(({ link, hash }, index) => (
         <Link
-          key={link}
+          key={index}
           href={{
             pathname: link ? `/${link}` : "/",
             ...(hash && { hash }),

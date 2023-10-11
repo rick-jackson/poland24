@@ -40,11 +40,12 @@ export const useSignInWithGoogle = (onClose: () => void) => {
             firstName,
             lastName,
             phone: user.phoneNumber,
+          }).then(() => {
+            setLoading(false);
+            enqueueSnackbar("Login!", { variant: "success" });
+            onClose();
+            router.replace(router.asPath);
           });
-          setLoading(false);
-          enqueueSnackbar("Login!", { variant: "success" });
-          onClose();
-          router.replace(router.asPath);
         } else {
           setLoading(false);
           enqueueSnackbar("Login!", { variant: "success" });

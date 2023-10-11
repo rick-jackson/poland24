@@ -11,7 +11,7 @@ export const menuRoutes: Record<string, string>[] = [
   },
 ];
 
-export const adminMenuRoutes = [
+export const adminMenuRoutes: Record<string, string>[] = [
   {
     link: "/admin/orders",
     label: "orders",

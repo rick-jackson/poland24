@@ -10,9 +10,16 @@ import { adminMenuRoutes, menuRoutes } from "@common/configs/menu";
 import Link from "@components/Link";
 import { getCookie } from "cookies-next";
 
-type AvatarProps = Partial<Pick<User, "firstName" | "lastName" | "email">>;
+type AvatarProps = { photoUrl?: string } & Partial<
+  Pick<User, "firstName" | "lastName" | "email">
+>;
 
-const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
+const Avatar: React.FC<AvatarProps> = ({
+  firstName,
+  lastName,
+  email,
+  photoUrl,
+}) => {
   const router = useRouter();
   const { t } = useTranslation("header");
 
@@ -46,10 +53,15 @@ const Avatar: React.FC<AvatarProps> = ({ firstName, lastName, email }) => {
           email ? router.push("/profile") : handleClick(e);
         }}
       >
-        <Styled.Circle>
-          {firstName[0]}
-          {lastName[0]}
-        </Styled.Circle>
+        {photoUrl ? (
+          <Styled.PhotoCircle src={photoUrl} />
+        ) : (
+          <Styled.Circle>
+            {firstName[0]}
+            {lastName[0]}
+          </Styled.Circle>
+        )}
+
         <Styled.FullName>
           {lastName} {firstName}
           {email && <Styled.Email>{email}</Styled.Email>}

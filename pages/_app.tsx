@@ -16,8 +16,8 @@ import { useEffect } from "react";
 import { auth } from "../firebase";
 
 import { deleteCookie } from "cookies-next";
-import useUserData from "@gateways/getUserData";
 import dynamic from "next/dynamic";
+import { setUserInLocalStorage } from "@common/utils/setUserInLocalStorage";
 const Layout = dynamic(() => import("@components/Layout"), { ssr: false });
 
 interface MyAppProps extends AppProps {
@@ -28,12 +28,11 @@ const clientSideEmotionCache = createEmotionCache();
 
 const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-  const { getUser } = useUserData();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        getUser(authUser.uid);
+        setUserInLocalStorage(authUser);
       } else {
         deleteCookie("userId");
         localStorage.removeItem("userData");
@@ -49,7 +48,10 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
     <>
       <Head>
         <title>Poland 24</title>
-        <meta name="description" content="Live sport matches" />
+        <meta
+          name="description"
+          content="Fast delivery of goods from Poland and the countries of the European Union to Ukraine"
+        />
         <link rel="icon" href="/images/favicon.ico" />
       </Head>
       <LocalizationProvider dateAdapter={AdapterDateFns}>

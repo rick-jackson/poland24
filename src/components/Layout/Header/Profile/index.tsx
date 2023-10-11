@@ -23,7 +23,11 @@ const Profile = () => {
     return (
       <>
         {!!userData && !!userId ? (
-          <Avatar firstName={userData.firstName} lastName={userData.lastName} />
+          <Avatar
+            firstName={userData.firstName}
+            lastName={userData.lastName}
+            photoUrl={userData.photoUrl}
+          />
         ) : (
           <Button
             style={{ color: "#2D2D2D" }}
@@ -51,6 +55,7 @@ const Profile = () => {
               <Avatar
                 firstName={userData.firstName}
                 lastName={userData.lastName}
+                photoUrl={userData.photoUrl}
               />
             ) : (
               <IconButton onClick={handleOpen}>

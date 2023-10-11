@@ -26,6 +26,14 @@ export const Circle = styled.span`
   border: 1px solid #fff;
 `;
 
+export const PhotoCircle = styled.img`
+  height: 35px;
+  width: 35px;
+  border-radius: 50px;
+  outline: 2px solid rgb(253, 110, 106);
+  border: 1px solid #fff;
+`;
+
 export const FullName = styled.span`
   font-size: 14px;
   font-weight: 500;

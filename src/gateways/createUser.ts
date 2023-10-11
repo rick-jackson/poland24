@@ -1,4 +1,3 @@
-import { setCookie } from "cookies-next";
 import { app, db } from "../../firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
@@ -18,16 +17,6 @@ const createUser = async ({ email, password, fullName, phone }) => {
         lastName,
         phone,
       });
-
-      setCookie("userId", user.uid);
-      localStorage.setItem(
-        "userData",
-        JSON.stringify({
-          email,
-          firstName,
-          lastName,
-        })
-      );
     }
   );
 };
