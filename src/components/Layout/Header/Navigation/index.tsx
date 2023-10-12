@@ -7,7 +7,7 @@ import Link from "@components/Link";
 import { navigation } from "@common/configs/navigation";
 
 type NavigationProps = {
-  onCloseDrawer: () => void;
+  onCloseDrawer?: () => void;
 };
 
 const Navigation: React.FC<NavigationProps> = ({ onCloseDrawer }) => {
@@ -17,6 +17,7 @@ const Navigation: React.FC<NavigationProps> = ({ onCloseDrawer }) => {
     <Styled.Navigation>
       {navigation.map(({ link, hash }, index) => (
         <Link
+          {...(onCloseDrawer && { onclick: onCloseDrawer })}
           onClick={onCloseDrawer}
           key={index}
           href={{
