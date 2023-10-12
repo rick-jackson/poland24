@@ -5,18 +5,26 @@ import type User from "@entities/user";
 import UserPageLayout from "@components/Layout/UserPage";
 import Profile from "@components/Profile";
 import { useTranslation } from "next-i18next";
+import Error from "@components/Error";
 
 type ProfilePageProps = {
   userData: User;
+  errorCode: number;
 };
 
-const ProfilePage: NextPage<ProfilePageProps> = ({ userData }) => {
+const ProfilePage: NextPage<ProfilePageProps> = ({ userData, errorCode }) => {
   const { t } = useTranslation("header");
 
   return (
-    <UserPageLayout title={t("editProfile")}>
-      <Profile userData={userData} />
-    </UserPageLayout>
+    <>
+      {errorCode ? (
+        <Error statusCode={errorCode} />
+      ) : (
+        <UserPageLayout title={t("editProfile")}>
+          <Profile userData={userData} />
+        </UserPageLayout>
+      )}
+    </>
   );
 };
 
@@ -24,24 +32,22 @@ export default ProfilePage;
 
 export const getServerSideProps = async (context) => {
   const userId = context.req.cookies.userId as string;
-  if (!userId) {
+  if (!userId) return { props: { errorCode: 401 } };
+
+  try {
+    const usersRef = doc(db, "users", userId);
+    const userData: User | any = await getDoc(usersRef).then((res) => {
+      return res.data();
+    });
+
     return {
-      redirect: {
-        destination: "/error",
-        permanent: false,
+      props: {
+        userData,
       },
     };
+  } catch (error) {
+    return {
+      props: { errorCode: error?.status },
+    };
   }
-
-  const calendarsRef = doc(db, "users", userId);
-
-  const userData: User | any = await getDoc(calendarsRef).then((res) => {
-    return res.data();
-  });
-
-  return {
-    props: {
-      userData,
-    },
-  };
 };

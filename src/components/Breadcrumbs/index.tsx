@@ -10,10 +10,8 @@ const Breadcrumbs: React.FC = () => {
 
   return (
     <Styled.Breadcrumbs>
-      <Styled.Link href="/">
-        {t("home")}
-        <Arrow />
-      </Styled.Link>
+      <Styled.Link href="/">{t("home")}</Styled.Link>
+      <Arrow />
       <Styled.Item>{t(`${pathname.split("/")[1]}`)}</Styled.Item>
     </Styled.Breadcrumbs>
   );

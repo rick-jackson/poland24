@@ -3,10 +3,11 @@ import { ButtonText } from "../Authorization.styled";
 import Google from "public/images/icons/socials/google.svg";
 import Faceboock from "public/images/icons/socials/u_facebook-f.svg";
 import Form from "@components/dialogs/forms/Login";
-import { useSignInWithGoogle } from "@gateways/signInGoogle";
+import { useSignInWithGoogle } from "@gateways/useSignInWithGoogle";
 
 import * as Styled from "./Login.styled";
 import { Backdrop, CircularProgress } from "@mui/material";
+import { useSignInWithFacebook } from "@gateways/useSignInWithFacebook";
 
 type LoginProps = {
   onChangeType: () => void;
@@ -14,7 +15,13 @@ type LoginProps = {
 };
 
 const Login: React.FC<LoginProps> = ({ onChangeType, onClose }) => {
-  const { loading, handleSignIn } = useSignInWithGoogle(onClose);
+  const { loading: googleAuthLoading, handleSignIn: handleGoogleSignIn } =
+    useSignInWithGoogle(onClose);
+
+  const { loading: facebookAuthLoading, handleSignIn: handleFacebookSignIn } =
+    useSignInWithFacebook(onClose);
+
+  const loading = googleAuthLoading || facebookAuthLoading;
 
   return (
     <Styled.Container>
@@ -35,12 +42,18 @@ const Login: React.FC<LoginProps> = ({ onChangeType, onClose }) => {
           style={{ flex: 1 }}
           size="medium"
           onClick={async () => {
-            await handleSignIn();
+            await handleGoogleSignIn();
           }}
         >
           <Google /> Google
         </Button>
-        <Button style={{ flex: 1 }} size="medium">
+        <Button
+          style={{ flex: 1 }}
+          size="medium"
+          onClick={async () => {
+            await handleFacebookSignIn();
+          }}
+        >
           <Faceboock /> Facebook
         </Button>
       </Styled.Buttons>

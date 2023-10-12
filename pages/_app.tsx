@@ -60,7 +60,7 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
         <link rel="icon" href="/images/favicon.ico" />
       </Head>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <NextNProgress height={3} color="#EA0C0C" />
+        <NextNProgress height={2} color="#EA0C0C" />
         <ThemeProvider theme={theme} emotionCache={emotionCache}>
           <SnackbarProvider maxSnack={3}>
             <CssBaseline />

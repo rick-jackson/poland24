@@ -6,6 +6,7 @@ export const Breadcrumbs = styled.div`
   margin-bottom: 8px;
   display: flex;
   align-items: center;
+  gap: 4px;
 `;
 
 export const Link = styled(CustomLinkLink)`
