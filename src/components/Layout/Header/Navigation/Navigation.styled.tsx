@@ -19,14 +19,10 @@ export const Navigation = styled.nav`
 `;
 
 export const NavLink = styled(({ children }) => {
-  const matches = useMediaQuery(theme.breakpoints.up("md"));
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <Button
-      {...(!matches && { fullwidth: true })}
-      size={ "small"}
-      variant="text"
-    >
+    <Button {...(matches && { fullwidth: true })} size={"small"} variant="text">
       {children}
     </Button>
   );

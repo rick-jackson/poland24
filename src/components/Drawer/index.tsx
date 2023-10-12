@@ -34,7 +34,7 @@ export default function TemporaryDrawer({ onOpen }) {
             <LocaleSwitcher />
           </Styled.Info>
           <Styled.Divider />
-          <Navigation />
+          <Navigation onCloseDrawer={toggleDrawer} />
         </Styled.Container>
       </Drawer>
     </>
