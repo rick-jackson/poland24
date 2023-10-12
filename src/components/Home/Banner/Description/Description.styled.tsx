@@ -2,23 +2,24 @@ import theme from "@theme/index";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin-top: 24px;
-  display: flex;
-  flex-wrap: wrap;
+  color: #fff;
+  margin-top: 32px;
 
   ${theme.breakpoints.up("md")} {
-    margin-top: 0px;
+    display: flex;
+    margin: 0;
     height: 738px;
     width: 100%;
   }
 `;
 
 export const Item = styled.div<{ $right: number; $background: string }>`
-  height: 140px;
+  background: ${({ $background }) => $background};
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex: 1;
+  justify-content: space-between;
+  min-height: 220px;
+  padding: 24px 0 24px 24px;
 
   ${theme.breakpoints.down("md")} {
     &:nth-child(odd) {
@@ -33,19 +34,20 @@ export const Item = styled.div<{ $right: number; $background: string }>`
       background: #ee3d3d;
     }
   }
+
   ${theme.breakpoints.up("md")} {
-    height: 738px;
-    border-radius: 50px 0px 0px 200px;
-    width: 784px;
-    position: absolute;
-    transition: 0.3s;
-    flex: auto;
-    box-shadow: 0px 24px 33px -9px rgba(0, 0, 0, 0.1);
-    right: ${({ $right }) => $right}px;
-    justify-content: flex-start;
-    padding-top: 40px;
+    padding: 0;
     align-items: flex-start;
-    background: ${({ $background }) => $background};
+    flex-direction: column;
+    padding-top: 40px;
+    padding-bottom: 80px;
+    box-shadow: 0px 24px 33px -9px rgba(0, 0, 0, 0.1);
+    border-radius: 50px 0px 0px 200px;
+    width: 800px;
+    position: absolute;
+    height: 100%;
+    right: ${({ $right }) => $right}px;
+    transition: 0.3s;
 
     &:hover {
       right: ${({ $right }) => $right + 300}px;
@@ -54,49 +56,51 @@ export const Item = styled.div<{ $right: number; $background: string }>`
 `;
 
 export const Head = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-around;
-  align-items: flex-start;
-
-  // ${theme.breakpoints.up("md")} {
-  //   img {
-  //     position: relative;
-  //     left: 0px;
-
-  //     &:nth-child(1) {
-  //       left: 0px;
-  //     }
-  //   }
-  // }
+  ${theme.breakpoints.up("md")} {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    padding-left: 20px;
+    gap: 30px;
+  }
 `;
 
 export const Title = styled.div`
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 120%;
+
   ${theme.breakpoints.up("md")} {
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    transform-origin: 0 0;
     transform: rotate(-90deg);
-    width: 265px;
-    font-family: Rubik;
-    font-size: 30px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.2;
-    position: relative;
-    left: -55px;
-  }
-  ${theme.breakpoints.down("md")} {
-    display: none;
   }
 `;
 
 export const Info = styled.p`
-  font-family: Rubik;
-  font-size: 16px;
-  color: #fff;
-  max-width: 200px;
-  margin-top: 100px;
+  display: none;
 
-  ${theme.breakpoints.down("md")} {
-    display: none;
+  ${theme.breakpoints.up("md")} {
+    display: block;
+    max-width: 220px;
+    margin-bottom: auto;
+    position: relative;
+    left: -100px;
+  }
+`;
+
+export const Logo = styled.div`
+  min-width: 160px;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ${theme.breakpoints.up("md")} {
+    min-width: 300px;
+    min-height: 300px;
   }
 `;

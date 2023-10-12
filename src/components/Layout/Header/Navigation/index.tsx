@@ -17,7 +17,7 @@ const Navigation: React.FC<NavigationProps> = ({ onCloseDrawer }) => {
     <Styled.Navigation>
       {navigation.map(({ link, hash }, index) => (
         <Link
-          {...(onCloseDrawer && { onclick: onCloseDrawer })}
+          {...(onCloseDrawer && { onClick: onCloseDrawer })}
           onClick={onCloseDrawer}
           key={index}
           href={{
