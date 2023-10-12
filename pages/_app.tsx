@@ -3,10 +3,10 @@ import type { AppProps } from "next/app";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { EmotionCache } from "@emotion/react";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, useMediaQuery } from "@mui/material";
 import Head from "next/head";
 import { SnackbarProvider } from "notistack";
-
+import NextNProgress from "nextjs-progressbar";
 import createEmotionCache from "@theme/createEmotionCache";
 import ThemeProvider from "@theme/ThemeProvider";
 import theme from "@theme";
@@ -14,7 +14,7 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "../i18n";
 import { useEffect } from "react";
 import { auth } from "../firebase";
-
+import NProgress from "nprogress";
 import { deleteCookie } from "cookies-next";
 import dynamic from "next/dynamic";
 import { setUserInLocalStorage } from "@common/utils/setUserInLocalStorage";
@@ -29,7 +29,9 @@ const clientSideEmotionCache = createEmotionCache();
 
 const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
+  NProgress.configure({ showSpinner: matches ? true : false });
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -58,6 +60,7 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
         <link rel="icon" href="/images/favicon.ico" />
       </Head>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <NextNProgress height={matches ? 3 : 1} color="#EA0C0C" />
         <ThemeProvider theme={theme} emotionCache={emotionCache}>
           <SnackbarProvider maxSnack={3}>
             <CssBaseline />

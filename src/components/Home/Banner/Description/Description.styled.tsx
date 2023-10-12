@@ -43,7 +43,7 @@ export const Item = styled.div<{ $right: number; $background: string }>`
     box-shadow: 0px 24px 33px -9px rgba(0, 0, 0, 0.1);
     right: ${({ $right }) => $right}px;
     justify-content: flex-start;
-    padding-top: 20px;
+    padding-top: 40px;
     align-items: flex-start;
     background: ${({ $background }) => $background};
 
@@ -77,11 +77,12 @@ export const Title = styled.div`
     transform: rotate(-90deg);
     width: 265px;
     font-family: Rubik;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 700;
     color: #fff;
+    line-height: 1.2;
     position: relative;
-    left: -30px;
+    left: -55px;
   }
   ${theme.breakpoints.down("md")} {
     display: none;

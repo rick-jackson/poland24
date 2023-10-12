@@ -18,6 +18,6 @@ module.exports = {
     styledComponents: true,
   },
   images: {
-    domains: ['poland24.com.ua'],
+    domains: ["poland24.com.ua"],
   },
 };

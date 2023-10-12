@@ -9,7 +9,7 @@ const Description: React.FC = () => {
 
   return (
     <Styled.Container>
-      <Styled.Item $right={-533} $background="#BB0A0A" style={{ zIndex: 5 }}>
+      <Styled.Item $right={-620} $background="#BB0A0A" style={{ zIndex: 5 }}>
         <Styled.Head>
           <Styled.Title>
             Возможность оплатить кредитными средствами
@@ -29,7 +29,7 @@ const Description: React.FC = () => {
           средств).
         </Styled.Info>
       </Styled.Item>
-      <Styled.Item $right={-213} $background="#BB0A0A" style={{ zIndex: 3 }}>
+      <Styled.Item $right={-313} $background="#BB0A0A" style={{ zIndex: 3 }}>
         <Styled.Head>
           <Styled.Title>Доставка товара за 5-10 дней</Styled.Title>
           <Image
@@ -47,7 +47,7 @@ const Description: React.FC = () => {
           в Украине 5-10 дней.
         </Styled.Info>
       </Styled.Item>
-      <Styled.Item $right={114} $background="#EE3D3D" style={{ zIndex: 1 }}>
+      <Styled.Item $right={14} $background="#EE3D3D" style={{ zIndex: 1 }}>
         <Styled.Head>
           <Styled.Title>Комиссия 6,38%</Styled.Title>
           <Image
@@ -66,7 +66,7 @@ const Description: React.FC = () => {
           отдельно по запросу.
         </Styled.Info>
       </Styled.Item>
-      <Styled.Item $right={-50} $background="#EA0D0D" style={{ zIndex: 2 }}>
+      <Styled.Item $right={-150} $background="#EA0D0D" style={{ zIndex: 2 }}>
         <Styled.Head>
           <Styled.Title>Минимальная предоплаты 30%</Styled.Title>
           <Image
@@ -85,7 +85,7 @@ const Description: React.FC = () => {
           Украине.
         </Styled.Info>
       </Styled.Item>
-      <Styled.Item $right={-373} $background="#EA0D0D" style={{ zIndex: 4 }}>
+      <Styled.Item $right={-473} $background="#EA0D0D" style={{ zIndex: 4 }}>
         <Styled.Head>
           <Styled.Title>доставим заказы до 500€ без пошлин</Styled.Title>
           <Image
