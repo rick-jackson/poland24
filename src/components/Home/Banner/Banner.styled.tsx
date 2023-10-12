@@ -34,7 +34,7 @@ export const Info = styled.div`
 export const Text = styled.div`
   padding: 16px 22px 0px 29px;
 
-  ${theme.breakpoints.up("md")} {
+  ${theme.breakpoints.up("lg")} {
     margin-top: 124px;
     padding: 0;
   }

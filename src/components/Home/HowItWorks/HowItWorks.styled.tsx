@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   padding: 32px 17px 0px 17px;
 
-  ${theme.breakpoints.up("md")} {
+  ${theme.breakpoints.up("lg")} {
     padding: 0;
     padding-top: 64px;
     max-width: 1290px;
@@ -28,7 +28,7 @@ export const InfoList = styled.div`
     grid-template-columns: repeat(3, 1fr);
   }
 
-  ${theme.breakpoints.up('lg')} {
+  ${theme.breakpoints.up("lg")} {
     grid-template-columns: repeat(6, 1fr);
   }
 `;

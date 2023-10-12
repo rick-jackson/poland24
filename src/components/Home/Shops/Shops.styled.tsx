@@ -5,7 +5,7 @@ export const Wrapper = styled.section`
   padding: 65px 0;
   margin: auto;
 
-  ${theme.breakpoints.down("md")} {
+  ${theme.breakpoints.down("lg")} {
     padding: 32px 16px;
   }
 `;

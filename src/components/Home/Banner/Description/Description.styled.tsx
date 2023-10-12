@@ -57,11 +57,16 @@ export const Item = styled.div<{ $right: number; $background: string }>`
 
 export const Head = styled.div`
   ${theme.breakpoints.up("md")} {
-    display: flex;
-    height: 100%;
-    align-items: flex-end;
+    // display: flex;
+    // height: 100%;
+    // align-items: flex-end;
+    // gap: 30px;
+    // position: relative;
+
     padding-left: 20px;
-    gap: 30px;
+    display: flex;
+    width: 410px;
+    justify-content: space-between;
   }
 `;
 
@@ -71,12 +76,21 @@ export const Title = styled.div`
   line-height: 120%;
 
   ${theme.breakpoints.up("md")} {
-    max-width: 250px;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    transform-origin: 0 0;
-    transform: rotate(-90deg);
+    // display: flex;
+    // flex-direction: column;
+    // text-align: left;
+    // transform-origin: 0 0;
+    // position: relative;
+    // bottom: 0;
+
+    font-size: 32px;
+    max-height: 270px;
+    transform: rotate(180deg);
+    writing-mode: vertical-rl;
+  }
+
+  ${theme.breakpoints.down("lg")} {
+    font-size: 20px;
   }
 `;
 
@@ -86,9 +100,9 @@ export const Info = styled.p`
   ${theme.breakpoints.up("md")} {
     display: block;
     max-width: 220px;
-    margin-bottom: auto;
-    position: relative;
-    left: -100px;
+    // margin-bottom: auto;
+    // position: relative;
+    // left: -100px;
   }
 `;
 

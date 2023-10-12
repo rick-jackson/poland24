@@ -67,6 +67,10 @@ const GlobalStyle = createGlobalStyle<any>`
       background: #555;
     }
   }
+
+  .MuiModal-root{
+    overflow: auto;
+  }
 `;
 
 export default GlobalStyle;

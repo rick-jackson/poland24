@@ -5,11 +5,15 @@ import { useMediaQuery } from "@mui/material";
 import * as Styled from "./Description.styled";
 
 const Description: React.FC = () => {
-  const matches = useMediaQuery(theme.breakpoints.up("md"));
+  const matches = useMediaQuery(theme.breakpoints.down("lg"));
 
   return (
     <Styled.Container>
-      <Styled.Item $right={-650} $background="#BB0A0A" style={{ zIndex: 5 }}>
+      <Styled.Item
+        $right={matches ? -700 : -610}
+        $background="#BB0A0A"
+        style={{ zIndex: 5 }}
+      >
         <Styled.Head>
           <Styled.Title>
             Возможность оплатить кредитными средствами
@@ -32,7 +36,11 @@ const Description: React.FC = () => {
           />
         </Styled.Logo>
       </Styled.Item>
-      <Styled.Item $right={-350} $background="#BB0A0A" style={{ zIndex: 3 }}>
+      <Styled.Item
+        $right={matches ? -500 : -300}
+        $background="#BB0A0A"
+        style={{ zIndex: 3 }}
+      >
         <Styled.Head>
           <Styled.Title>Доставка товара за 5-10 дней</Styled.Title>
           <Styled.Info>
@@ -54,7 +62,11 @@ const Description: React.FC = () => {
           />
         </Styled.Logo>
       </Styled.Item>
-      <Styled.Item $right={-50} $background="#EE3D3D" style={{ zIndex: 1 }}>
+      <Styled.Item
+        $right={matches ? -300 : 0}
+        $background="#EE3D3D"
+        style={{ zIndex: 1 }}
+      >
         <Styled.Head>
           <Styled.Title>Комиссия 6,38%</Styled.Title>
           <Styled.Info>
@@ -76,7 +88,11 @@ const Description: React.FC = () => {
           />
         </Styled.Logo>
       </Styled.Item>
-      <Styled.Item $right={-200} $background="#EA0D0D" style={{ zIndex: 2 }}>
+      <Styled.Item
+        $right={matches ? -400 : -150}
+        $background="#EA0D0D"
+        style={{ zIndex: 2 }}
+      >
         <Styled.Head>
           <Styled.Title>Минимальная предоплаты 30%</Styled.Title>
           <Styled.Info>
@@ -99,7 +115,11 @@ const Description: React.FC = () => {
           />
         </Styled.Logo>
       </Styled.Item>
-      <Styled.Item $right={-500} $background="#EA0D0D" style={{ zIndex: 4 }}>
+      <Styled.Item
+        $right={matches ? -600 : -460}
+        $background="#EA0D0D"
+        style={{ zIndex: 4 }}
+      >
         <Styled.Head>
           <Styled.Title>доставим заказы до 500€ без пошлин</Styled.Title>
           <Styled.Info>

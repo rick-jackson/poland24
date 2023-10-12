@@ -5,7 +5,7 @@ import CustomButton from "@components/UI/buttons";
 export const Container = styled.div`
   padding: 32px 16px;
 
-  ${theme.breakpoints.up("md")} {
+  ${theme.breakpoints.up("lg")} {
     max-width: 1290px;
     margin: auto;
     padding: 0;
