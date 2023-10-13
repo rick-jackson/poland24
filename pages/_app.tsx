@@ -15,7 +15,7 @@ import i18n from "../i18n";
 import { useEffect } from "react";
 import { auth } from "../firebase";
 import NProgress from "nprogress";
-import { deleteCookie } from "cookies-next";
+import { deleteCookie, getCookie } from "cookies-next";
 import dynamic from "next/dynamic";
 import { setUserInLocalStorage } from "@common/utils/setUserInLocalStorage";
 import { useRouter } from "next/router";
@@ -46,6 +46,12 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
     return () => {
       unsubscribe();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const NEXT_LOCALE = getCookie("NEXT_LOCALE");
+    i18n.changeLanguage(NEXT_LOCALE as string);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

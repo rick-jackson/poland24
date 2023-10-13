@@ -8,7 +8,7 @@ import {
   setDoc,
   where,
 } from "firebase/firestore";
-import { app, db } from "../../firebase";
+import { app, db } from "@firebase";
 import { useState } from "react";
 import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/router";

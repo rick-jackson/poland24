@@ -3,11 +3,11 @@ import { ButtonText } from "../Authorization.styled";
 import Google from "public/images/icons/socials/google.svg";
 import Faceboock from "public/images/icons/socials/u_facebook-f.svg";
 import Form from "@components/dialogs/forms/Login";
-import { useSignInWithGoogle } from "@gateways/useSignInWithGoogle";
+import { useSignInWithGoogle } from "@common/hooks/useSignInWithGoogle";
+import { useSignInWithFacebook } from "@common/hooks/useSignInWithFacebook";
 
 import * as Styled from "./Login.styled";
 import { Backdrop, CircularProgress } from "@mui/material";
-import { useSignInWithFacebook } from "@gateways/useSignInWithFacebook";
 
 type LoginProps = {
   onChangeType: () => void;

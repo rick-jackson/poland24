@@ -4,7 +4,7 @@ import {
   getCountFromServer,
   setDoc,
 } from "firebase/firestore";
-import { db } from "../../../firebase";
+import { db } from "@firebase";
 import { filterEmptyParam } from "@common/utils/filterEmpryParams";
 import { getCookie } from "cookies-next";
 

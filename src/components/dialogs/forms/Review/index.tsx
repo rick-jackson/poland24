@@ -7,7 +7,7 @@ import Button from "@components/UI/buttons";
 import { defaultReview } from "@common/data/defaultreview";
 import type Review from "@entities/review";
 import { collection, doc, setDoc } from "firebase/firestore";
-import { db } from "../../../../../firebase";
+import { db } from "@firebase";
 import { getCookie } from "cookies-next";
 import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/router";

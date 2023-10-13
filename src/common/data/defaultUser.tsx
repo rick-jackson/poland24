@@ -6,7 +6,7 @@ export const defaultUser = (data: User) => {
     firstName: data.firstName || "",
     lastName: data.lastName || "",
     email: data.email || "",
-    phone: data.phone || null,
+    phone: data.phone || undefined,
     city: data.city || "",
     post: data.post || "",
     viber: data.viber || "",

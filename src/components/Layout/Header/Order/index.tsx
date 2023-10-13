@@ -11,6 +11,7 @@ type OrderProps = {
   size?: "small" | "medium" | "large";
   defaultValues?: Partial<OrderType>;
   disabled?: boolean;
+  fullwidth?: boolean;
 };
 
 const Order: React.FC<OrderProps> = ({

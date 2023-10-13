@@ -23,6 +23,8 @@
       "@entities/*": ["src/entities/*"],
       "@gateways/*": ["src/gateways/*"],
       "@common/*": ["src/common/*"],
+      "@store/*": ["./src/store/*"],
+      "@firebase":["./firebase.js"],
       "@hooks/*": ["src/hooks/*"],
       "@admin/*": ["src/admin/*"],
       "@theme/*": ["src/theme/*"],

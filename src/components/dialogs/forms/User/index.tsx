@@ -8,7 +8,7 @@ import Inputs from "./Inputs";
 import * as Styled from "./Inputs/Inputs.styled";
 import { filterEmptyParam } from "@common/utils/filterEmpryParams";
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../../../../firebase";
+import { db } from "@firebase";
 import { useRouter } from "next/router";
 import { setUserInLocalStorage } from "@common/utils/setUserInLocalStorage";
 import { enqueueSnackbar } from "notistack";

@@ -1,5 +1,5 @@
 import UserPageLayout from "@components/Layout/UserPage";
-import { db } from "../../../firebase";
+import { db } from "@firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useTranslation } from "next-i18next";
 import { NextPage } from "next";

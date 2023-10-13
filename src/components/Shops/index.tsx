@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import DialogTextField from "@components/dialogs/inputs/TextField";
 import Button from "@components/UI/buttons";
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../../firebase";
+import { db } from "@firebase";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { Pagination } from "@mui/material";

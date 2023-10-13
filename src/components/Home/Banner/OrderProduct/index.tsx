@@ -30,7 +30,6 @@ const OrderProduct: React.FC = () => {
       />
       <Order
         size="medium"
-        {...(matches && { fullWidth: true })}
         text={t("order")}
         defaultValues={{
           ...defaultOrder(),

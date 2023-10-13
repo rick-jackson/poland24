@@ -57,12 +57,7 @@ export const Item = styled.div<{ $right: number; $background: string }>`
 
 export const Head = styled.div`
   ${theme.breakpoints.up("md")} {
-    // display: flex;
-    // height: 100%;
-    // align-items: flex-end;
-    // gap: 30px;
-    // position: relative;
-
+    height: 100%;
     padding-left: 20px;
     display: flex;
     width: 410px;

@@ -1,5 +1,5 @@
 import { setUserInLocalStorage } from "@common/utils/setUserInLocalStorage";
-import { app, db } from "../../firebase";
+import { app, db } from "@firebase";
 import {
   getAuth,
   createUserWithEmailAndPassword,

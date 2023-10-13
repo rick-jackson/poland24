@@ -9,6 +9,7 @@ type User = {
   viber?: string;
   telegram?: string;
   role: string;
+  photoUrl?: string;
 };
 
 export default User;

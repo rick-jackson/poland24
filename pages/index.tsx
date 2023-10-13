@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import Home from "@components/Home";
 import { collection, getDocs, limit, query } from "firebase/firestore";
 import Store from "@entities/store";
-import { db } from "../firebase";
+import { db } from "@firebase";
 
 type HomePageProps = {
   shopsData: Store[];

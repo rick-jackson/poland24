@@ -1,7 +1,7 @@
 import type User from "@entities/user";
 
 import * as Styled from "./Avatar.styled";
-import { auth } from "../../../../firebase";
+import { auth } from "@firebase";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";

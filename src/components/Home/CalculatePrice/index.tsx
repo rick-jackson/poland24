@@ -15,8 +15,8 @@ const CalculatePrice: React.FC = () => {
     delivery: number;
     article: boolean;
   }>({
-    price: null,
-    delivery: null,
+    price: undefined,
+    delivery: undefined,
     article: false,
   });
 

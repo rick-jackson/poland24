@@ -4,23 +4,53 @@ import Button from "@components/UI/buttons";
 import DialogTextField from "@components/dialogs/inputs/TextField";
 import Remove from "public/images/icons/remove.svg";
 import * as Styled from "./RequestForm.styled";
+import { useMediaQuery } from "@mui/material";
+import theme from "@theme/index";
+import { collection, doc, setDoc } from "firebase/firestore";
+import { db } from "@firebase";
+import { filterEmptyParam } from "@common/utils/filterEmpryParams";
+import { enqueueSnackbar } from "notistack";
+import { defaultRequest } from "@common/data/defaultRequest";
+import { useState } from "react";
 
 const RequestForm: React.FC = () => {
-  const { control } = useForm({
-    defaultValues: {
-      name: "",
-      phoneNumber: "",
-      email: "",
-      articles: [{ articleName: "", comment: "" }],
-    },
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+  const [loading, setLoading] = useState(false);
+
+  const {
+    control,
+    handleSubmit: onSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    defaultValues: defaultRequest,
   });
   const { fields, append, remove } = useFieldArray({
     control,
     name: "articles",
   });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(async (data) => {
+      setLoading(true);
+      try {
+        const requestRef = doc(collection(db, "request"));
+        await setDoc(requestRef, {
+          ...filterEmptyParam(data),
+        });
+        enqueueSnackbar("Request added!", { variant: "success" });
+        reset(defaultRequest);
+      } catch (e) {
+        enqueueSnackbar(e.message, { variant: "error" });
+      } finally {
+        setLoading(false);
+      }
+    })();
+  };
+
   return (
-    <Styled.FormContainer>
+    <Styled.FormContainer onSubmit={handleSubmit}>
       <Styled.SectionContainer>
         <Title title="Контактна інформація" />
         <Styled.UserFields>
@@ -30,6 +60,8 @@ const RequestForm: React.FC = () => {
             label="Ім'я"
             placeholder="Ім'я"
             fullWidth
+            required
+            error={!!errors.name}
           />
           <DialogTextField
             control={control}
@@ -37,6 +69,8 @@ const RequestForm: React.FC = () => {
             label="Телефон"
             placeholder="Телефон"
             fullWidth
+            required
+            error={!!errors.phoneNumber}
           />
           <DialogTextField
             control={control}
@@ -44,6 +78,8 @@ const RequestForm: React.FC = () => {
             label="Email"
             placeholder="Email"
             fullWidth
+            required
+            error={!!errors.email}
           />
         </Styled.UserFields>
       </Styled.SectionContainer>
@@ -56,6 +92,8 @@ const RequestForm: React.FC = () => {
               name={`articles[${index}].articleName`}
               label="Посилання на товар або найменування товару/артикул"
               fullWidth
+              required
+              error={!!errors.articles && !!errors.articles[index]?.articleName}
             />
             <Styled.ArticleComment>
               <DialogTextField
@@ -72,6 +110,7 @@ const RequestForm: React.FC = () => {
                   onClick={() => remove(index)}
                   form="circle"
                   type="button"
+                  {...(matches && { size: "medium" })}
                 >
                   <Remove />
                 </Button>
@@ -84,11 +123,14 @@ const RequestForm: React.FC = () => {
         <Button
           variant="secondary"
           type="button"
+          {...(matches && { size: "medium" })}
           onClick={() => append({ articleName: "", comment: "" })}
         >
           Додати товар
         </Button>
-        <Button>Надіслати</Button>
+        <Button {...(matches && { size: "medium" })}>
+          {loading ? "Loading" : "Надіслати"}
+        </Button>
       </Styled.ButtonContainer>
     </Styled.FormContainer>
   );

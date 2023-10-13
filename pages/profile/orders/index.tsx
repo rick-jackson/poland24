@@ -1,7 +1,7 @@
 import UserPageLayout from "@components/Layout/UserPage";
 import { NextPage } from "next";
 import { useTranslation } from "next-i18next";
-import { db } from "../../../firebase";
+import { db } from "@firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import type Order from "@entities/order";
 import Orders from "@components/Orders";

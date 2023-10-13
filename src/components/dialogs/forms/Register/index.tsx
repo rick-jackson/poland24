@@ -7,7 +7,7 @@ import { CircularProgress, useMediaQuery } from "@mui/material";
 import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
 import theme from "@theme/index";
 import { enqueueSnackbar } from "notistack";
-import useCreateUser from "@gateways/createUser";
+import useCreateUser from "@common/hooks/useCreateUser";
 
 type FormProps = {
   onClose: () => void;

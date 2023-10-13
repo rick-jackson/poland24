@@ -4,7 +4,7 @@ import Form from "@components/dialogs/forms/Register";
 import { Buttons } from "../Login/Login.styled";
 import Google from "public/images/icons/socials/google.svg";
 import Faceboock from "public/images/icons/socials/u_facebook-f.svg";
-import { useSignInWithGoogle } from "@gateways/useSignInWithGoogle";
+import { useSignInWithGoogle } from "@common/hooks/useSignInWithGoogle";
 import { Backdrop, CircularProgress } from "@mui/material";
 
 type RegisterProps = {

@@ -1,7 +1,7 @@
 import type Review from "@entities/review";
 import Reviews from "@components/Reviews";
 import ReviewForm from "@components/dialogs/forms/Review";
-import { db } from "../../../firebase";
+import { db } from "@firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { NextPage } from "next";
 import BlockTitle from "@components/BlockTitle";
