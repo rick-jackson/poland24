@@ -28,11 +28,12 @@ const Navigation: React.FC<NavigationProps> = ({ onCloseDrawer }) => {
           <Styled.NavLink>{t(link || hash)}</Styled.NavLink>
         </Link>
       ))}
-
-      <Button size="small" variant="green">
-        <Help />
-        {t("request")}
-      </Button>
+      <Link href="/request" {...(onCloseDrawer && { onClick: onCloseDrawer })}>
+        <Button size="small" variant="green">
+          <Help />
+          {t("request")}
+        </Button>
+      </Link>
     </Styled.Navigation>
   );
 };

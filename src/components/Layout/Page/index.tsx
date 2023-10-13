@@ -4,14 +4,14 @@ import * as Styled from "./Page.styled";
 
 type PageLayoutProps = {
   children: React.ReactNode;
-  title: string;
+  title?: string;
 };
 
 const PageLayout: React.FC<PageLayoutProps> = ({ children, title }) => {
   return (
     <Styled.Wrapper>
       <Breadcrumbs />
-      <BlockTitle title={title} />
+      {title && <BlockTitle title={title} />}
       {children}
     </Styled.Wrapper>
   );

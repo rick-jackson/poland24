@@ -122,6 +122,7 @@ const Article: React.FC<ArticleProps> = ({
               <Button
                 {...(matches && { size: "medium" })}
                 form="circle"
+                type="button"
                 variant="green"
                 style={{ flex: "none" }}
                 onClick={() => append(defaultArticle)}
@@ -133,6 +134,7 @@ const Article: React.FC<ArticleProps> = ({
                 {...(matches && { size: "medium" })}
                 onClick={() => remove(index)}
                 form="circle"
+                type="button"
                 style={{ flex: "none" }}
               >
                 <Remove />
