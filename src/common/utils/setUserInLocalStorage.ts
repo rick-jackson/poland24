@@ -12,6 +12,8 @@ export const setUserInLocalStorage = (userData) => {
       firstName,
       lastName,
       photoUrl: userData.photoURL,
+      post: userData.post,
+      city: userData.city,
     })
   );
 };

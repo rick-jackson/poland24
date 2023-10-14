@@ -6,7 +6,6 @@ import DialogTextField from "@components/dialogs/inputs/TextField";
 import { CircularProgress, useMediaQuery } from "@mui/material";
 import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
 import theme from "@theme/index";
-import { enqueueSnackbar } from "notistack";
 import useCreateUser from "@common/hooks/useCreateUser";
 
 type FormProps = {
@@ -15,7 +14,7 @@ type FormProps = {
 
 const Form: React.FC<FormProps> = ({ onClose }) => {
   const matches = useMediaQuery(theme.breakpoints.up("md"));
-  const { saveUser, isLoading } = useCreateUser();
+  const { saveUser, isLoading } = useCreateUser(onClose);
 
   const {
     control,
@@ -30,7 +29,7 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
       phone: "",
       password: "",
       repeatPassword: "",
-      license: false,
+      license: true,
     },
   });
 
@@ -43,13 +42,7 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
         return;
       }
 
-      try {
-        await saveUser(data);
-        enqueueSnackbar("User added!", { variant: "success" });
-        onClose();
-      } catch (error) {
-        enqueueSnackbar(error.message, { variant: "error" });
-      }
+      await saveUser(data);
     })();
   };
 

@@ -62,10 +62,15 @@ export const ListItem = styled.li`
 export const Total = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 12px;
+  margin-top: 28px;
 
   ${theme.breakpoints.down("md")} {
     flex-direction: column;
     gap: 12px;
   }
+`;
+
+export const BoldText = styled.span`
+  font-size: 14px;
+  font-weight: 600;
 `;

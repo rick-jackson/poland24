@@ -1,6 +1,6 @@
 import type User from "@entities/user";
 
-export const defaultUser = (data: User) => {
+export const defaultUser = (data?: User) => {
   return {
     ...data,
     firstName: data.firstName || "",

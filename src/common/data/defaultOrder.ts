@@ -1,13 +1,13 @@
 import type Order from "@entities/order";
 import { defaultArticle } from "./defaultArticle";
 
-export const defaultOrder = (orderData?: Partial<Order>): Partial<Order> => {
+export const defaultOrder = (orderData?: any): Partial<Order> => {
   return {
     isEmail: orderData?.isEmail || false,
     isViber: orderData?.isViber || false,
     isTelegram: orderData?.isTelegram || false,
     fullName: orderData?.fullName || "",
-    phone: orderData?.phone || null,
+    phone: orderData?.phone || "380",
     email: orderData?.email || "",
     post: orderData?.post || "",
     reservedPost: orderData?.reservedPost || "",

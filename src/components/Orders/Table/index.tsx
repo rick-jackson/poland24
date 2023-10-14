@@ -22,16 +22,16 @@ const OrderTable: React.FC<OrderTableProps> = ({ orderData, total }) => {
       </thead>
       <tbody>
         {orderData.articles.map((el) => {
-          const sum = el.articleCount * el.articlePrice;
+          const sum = el.count * el.price;
           total += sum;
 
           return (
-            <tr key={el.articleLink}>
+            <tr key={el.link}>
               <td>
-                <OrderName href={el.articleLink}>{el.articleName}</OrderName>
+                <OrderName href={el.link}>{el.name}</OrderName>
               </td>
-              <td>{el.articlePrice} грн</td>
-              <td>{el.articleCount}</td>
+              <td>{el.price} грн</td>
+              <td>{el.count}</td>
               <td>{sum} грн</td>
             </tr>
           );

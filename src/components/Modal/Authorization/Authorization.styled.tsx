@@ -6,7 +6,7 @@ export const Container = styled.div`
   width: 100%;
 
   ${theme.breakpoints.down("md")} {
-    padding: 12px;
+    padding: 0;
   }
 `;
 

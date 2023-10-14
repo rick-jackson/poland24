@@ -30,18 +30,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
         <Styled.Container>
           {title && (
             <Styled.Head>
-              {title} <CloseButton onClick={onClose} />
+              {title} <CloseButton style={{ flex: "none" }} onClick={onClose} />
             </Styled.Head>
           )}
-          <div
-            style={{
-              maxHeight: "calc(100vh - 150px)",
-              overflow: "auto",
-              padding: "10px",
-            }}
-          >
-            {children}
-          </div>
+          <Styled.Content>{children}</Styled.Content>
         </Styled.Container>
       </Fade>
     </MuiModal>

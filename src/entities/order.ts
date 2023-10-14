@@ -1,11 +1,12 @@
 export type Article = {
-  articleName: string;
-  articleCount: number;
-  articleDeliveryPrice: number;
-  articleDescription: string;
-  articleLink: string;
-  articlePrice: number;
-  isUsedArticle: boolean;
+  name: string;
+  count: number;
+  deliveryPrice: number;
+  description: string;
+  link: string;
+  price: number;
+  isUsed: boolean;
+  currency: string;
 };
 
 type Order = {

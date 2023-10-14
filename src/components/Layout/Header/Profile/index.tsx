@@ -47,6 +47,8 @@ const Profile = () => {
 
   const Mobile = () => {
     const { open, handleOpen, handleClose } = useModal();
+    const { t } = useTranslation("order");
+
     return (
       <>
         {matches && (
@@ -68,7 +70,7 @@ const Profile = () => {
         <Modal
           isOpen={open}
           onClose={handleClose}
-          {...(userId && { title: "Сделать заказ" })}
+          {...(userId && { title: t("makeOrder") })}
         >
           {!userId ? (
             <Authorization onClose={handleClose} />

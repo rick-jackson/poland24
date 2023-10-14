@@ -36,8 +36,8 @@ const OrderTitle: React.FC<OrderTitleProps> = ({ orderData, total }) => {
         </Styled.ColumnText>
         {matches && totalBlock}
       </Styled.Info>
-      <Styled.OrderName href={articles[0].articleLink}>
-        {articles[0].articleName}
+      <Styled.OrderName href={articles[0].link}>
+        {articles[0].name}
       </Styled.OrderName>
       {!matches && totalBlock}
     </Styled.Content>

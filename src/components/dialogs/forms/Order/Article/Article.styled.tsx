@@ -7,7 +7,7 @@ export const Article = styled.div`
 
 export const Detail = styled.div`
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 3fr 1fr 1fr 1fr 0.5fr;
   gap: 8px;
 
   ${theme.breakpoints.down("md")} {
@@ -28,14 +28,31 @@ export const Comment = styled.div`
   gap: 16px;
   font-size: 14px;
   font-weight: 500;
+  display: grid;
+  grid-template-columns: 3fr auto auto;
 
   ${theme.breakpoints.down("md")} {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 `;
 
 export const Total = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  margin-bottom: auto;
+  font-size: 14px;
+  font-weight: 600;
+
+  ${theme.breakpoints.down("md")} {
+    grid-row-start: 2;
+  }
+`;
+
+export const Currency = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
 `;

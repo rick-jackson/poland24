@@ -1,15 +1,15 @@
-import CheckBox, { type CheckBoxProps } from "@components/UI/inputs/Checkbox";
+import { SwitchProps } from "@mui/material/Switch";
+import Switch from "@components/UI/inputs/Switch";
 
 import { Control, Controller } from "react-hook-form";
 
-type DialogCheckBoxProps = {
+type DialogSwitchPropsProps = {
   control: Control<any>;
-} & CheckBoxProps;
+} & SwitchProps;
 
-const DialogCheckBox: React.FC<DialogCheckBoxProps> = ({
+const DialogSwitch: React.FC<DialogSwitchPropsProps> = ({
   name,
   control,
-  label,
   required,
   ...props
 }) => {
@@ -20,8 +20,7 @@ const DialogCheckBox: React.FC<DialogCheckBoxProps> = ({
       rules={{ required }}
       render={({ field: { onChange, value, name } }) => {
         return (
-          <CheckBox
-            label={label}
+          <Switch
             value={value}
             checked={value}
             onChange={onChange}
@@ -34,4 +33,4 @@ const DialogCheckBox: React.FC<DialogCheckBoxProps> = ({
   );
 };
 
-export default DialogCheckBox;
+export default DialogSwitch;

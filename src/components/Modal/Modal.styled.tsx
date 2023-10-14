@@ -12,6 +12,8 @@ export const Container = styled.div`
   padding: 22px;
   max-height: calc(100% - 50px);
   overflow: hidden;
+  width: max-content;
+  max-width: 1280px;
 
   ${theme.breakpoints.down("md")} {
     padding: 8px;
@@ -25,4 +27,19 @@ export const Head = styled.div`
   align-items: center;
   font-size: 40px;
   font-weight: 800;
+
+  ${theme.breakpoints.down("md")} {
+    font-size: 24px;
+  }
+`;
+
+export const Content = styled.div`
+  max-height: calc(100vh - 150px);
+  overflow: auto;
+  padding: 10px;
+
+  ${theme.breakpoints.down("md")} {
+    padding-top: 0;
+    margin-top: 20px;
+  }
 `;

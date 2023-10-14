@@ -21,8 +21,8 @@ const Orders: React.FC<OrdersProps> = ({ ordersData }) => {
       <Styled.OrdersList>
         {ordersData.map((order) => {
           const total = order.articles.reduce(
-            (acc, { articlePrice, articleCount }) => {
-              const sum = +articlePrice * articleCount;
+            (acc, { price, count }) => {
+              const sum = +price * count;
               return (acc += sum);
             },
             0

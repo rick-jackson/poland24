@@ -1,20 +1,44 @@
 import DialogTextField from "@components/dialogs/inputs/TextField";
 import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
 import Article from "../Article";
+import { useTranslation } from "next-i18next";
 
 import * as Styled from "./Inputs.styled";
 import { useFieldArray } from "react-hook-form";
 import Title from "@components/dialogs/Title";
+import { useEffect, useState } from "react";
+import { getExchangeRate } from "@gateways/getExchangeRate";
 
-const OrderFormInputs = ({ control, register, errors }) => {
+const OrderFormInputs = ({ control, register, errors, watch, setValue }) => {
+  const [totalSum, setTotalSum] = useState(0);
+  const [exchangeRate, setExchangeRate] = useState<Record<string, unknown>[]>([
+    { rate: 0 },
+    { rate: 0 },
+  ]);
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "articles",
   });
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const data: Record<string, unknown>[] = await getExchangeRate();
+        setExchangeRate(
+          data.filter((el) => el.cc === "PLN" || el.cc === "EUR")
+        );
+      } catch (e) {
+        setExchangeRate([]);
+      }
+    })();
+  }, []);
+
+  const { t } = useTranslation("order");
+
   return (
     <>
-      <Title title="Заказ" />
+      <Title title={t("orderCount")} />
       {fields.map((field, index: number) => (
         <Article
           key={index}
@@ -26,33 +50,56 @@ const OrderFormInputs = ({ control, register, errors }) => {
           field={field}
           isLastField={fields.length - 1 === index}
           errors={errors}
+          watch={watch}
+          setValue={setValue}
+          setTotalSum={setTotalSum}
+          totalSum={totalSum}
+          exchangeRate={exchangeRate}
         />
       ))}
       <Styled.Total>
-        <span>Доставка по Украине : Новой почтой</span>
+        <Styled.BoldText>{t("deliveryThroughoutUkraine")}</Styled.BoldText>
         <div>
-          <span>Удобный канал для обратной связи:</span>
+          <Styled.BoldText>{t("feedbackChannel")}</Styled.BoldText>
           <Styled.Checkboxes>
-            <DialogCheckBox control={control} name="isEmail" label="Почта" />
-            <DialogCheckBox control={control} name="isViber" label="Вайбер" />
+            <DialogCheckBox
+              control={control}
+              name="isEmail"
+              label={t("post")}
+            />
+            <DialogCheckBox
+              control={control}
+              name="isViber"
+              label={t("viber")}
+            />
             <DialogCheckBox
               control={control}
               name="isTelegram"
-              label="Телеграм"
+              label={t("telegram")}
             />
           </Styled.Checkboxes>
         </div>
         <div style={{ display: "flex", gap: "8px", fontWeight: 500 }}>
-          <span>Ориентировочно, zł</span>
-          <span>Ориентировочно, ₴</span>
+          <Styled.BoldText>
+            {t("approximately")}, ₴
+            <span
+              style={{ fontSize: "24px", fontWeight: 700, display: "block" }}
+            >
+              {Object.values(totalSum)
+                .reduce((acc, value) => {
+                  return (acc += value);
+                }, 0)
+                .toFixed(2)}
+            </span>
+          </Styled.BoldText>
         </div>
       </Styled.Total>
-      <Title title="Данные заказчика" />
+      <Title title={t("customerData")} />
       <Styled.Customer>
         <DialogTextField
           control={control}
           name="fullName"
-          placeholder="Фамилия"
+          placeholder={t("fullName")}
           fullWidth
           required
           error={!!errors.fullName}
@@ -60,7 +107,7 @@ const OrderFormInputs = ({ control, register, errors }) => {
         <DialogTextField
           control={control}
           name="phone"
-          placeholder="Номер телефона"
+          placeholder={t("phoneNumber")}
           type="tel"
           fullWidth
           required
@@ -69,14 +116,14 @@ const OrderFormInputs = ({ control, register, errors }) => {
         <DialogTextField
           control={control}
           name="email"
-          placeholder="email"
+          placeholder="Email"
           type="email"
           fullWidth
         />
         <DialogTextField
           control={control}
           name="post"
-          placeholder="Город и отделение новой почты"
+          placeholder={t("city")}
           fullWidth
           required
           error={!!errors.post}
@@ -84,7 +131,7 @@ const OrderFormInputs = ({ control, register, errors }) => {
         <DialogTextField
           control={control}
           name="reservedPost"
-          placeholder="Резервное грузовое отделение"
+          placeholder={t("reservedPost")}
           fullWidth
         />
       </Styled.Customer>
@@ -93,7 +140,7 @@ const OrderFormInputs = ({ control, register, errors }) => {
           textArea
           control={control}
           name="comment"
-          placeholder="Комментарий"
+          placeholder={t("comment")}
           fullWidth
           style={{ height: "100%" }}
         />
@@ -108,40 +155,22 @@ const OrderFormInputs = ({ control, register, errors }) => {
           <DialogCheckBox
             name="isCall"
             control={control}
-            label="Не перезванивайте мне, я подтверждаю заказа."
+            label={t("notCall")}
             style={{ fontSize: "12px" }}
           />
           <DialogCheckBox
             name="isLicense"
             control={control}
-            label="Я соглашаюсь и принимаю коммерческие условия покупки и доставки*"
+            label={t("terms")}
             style={{ fontSize: "12px" }}
           />
 
           <Styled.List>
-            <Styled.ListItem>
-              Комиссия сервиса для товаров с фактурой VAT стоимостью от 250zł:
-              6,38%
-            </Styled.ListItem>
-            <Styled.ListItem>
-              Комиссия сервиса для товаров с фактурой VAT стоимостью до 250zl :
-              50zł.
-            </Styled.ListItem>
-            <Styled.ListItem>
-              Комиссия сервиса для товаров без фактуры VAT стоимостью от 250zl:
-              15%
-            </Styled.ListItem>
-            <Styled.ListItem>
-              Вы должны будете внести предоплату в размере(для новых товаров):
-              30%
-            </Styled.ListItem>
-            <Styled.ListItem>
-              Вы должны будете внести предоплату в размере(для б/у товаров):
-              100%
-            </Styled.ListItem>
-            <Styled.ListItem>
-              Крупногабаритные и б/у товары не подлежат возврату.
-            </Styled.ListItem>
+            {new Array(6).fill(null).map((_, index) => (
+              <Styled.ListItem key={index}>
+                {t(`info${index + 1}`)}
+              </Styled.ListItem>
+            ))}
           </Styled.List>
         </div>
       </Styled.License>

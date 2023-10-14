@@ -7,9 +7,10 @@ import {
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 
-const useCreateUser = () => {
+const useCreateUser = ({ onClose }: any) => {
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -17,23 +18,30 @@ const useCreateUser = () => {
     const [firstName, lastName] = fullName.split(" ");
     const auth = getAuth(app);
     setLoading(true);
-    await createUserWithEmailAndPassword(auth, email, password).then(
-      async (userCredential) => {
-        await updateProfile(auth.currentUser, { displayName: fullName });
-        const user = userCredential.user;
-        const userRef = doc(db, "users", user.uid);
-        await setDoc(userRef, {
-          id: user.uid,
-          email,
-          firstName,
-          lastName,
-          phone,
-        });
-        setUserInLocalStorage(user);
-        router.replace(router.asPath);
-      }
-    );
-    setLoading(false);
+    try {
+      await createUserWithEmailAndPassword(auth, email, password).then(
+        async (userCredential) => {
+          await updateProfile(auth.currentUser, { displayName: fullName });
+          const user = userCredential.user;
+          const userRef = doc(db, "users", user.uid);
+          await setDoc(userRef, {
+            id: user.uid,
+            email,
+            firstName,
+            lastName,
+            phone,
+          });
+          setUserInLocalStorage(user);
+          router.replace(router.asPath);
+          enqueueSnackbar("User added!", { variant: "success" });
+          onClose();
+        }
+      );
+    } catch (error) {
+      enqueueSnackbar(error.message, { variant: "error" });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return { saveUser, isLoading };

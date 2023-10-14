@@ -7,6 +7,7 @@ import type Order from "@entities/order";
 import { useRouter } from "next/router";
 import { createOrder } from "@gateways/order/save";
 import { editOrder } from "@gateways/order/edit";
+import { useTranslation } from "next-i18next";
 
 type OrderFormProps = {
   onClose: () => void;
@@ -20,6 +21,8 @@ const OrderForm: React.FC<OrderFormProps> = ({ onClose, defaultValues }) => {
     handleSubmit: onSubmit,
     formState: { errors },
     register,
+    setValue,
+    watch,
   } = useForm({
     defaultValues: defaultOrder(defaultValues),
   });
@@ -44,11 +47,19 @@ const OrderForm: React.FC<OrderFormProps> = ({ onClose, defaultValues }) => {
     })();
   };
 
+  const { t } = useTranslation("order");
+
   return (
     <form onSubmit={handleSubmit}>
-      <OrderFormInputs control={control} register={register} errors={errors} />
+      <OrderFormInputs
+        control={control}
+        register={register}
+        errors={errors}
+        watch={watch}
+        setValue={setValue}
+      />
       <Button style={{ margin: "auto", marginTop: "16px" }} type="submit">
-        Отправить
+        {t("send")}
       </Button>
     </form>
   );

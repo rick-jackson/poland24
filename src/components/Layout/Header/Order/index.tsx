@@ -5,6 +5,7 @@ import { getCookie } from "cookies-next";
 import Authorization from "@components/Modal/Authorization";
 import OrderForm from "@components/dialogs/forms/Order";
 import type OrderType from "@entities/order";
+import { useTranslation } from "next-i18next";
 
 type OrderProps = {
   text: string;
@@ -22,6 +23,7 @@ const Order: React.FC<OrderProps> = ({
 }) => {
   const { open, handleOpen, handleClose } = useModal();
   const userId = getCookie("userId");
+  const { t } = useTranslation("order");
 
   return (
     <>
@@ -29,7 +31,7 @@ const Order: React.FC<OrderProps> = ({
         {text}
       </Button>
       <Modal
-        {...(userId && { title: "Сделать заказ" })}
+        {...(userId && { title: t("makeOrder") })}
         isOpen={open}
         onClose={handleClose}
       >

@@ -1,9 +1,6 @@
-import { useMediaQuery } from "@mui/material";
 import { useTranslation } from "next-i18next";
 
 import TextField from "@components/UI/inputs/TextField";
-import Button from "@components/UI/buttons";
-import theme from "@theme/index";
 
 import * as Styled from "./OrderProduct.styled";
 import { useState } from "react";
@@ -13,7 +10,6 @@ import { defaultArticle } from "@common/data/defaultArticle";
 
 const OrderProduct: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
-  const matches = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation("banner");
 
   const handleChange = (e) => {
@@ -33,7 +29,7 @@ const OrderProduct: React.FC = () => {
         text={t("order")}
         defaultValues={{
           ...defaultOrder(),
-          articles: [{ ...defaultArticle, articleLink: inputValue }],
+          articles: [{ ...defaultArticle, link: inputValue }],
         }}
         disabled={!inputValue}
       />
