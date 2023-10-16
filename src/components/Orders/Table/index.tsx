@@ -30,9 +30,9 @@ const OrderTable: React.FC<OrderTableProps> = ({ orderData, total }) => {
               <td>
                 <OrderName href={el.link}>{el.name}</OrderName>
               </td>
-              <td>{el.price} грн</td>
+              <td>{el.price} {el.currency}</td>
               <td>{el.count}</td>
-              <td>{sum} грн</td>
+              <td>{sum} {el.currency}</td>
             </tr>
           );
         })}

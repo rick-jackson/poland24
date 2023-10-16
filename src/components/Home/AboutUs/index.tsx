@@ -2,8 +2,12 @@ import BlockTitle from "@components/BlockTitle";
 import * as Styled from "./AboutUs.styled";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import Button from "@components/UI/buttons";
+import Image from "next/image";
+import { useState } from "react";
 
 const AboutUs: React.FC = () => {
+  const [isPlayVideo, setPlayVideo] = useState(false);
   const { t } = useTranslation("home");
   const router = useRouter();
 
@@ -20,7 +24,39 @@ const AboutUs: React.FC = () => {
           {t("aboutDetail")}
         </Styled.Button>
       </div>
-      <Styled.Video src="/images/map.png" alt="map" />
+      <Styled.Video>
+        {isPlayVideo ? (
+          <iframe
+            style={{
+              border: "none",
+              position: "absolute",
+            }}
+            width={"100%"}
+            height={"100%"}
+            allow="autoplay"
+            src="https://www.youtube.com/embed/DtBTBkoJBpA?rel=0&amp;showinfo=0&amp;autoplay=1"
+          />
+        ) : (
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              background: "#0000007a",
+            }}
+            onClick={() => setPlayVideo(true)}
+          >
+            <Button style={{ margin: "auto" }} form="circle">
+              <Image
+                width={40}
+                height={40}
+                alt="play"
+                src="/images/icons/play-one.svg"
+              />
+            </Button>
+          </div>
+        )}
+      </Styled.Video>
     </Styled.Container>
   );
 };

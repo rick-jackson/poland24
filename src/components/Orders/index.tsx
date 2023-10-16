@@ -16,17 +16,16 @@ const Orders: React.FC<OrdersProps> = ({ ordersData }) => {
   return (
     <Styled.Wrapper>
       {!ordersData.length && (
-        <Styled.NoOrders>{t('emptyList')}</Styled.NoOrders>
+        <Styled.NoOrders>{t("emptyList")}</Styled.NoOrders>
       )}
       <Styled.OrdersList>
         {ordersData.map((order) => {
-          const total = order.articles.reduce(
-            (acc, { price, count }) => {
-              const sum = +price * count;
+          const total = order.articles
+            .reduce((acc, { price, count, rate }) => {
+              const sum = +price * rate * count;
               return (acc += sum);
-            },
-            0
-          );
+            }, 0)
+            .toFixed(2);
 
           return (
             //@ts-ignore
@@ -35,7 +34,7 @@ const Orders: React.FC<OrdersProps> = ({ ordersData }) => {
               title={<OrderTitle orderData={order} total={total} />}
               sx={{ padding: "0 16px" }}
             >
-              {<OrderDescription orderData={order} total={total} />}
+              {<OrderDescription orderData={order} total={+total} />}
             </Accordion>
           );
         })}

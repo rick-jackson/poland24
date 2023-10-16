@@ -7,6 +7,7 @@ export type Article = {
   price: number;
   isUsed: boolean;
   currency: string;
+  rate: number;
 };
 
 type Order = {

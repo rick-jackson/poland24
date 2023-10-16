@@ -22,6 +22,8 @@ import ruHowItWorks from "./public/static/locales/ru/howItWorks.json";
 import ukHowItWorks from "./public/static/locales/uk/howItWorks.json";
 import ruHome from "./public/static/locales/ru/home.json";
 import ukHome from "./public/static/locales/uk/home.json";
+import ruCommon from "./public/static/locales/ru/common.json";
+import ukCommon from "./public/static/locales/uk/common.json";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -37,6 +39,7 @@ i18n.use(initReactI18next).init({
       order: ruOrder,
       howItWorks: ruHowItWorks,
       home: ruHome,
+      common: ruCommon,
     },
     uk: {
       banner: ukBanner,
@@ -50,6 +53,7 @@ i18n.use(initReactI18next).init({
       order: ukOrder,
       howItWorks: ukHowItWorks,
       home: ukHome,
+      common: ukCommon,
     },
   },
   fallbackLng: "uk",

@@ -57,6 +57,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ onClose, defaultValues }) => {
         errors={errors}
         watch={watch}
         setValue={setValue}
+        defaultValues={defaultValues}
       />
       <Button style={{ margin: "auto", marginTop: "16px" }} type="submit">
         {t("send")}

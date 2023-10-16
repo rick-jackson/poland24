@@ -11,6 +11,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   font-family: Rubik;
+  justify-content: center;
 
   ${theme.breakpoints.up("md")} {
     max-width: 1290px;

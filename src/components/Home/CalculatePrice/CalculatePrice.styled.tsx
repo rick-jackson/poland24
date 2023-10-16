@@ -49,7 +49,6 @@ export const Description = styled.div`
 
   ${theme.breakpoints.up("md")} {
     max-width: 520px;
-    margin-top: 65px;
   }
 `;
 
@@ -76,6 +75,7 @@ export const DescriptionItem = styled.span`
 
 export const Calculator = styled.div`
   width: 100%;
+
   ${theme.breakpoints.up("md")} {
     max-width: 532px;
     position: relative;
@@ -130,7 +130,7 @@ export const Tab = styled.button`
   }
 `;
 
-export const Inputs = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 16px;

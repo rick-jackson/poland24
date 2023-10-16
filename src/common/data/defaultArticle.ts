@@ -9,4 +9,5 @@ export const defaultArticle: Article = {
   isUsed: false,
   description: undefined,
   currency: "zł",
+  rate: 0,
 };

@@ -6,12 +6,12 @@ export const Container = styled.div`
   padding: 32px 16px;
 
   ${theme.breakpoints.up("lg")} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     max-width: 1290px;
     margin: auto;
     padding: 0;
     padding-top: 64px;
-    display: flex;
-    justify-content: space-between;
   }
 `;
 
@@ -40,17 +40,17 @@ export const Button = styled(CustomButton)`
   }
 `;
 
-export const Video = styled.img`
-  display: block;
+export const Video = styled.div`
   border-radius: 16px;
   position: relative;
   margin-top: 24px;
-  object-fit: cover;
+  background-image: url("/images/map.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  aspect-ratio: 16/9;
 
   ${theme.breakpoints.up("md")} {
     margin-top: 0;
-    max-height: 420px;
-    max-width: 855px;
-    flex-basis: 620px;
   }
 `;

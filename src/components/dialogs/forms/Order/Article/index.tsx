@@ -35,19 +35,15 @@ const Article: React.FC<ArticleProps> = ({
   setTotalSum,
   totalSum,
   exchangeRate,
+  defaultValues,
 }) => {
   const matches = useMediaQuery(theme.breakpoints.down("md"));
+  const { t } = useTranslation("order");
 
   const [total, setTotal] = useState<number>(0);
 
-  const toggleCurrency = () => {
-    setValue(
-      `articles[${index}].currency`,
-      watch(`articles[${index}].currency`) === "€" ? "zł" : "€"
-    );
-  };
-
-  const [eur, pln] = exchangeRate;
+  const eur = defaultValues?.rate || exchangeRate[0].rate;
+  const pln = defaultValues?.rate || exchangeRate[1].rate;
 
   const productPrice = +watch(`articles[${index}].price`);
   const shippingCost = +watch(`articles[${index}].deliveryPrice`);
@@ -61,15 +57,18 @@ const Article: React.FC<ArticleProps> = ({
         productPrice,
         shippingCost,
         currency,
-        [pln.rate, eur.rate],
+        [pln, eur],
         isUsedArticle
       ) * count;
     setTotal(totalArticle);
-    setTotalSum({ ...totalSum, [`article${index}`]: totalArticle });
+    setTotalSum({ ...totalSum, [`articles[${index}]`]: totalArticle });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productPrice, shippingCost, currency, isUsedArticle, count]);
 
-  const { t } = useTranslation("order");
+  const toggleCurrency = () => {
+    setValue(`articles[${index}].currency`, currency === "€" ? "zł" : "€");
+    setValue(`articles[${index}].rate`, currency === "€" ? +eur : +pln);
+  };
 
   return (
     <Styled.Article>
@@ -120,9 +119,11 @@ const Article: React.FC<ArticleProps> = ({
           </span>
           <DialogSwitch
             control={control}
-            name="currency"
+            name={`articles[${index}].currency`}
+            checked={currency === "zł"}
             onChange={toggleCurrency}
             style={{ margin: "auto 0 !important" }}
+            disabled={!!defaultValues?.currency}
           />
         </Styled.Currency>
       </Styled.Detail>
@@ -160,8 +161,7 @@ const Article: React.FC<ArticleProps> = ({
           {t("positionPrice")}
           <span style={{ fontSize: "24px" }}>₴ {total}</span>
           <span style={{ fontSize: "24px" }}>
-            {currency}{" "}
-            {(+total / (currency === "zł" ? +pln.rate : +eur.rate)).toFixed(2)}
+            {currency} {(+total / (currency === "zł" ? +pln : +eur)).toFixed(2)}
           </span>
         </Styled.Total>
         {isLastField ? (

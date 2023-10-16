@@ -8,8 +8,16 @@ import { useFieldArray } from "react-hook-form";
 import Title from "@components/dialogs/Title";
 import { useEffect, useState } from "react";
 import { getExchangeRate } from "@gateways/getExchangeRate";
+import { calculateTotalCost } from "@common/utils/calculateTotalCost";
 
-const OrderFormInputs = ({ control, register, errors, watch, setValue }) => {
+const OrderFormInputs = ({
+  control,
+  register,
+  errors,
+  watch,
+  setValue,
+  defaultValues,
+}) => {
   const [totalSum, setTotalSum] = useState(0);
   const [exchangeRate, setExchangeRate] = useState<Record<string, unknown>[]>([
     { rate: 0 },
@@ -22,6 +30,31 @@ const OrderFormInputs = ({ control, register, errors, watch, setValue }) => {
   });
 
   useEffect(() => {
+    if (!!defaultValues?.articles[0].rate) {
+      setTotalSum(
+        defaultValues?.articles.reduce(
+          (
+            acc,
+            { price, deliveryPrice, currency, rate, isUsedArticle, count },
+            index
+          ) => {
+            const totalArticle =
+              calculateTotalCost(
+                price,
+                deliveryPrice,
+                currency,
+                [rate, rate],
+                isUsedArticle
+              ) * count;
+
+            acc[`articles[${index}]`] = totalArticle;
+            return acc;
+          },
+          {}
+        )
+      );
+    }
+
     (async () => {
       try {
         const data: Record<string, unknown>[] = await getExchangeRate();
@@ -55,6 +88,7 @@ const OrderFormInputs = ({ control, register, errors, watch, setValue }) => {
           setTotalSum={setTotalSum}
           totalSum={totalSum}
           exchangeRate={exchangeRate}
+          defaultValues={defaultValues?.articles[index]}
         />
       ))}
       <Styled.Total>

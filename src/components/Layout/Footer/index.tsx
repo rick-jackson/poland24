@@ -4,35 +4,21 @@ import Navigations from "./Navigations";
 import Contacts from "./Contacts";
 import { useMediaQuery } from "@mui/material";
 import theme from "@theme/index";
-import Image from "next/image";
+import Logo from "@components/UI/Logo";
 
 import * as Styled from "./Footer.styled";
 
 const Footer: React.FC = () => {
   const matches = useMediaQuery(theme.breakpoints.up("md"));
 
-  const footerLogo = (
-    <Styled.FooterLogo>
-      <Image
-        alt="logo"
-        src="/images/logo/light/logo.svg"
-        width={46}
-        height={46}
-      />
-      <Image
-        alt="logo"
-        src="/images/logo/light/logo-text.svg"
-        width={250}
-        height={42}
-        priority
-      />
-    </Styled.FooterLogo>
-  );
-
   return (
     <Styled.Wrapper>
       <Styled.Container>
-        {!matches && footerLogo}
+        {!matches && (
+          <div style={{ margin: "auto" }}>
+            <Logo size="medium" variant="dark" />
+          </div>
+        )}
         <Contacts />
         <Styled.Socials>
           <span>Мы в соц.сетяц:</span>
@@ -44,7 +30,7 @@ const Footer: React.FC = () => {
         <Navigations />
         <Styled.Divider />
         <div>
-          {matches && footerLogo}
+          {matches && <Logo size="medium" variant="dark" />}
           <Styled.Copyright>
             Copyright © 2022 Poland24.com.ua. Все права защищены.
           </Styled.Copyright>

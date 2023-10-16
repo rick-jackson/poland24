@@ -9,7 +9,7 @@ import theme from "@theme/index";
 
 type OrderTitleProps = {
   orderData: Order;
-  total: number;
+  total: string;
 };
 
 const OrderTitle: React.FC<OrderTitleProps> = ({ orderData, total }) => {

@@ -1,69 +1,62 @@
 import { useState } from "react";
 import { useMediaQuery } from "@mui/material";
 
-import TextField from "@components/UI/inputs/TextField";
 import Button from "@components/UI/buttons";
 import theme from "@theme/index";
 
 import * as Styled from "./CalculatePrice.styled";
+import { useForm } from "react-hook-form";
+import DialogTextField from "@components/dialogs/inputs/TextField";
+import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
+import { calculateTotalCost } from "@common/utils/calculateTotalCost";
+import { useTranslation } from "next-i18next";
 
 const CalculatePrice: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"€" | "zł">("zł");
   const [total, setTotal] = useState<number>(0);
-  const [inputValue, setInputValue] = useState<{
-    price: number;
-    delivery: number;
-    article: boolean;
-  }>({
-    price: undefined,
-    delivery: undefined,
-    article: false,
+
+  const {
+    control,
+    handleSubmit: onSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: { price: undefined, delivery: undefined, vat: false },
   });
 
-  const handleChange = (e) => {
-    setInputValue({
-      ...inputValue,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleClick = () => {
-    const { price, delivery, article } = inputValue;
-    if (!price || !delivery) return;
-    else if (activeTab === "zł") {
-      setTotal(
-        +price <= 250 ? +delivery + 50 : +delivery + (+price / 100) * 16.38
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(({ price, delivery, vat }: any) => {
+      const result = calculateTotalCost(
+        +price,
+        +delivery,
+        activeTab,
+        [8, 40],
+        vat
       );
-    } else {
-      setTotal(
-        price <= 50 ? +delivery + 10 : +delivery + (+price / 100) * 16.38
-      );
-    }
+      setTotal(result);
+    })();
   };
 
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const deliveryOfcurrency = activeTab === "zł" ? 250 : 50;
+  const { t } = useTranslation("home");
 
   return (
     <Styled.Wrapper id="calculator">
       <Styled.Container>
         <Styled.Description>
-          <Styled.Title>
-            Расчитай стоимость доставки товаров из Польши
-          </Styled.Title>
+          <Styled.Title>{t("calculatorTitle")}</Styled.Title>
           <Styled.DescriptionItem>
-            Комиссия сервиса для товаров с фактурой VAT стоимостью от{" "}
-            {deliveryOfcurrency}
+            {t("calculatorListItem1")} {deliveryOfcurrency}
             {activeTab}: 16,38%
           </Styled.DescriptionItem>
           <Styled.DescriptionItem>
-            Комиссия сервиса для товаров стоимостью до {deliveryOfcurrency}
+            {t("calculatorListItem2")} {deliveryOfcurrency}
             {activeTab} (VAT/ без VAT): {activeTab === "zł" ? 250 : 10}
             {activeTab}.
           </Styled.DescriptionItem>
           <Styled.DescriptionItem>
-            Комиссия сервиса для товаров без фактуры VAT стоимостью от{" "}
-            {deliveryOfcurrency}
+            {t("calculatorListItem3")} {deliveryOfcurrency}
             {activeTab}: 15%
           </Styled.DescriptionItem>
         </Styled.Description>
@@ -86,46 +79,52 @@ const CalculatePrice: React.FC = () => {
               €
             </Styled.Tab>
           </Styled.Tabs>
-          <Styled.Inputs>
-            <TextField
+          <Styled.Form onSubmit={handleSubmit}>
+            <DialogTextField
+              control={control}
               fullWidth
               name="price"
               type="number"
-              placeholder={`Цена*, ${activeTab}`}
-              onChange={handleChange}
+              placeholder={`${t("calculatorPrice")}*, ${activeTab}`}
               {...(!matches && { size: "large" })}
-              value={inputValue.price}
+              required
+              error={!!errors.price}
             />
-            <TextField
+            <DialogTextField
+              control={control}
               fullWidth
               name="delivery"
               type="number"
-              onChange={handleChange}
-              placeholder={`Доставка*, ${activeTab}`}
+              placeholder={`${t("calculatorDelivery")}*, ${activeTab}`}
               {...(!matches && { size: "large" })}
-              value={inputValue.delivery}
+              error={!!errors.delivery}
+              required
             />
-          </Styled.Inputs>
-          <Button
-            onClick={handleClick}
-            variant="secondary"
-            {...(matches && { fullwidth: true, size: "medium" })}
-          >
-            Расчитать
-          </Button>
+            <DialogCheckBox
+              control={control}
+              name="vat"
+              label={t("vat")}
+              style={{ color: "#fff" }}
+            />
+            <Button
+              variant="secondary"
+              {...(matches && { fullwidth: true, size: "medium" })}
+            >
+              {t("send")}
+            </Button>
+          </Styled.Form>
           <Styled.Divider />
           {!!+total && (
             <Styled.Sum>
               Сумма,
               <div style={{ display: "flex", alignItems: "center" }}>
                 <Styled.CurrencySum>
-                  {activeTab}
-                  <Styled.Total>{total.toFixed(2)}</Styled.Total>
+                  ₴<Styled.Total>{total.toFixed(2)}</Styled.Total>
                 </Styled.CurrencySum>
                 <Styled.CurrencySum>
-                  ₴
+                  {activeTab}
                   <Styled.Total>
-                    {(activeTab === "zł" ? total * 8 : total * 40).toFixed(2)}
+                    {(total / (activeTab === "zł" ? 8 : 40)).toFixed(2)}
                   </Styled.Total>
                 </Styled.CurrencySum>
               </div>
