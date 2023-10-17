@@ -1,10 +1,11 @@
-import PageLayout from "@components/Layout/Page";
+import { useTranslation } from "next-i18next";
+import { GetServerSideProps, NextPage } from "next";
+import { collection, getDocs } from "firebase/firestore";
+
 import type Review from "@entities/review";
 import { db } from "@firebase";
-import { collection, getDocs } from "firebase/firestore";
-import { useTranslation } from "next-i18next";
-import { NextPage } from "next";
 import Reviews from "@components/Reviews";
+import PageLayout from "@components/Layout/Page";
 import ReviewForm from "@components/dialogs/forms/Review";
 
 type ReviewsPageProps = {
@@ -22,7 +23,7 @@ const ReviewsPage: NextPage<ReviewsPageProps> = ({ reviewsData }) => {
   );
 };
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const reviewsRef = collection(db, "reviews");
   const reviewsSnapshot = await getDocs(reviewsRef);
 

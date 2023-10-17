@@ -1,21 +1,24 @@
-import { useFieldArray, useForm } from "react-hook-form";
-import Title from "@components/dialogs/Title";
-import Button from "@components/UI/buttons";
-import DialogTextField from "@components/dialogs/inputs/TextField";
-import Remove from "public/images/icons/remove.svg";
-import * as Styled from "./RequestForm.styled";
-import { useMediaQuery } from "@mui/material";
-import theme from "@theme/index";
-import { collection, doc, setDoc } from "firebase/firestore";
-import { db } from "@firebase";
-import { filterEmptyParam } from "@common/utils/filterEmpryParams";
-import { enqueueSnackbar } from "notistack";
-import { defaultRequest } from "@common/data/defaultRequest";
 import { useState } from "react";
+import { enqueueSnackbar } from "notistack";
+import { useTranslation } from "next-i18next";
+import { useMediaQuery } from "@mui/material";
+import { useFieldArray, useForm } from "react-hook-form";
+import { collection, doc, setDoc } from "firebase/firestore";
+
+import { db } from "@firebase";
+import theme from "@theme/index";
+import RequestFormInputs from "./inputs";
+import Button from "@components/UI/buttons";
+import { defaultRequest } from "@common/data/defaultRequest";
+import { filterEmptyParam } from "@common/utils/filterEmpryParams";
+
+import * as Styled from "./RequestForm.styled";
 
 const RequestForm: React.FC = () => {
-  const matches = useMediaQuery(theme.breakpoints.down("md"));
   const [loading, setLoading] = useState(false);
+
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+  const { t } = useTranslation("request");
 
   const {
     control,
@@ -51,74 +54,12 @@ const RequestForm: React.FC = () => {
 
   return (
     <Styled.FormContainer onSubmit={handleSubmit}>
-      <Styled.SectionContainer>
-        <Title title="Контактна інформація" />
-        <Styled.UserFields>
-          <DialogTextField
-            control={control}
-            name="name"
-            label="Ім'я"
-            placeholder="Ім'я"
-            fullWidth
-            required
-            error={!!errors.name}
-          />
-          <DialogTextField
-            control={control}
-            name="phoneNumber"
-            label="Телефон"
-            placeholder="Телефон"
-            fullWidth
-            required
-            error={!!errors.phoneNumber}
-          />
-          <DialogTextField
-            control={control}
-            name="email"
-            label="Email"
-            placeholder="Email"
-            fullWidth
-            required
-            error={!!errors.email}
-          />
-        </Styled.UserFields>
-      </Styled.SectionContainer>
-      <Styled.GridContainer>
-        {fields.map((field, index) => (
-          <Styled.Article key={index}>
-            <Title title={`Товар ${index + 1}`} />
-            <DialogTextField
-              control={control}
-              name={`articles[${index}].articleName`}
-              label="Посилання на товар або найменування товару/артикул"
-              fullWidth
-              required
-              error={!!errors.articles && !!errors.articles[index]?.articleName}
-            />
-            <Styled.ArticleComment>
-              <DialogTextField
-                control={control}
-                name={`articles[${index}].comment`}
-                label="Коментар до товару"
-                placeholder="Коментар до товару"
-                textArea
-                fullWidth
-              />
-              {index > 0 && (
-                <Button
-                  style={{ flex: "none" }}
-                  onClick={() => remove(index)}
-                  form="circle"
-                  type="button"
-                  {...(matches && { size: "medium" })}
-                >
-                  <Remove />
-                </Button>
-              )}
-            </Styled.ArticleComment>
-          </Styled.Article>
-        ))}
-      </Styled.GridContainer>
+      <RequestFormInputs
+        fields={fields}
+        remove={remove}
+        errors={errors}
+        control={control}
+      />
       <Styled.ButtonContainer>
         <Button
           variant="secondary"
@@ -126,10 +67,10 @@ const RequestForm: React.FC = () => {
           {...(matches && { size: "medium" })}
           onClick={() => append({ articleName: "", comment: "" })}
         >
-          Додати товар
+          {t("addArticle")}
         </Button>
         <Button {...(matches && { size: "medium" })}>
-          {loading ? "Loading" : "Надіслати"}
+          {loading ? "Loading" : t("send")}
         </Button>
       </Styled.ButtonContainer>
     </Styled.FormContainer>

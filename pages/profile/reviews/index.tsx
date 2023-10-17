@@ -1,13 +1,14 @@
-import type Review from "@entities/review";
-import Reviews from "@components/Reviews";
-import ReviewForm from "@components/dialogs/forms/Review";
-import { db } from "@firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { NextPage } from "next";
-import BlockTitle from "@components/BlockTitle";
-import { UserReviews } from "@components/Reviews/Reviews.styled";
 import { useTranslation } from "next-i18next";
+import { GetServerSideProps, NextPage } from "next";
+import { collection, getDocs, query, where } from "firebase/firestore";
+
+import type Review from "@entities/review";
+import { db } from "@firebase";
 import Error from "@components/Error";
+import Reviews from "@components/Reviews";
+import BlockTitle from "@components/BlockTitle";
+import ReviewForm from "@components/dialogs/forms/Review";
+import { UserReviews } from "@components/Reviews/Reviews.styled";
 
 type ReviewsPageProps = { reviewsData: Review[]; errorCode: number };
 
@@ -34,7 +35,7 @@ const ReviewsPage: NextPage<ReviewsPageProps> = ({
   );
 };
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const userId = context.req.cookies.userId as string;
 
   if (!userId) return { props: { errorCode: 401 } };

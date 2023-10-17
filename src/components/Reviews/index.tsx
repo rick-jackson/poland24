@@ -1,9 +1,12 @@
-import type Review from "@entities/review";
-import * as Styled from "./Reviews.styled";
 import { format } from "date-fns";
 import { Rating } from "@mui/material";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+
+import type Review from "@entities/review";
+import { FULL_DATE } from "@common/data/dateFormat";
+
+import * as Styled from "./Reviews.styled";
 
 type ReviewsProps = {
   reviewsData: Review[];
@@ -15,20 +18,17 @@ const Reviews: React.FC<ReviewsProps> = ({ reviewsData }) => {
   const isUserPage = router.asPath.includes("profile");
 
   return (
-    <section style={{ height: "100%" }}>
+    <Styled.ReviewsWrapper>
       <Styled.ReviewsList>
         {!reviewsData.length && (
-          <span style={{ margin: "auto", fontWeight: 700, fontSize: "18px" }}>
-            {t("emptyList")}
-          </span>
+          <Styled.EmptyList>{t("emptyList")}</Styled.EmptyList>
         )}
         {reviewsData.map(
           ({ id, fullName, dateCreated, store, text, rating }) => (
             <Styled.ReviewItem key={id}>
               <Styled.ReviewInfo>
                 {!isUserPage && <Styled.UserName>{fullName}</Styled.UserName>}
-                <Styled.Date>{format(+dateCreated, "dd.MM.yyyy")}</Styled.Date>
-
+                <Styled.Date>{format(+dateCreated, FULL_DATE)}</Styled.Date>
                 {store && (
                   <Styled.Store>
                     <Styled.Date>{t("shoppingInStores")} </Styled.Date>
@@ -42,7 +42,7 @@ const Reviews: React.FC<ReviewsProps> = ({ reviewsData }) => {
           )
         )}
       </Styled.ReviewsList>
-    </section>
+    </Styled.ReviewsWrapper>
   );
 };
 

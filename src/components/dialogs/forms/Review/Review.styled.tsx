@@ -14,11 +14,3 @@ export const Form = styled.form`
   margin: 24px 0px;
   min-width: 300px;
 `;
-
-export const Rating = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 16px;
-  font-weight: 400;
-`;

@@ -1,10 +1,12 @@
-import type OrderType from "@entities/order";
-import Title from "@components/dialogs/Title";
 import { useTranslation } from "next-i18next";
-import Button from "@components/UI/buttons";
-import * as Styled from "./Description.styled";
+
+import type OrderType from "@entities/order";
 import OrderTable from "../Table";
+import Button from "@components/UI/buttons";
+import Title from "@components/dialogs/Title";
 import Order from "@components/Layout/Header/Order";
+
+import * as Styled from "./Description.styled";
 
 type OrderDescriptionProps = {
   orderData: OrderType;

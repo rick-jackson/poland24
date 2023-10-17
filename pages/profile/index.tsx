@@ -1,11 +1,12 @@
-import { db } from "@firebase";
-import { doc, getDoc } from "firebase/firestore";
-import { NextPage } from "next";
-import type User from "@entities/user";
-import UserPageLayout from "@components/Layout/UserPage";
-import Profile from "@components/Profile";
 import { useTranslation } from "next-i18next";
+import { doc, getDoc } from "firebase/firestore";
+import { GetServerSideProps, NextPage } from "next";
+
+import type User from "@entities/user";
+import { db } from "@firebase";
 import Error from "@components/Error";
+import Profile from "@components/Profile";
+import UserPageLayout from "@components/Layout/UserPage";
 
 type ProfilePageProps = {
   userData: User;
@@ -30,7 +31,7 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ userData, errorCode }) => {
 
 export default ProfilePage;
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const userId = context.req.cookies.userId as string;
   if (!userId) return { props: { errorCode: 401 } };
 

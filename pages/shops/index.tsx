@@ -1,10 +1,11 @@
-import PageLayout from "@components/Layout/Page";
-import { db } from "@firebase";
-import { collection, getDocs } from "firebase/firestore";
-import { useTranslation } from "next-i18next";
 import { NextPage } from "next";
+import { useTranslation } from "next-i18next";
+import { collection, getDocs } from "firebase/firestore";
+
 import type Store from "@entities/store";
+import { db } from "@firebase";
 import Shops from "@components/Shops";
+import PageLayout from "@components/Layout/Page";
 
 type ShopsPageProps = {
   shopsData: Store[];

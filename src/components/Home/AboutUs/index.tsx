@@ -1,10 +1,12 @@
-import BlockTitle from "@components/BlockTitle";
-import * as Styled from "./AboutUs.styled";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import Button from "@components/UI/buttons";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+
+import Button from "@components/UI/buttons";
+import BlockTitle from "@components/BlockTitle";
+
+import * as Styled from "./AboutUs.styled";
 
 const AboutUs: React.FC = () => {
   const [isPlayVideo, setPlayVideo] = useState(false);
@@ -37,15 +39,7 @@ const AboutUs: React.FC = () => {
             src="https://www.youtube.com/embed/DtBTBkoJBpA?rel=0&amp;showinfo=0&amp;autoplay=1"
           />
         ) : (
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              background: "#0000007a",
-            }}
-            onClick={() => setPlayVideo(true)}
-          >
+          <Styled.VideoBackdrop onClick={() => setPlayVideo(true)}>
             <Button style={{ margin: "auto" }} form="circle">
               <Image
                 width={40}
@@ -54,7 +48,7 @@ const AboutUs: React.FC = () => {
                 src="/images/icons/play-one.svg"
               />
             </Button>
-          </div>
+          </Styled.VideoBackdrop>
         )}
       </Styled.Video>
     </Styled.Container>

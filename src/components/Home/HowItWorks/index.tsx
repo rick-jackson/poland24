@@ -1,7 +1,8 @@
-import Order from "@components/Layout/Header/Order";
-import BlockTitle from "@components/BlockTitle";
 import { useTranslation } from "next-i18next";
+
 import InfoItem from "./InfoItem";
+import BlockTitle from "@components/BlockTitle";
+import Order from "@components/Layout/Header/Order";
 
 import * as Styled from "./HowItWorks.styled";
 
@@ -23,7 +24,7 @@ const HowItWorks: React.FC = () => {
           ))}
         </Styled.InfoList>
         <div style={{ margin: "auto", marginTop: "48px" }}>
-          <Order text={t("order")}/>
+          <Order text={t("order")} />
         </div>
       </Styled.Container>
     </Styled.Wrapper>

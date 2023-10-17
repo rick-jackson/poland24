@@ -2,6 +2,10 @@ import UserPageLayout from "@components/Layout/UserPage";
 import theme from "@theme/index";
 import styled from "styled-components";
 
+export const ReviewsWrapper = styled.section`
+  height: 100%;
+`;
+
 export const ReviewsList = styled.div`
   display: flex;
   flex-direction: column;
@@ -65,4 +69,10 @@ export const UserReviews = styled(UserPageLayout)`
     padding-right: 0;
     display: flex;
   }
+`;
+
+export const EmptyList = styled.span`
+  margin: auto;
+  font-weight: 700;
+  font-size: 18px;
 `;

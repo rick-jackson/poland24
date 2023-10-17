@@ -1,7 +1,8 @@
-import theme from "@theme/index";
 import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
 import { useTranslation } from "next-i18next";
+
+import theme from "@theme/index";
 import { bannerPromoConfig } from "@common/configs/banner";
 
 import * as Styled from "./Description.styled";

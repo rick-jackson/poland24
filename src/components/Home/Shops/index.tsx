@@ -2,7 +2,7 @@
 import type Store from "@entities/store";
 import { useState } from "react";
 import * as Styled from "./Shops.styled";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -15,16 +15,6 @@ import Button from "@components/UI/buttons";
 import ArrowLeft from "public/images/icons/ArrowLeft.svg";
 import ArrowRight from "public/images/icons/ArrowRight.svg";
 import Link from "@components/Link";
-
-const CustomFraction = (props) => {
-  const { current, total } = props;
-
-  return (
-    <div className="custom-fraction">
-      {current} / {total}
-    </div>
-  );
-};
 
 type ShopsSwiperProps = {
   shopsData: Store[];
@@ -50,7 +40,7 @@ const ShopsSwiper: React.FC<ShopsSwiperProps> = ({ shopsData }) => {
               >
                 <ArrowLeft />
               </Button>
-              {activeSlide} / 16
+              {activeSlide} / {shopsData.length - 4}
               <Button
                 size="medium"
                 variant="subtle"
@@ -79,10 +69,9 @@ const ShopsSwiper: React.FC<ShopsSwiperProps> = ({ shopsData }) => {
           1024: {
             slidesPerView: 3,
           },
-          1366:{
+          1366: {
             slidesPerView: 5,
-          }
-
+          },
         }}
         spaceBetween={30}
         pagination={{

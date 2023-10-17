@@ -1,7 +1,7 @@
 import theme from "@theme/index";
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.article`
   background: #fff;
   border-radius: 8px;
   box-shadow: 0px 16px 16px 0px rgba(0, 0, 0, 0.1);

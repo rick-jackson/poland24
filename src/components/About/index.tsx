@@ -1,6 +1,7 @@
-import * as Styled from "./About.styled";
-import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
+
+import * as Styled from "./About.styled";
 
 const About: React.FC = () => {
   const { t } = useTranslation("about");

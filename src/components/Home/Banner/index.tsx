@@ -1,6 +1,7 @@
-import OrderProduct from "./OrderProduct";
-import Description from "./Description";
 import { useTranslation } from "next-i18next";
+
+import Description from "./Description";
+import OrderProduct from "./OrderProduct";
 
 import * as Styled from "./Banner.styled";
 

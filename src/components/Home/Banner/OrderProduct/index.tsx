@@ -1,12 +1,12 @@
 import { useTranslation } from "next-i18next";
-
-import TextField from "@components/UI/inputs/TextField";
-
-import * as Styled from "./OrderProduct.styled";
 import { useState } from "react";
+
 import Order from "@components/Layout/Header/Order";
+import TextField from "@components/UI/inputs/TextField";
 import { defaultOrder } from "@common/data/defaultOrder";
 import { defaultArticle } from "@common/data/defaultArticle";
+
+import * as Styled from "./OrderProduct.styled";
 
 const OrderProduct: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>("");

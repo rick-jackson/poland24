@@ -1,8 +1,10 @@
-import Accordion from "@components/Accordion";
+import { useTranslation } from "next-i18next";
+
 import type Order from "@entities/order";
 import OrderTitle from "./Title";
 import OrderDescription from "./Description";
-import { useTranslation } from "next-i18next";
+import Accordion from "@components/Accordion";
+import { calculateTotalCost } from "@common/utils/calculateTotalCost";
 
 import * as Styled from "./Orders.styled";
 
@@ -21,10 +23,23 @@ const Orders: React.FC<OrdersProps> = ({ ordersData }) => {
       <Styled.OrdersList>
         {ordersData.map((order) => {
           const total = order.articles
-            .reduce((acc, { price, count, rate }) => {
-              const sum = +price * rate * count;
-              return (acc += sum);
-            }, 0)
+            .reduce(
+              (
+                acc,
+                { price, count, rate, deliveryPrice, currency, isUsed }
+              ) => {
+                const sum =
+                  calculateTotalCost(
+                    price,
+                    deliveryPrice,
+                    currency,
+                    [rate, rate],
+                    isUsed
+                  ) * count;
+                return (acc += sum);
+              },
+              0
+            )
             .toFixed(2);
 
           return (

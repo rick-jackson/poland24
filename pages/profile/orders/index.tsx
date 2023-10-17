@@ -1,11 +1,12 @@
-import UserPageLayout from "@components/Layout/UserPage";
-import { NextPage } from "next";
 import { useTranslation } from "next-i18next";
-import { db } from "@firebase";
+import { GetServerSideProps, NextPage } from "next";
 import { collection, getDocs, query, where } from "firebase/firestore";
+
 import type Order from "@entities/order";
-import Orders from "@components/Orders";
+import { db } from "@firebase";
 import Error from "@components/Error";
+import Orders from "@components/Orders";
+import UserPageLayout from "@components/Layout/UserPage";
 
 type OrdersPageProps = {
   ordersData: Order[];
@@ -28,7 +29,7 @@ const OrdersPage: NextPage<OrdersPageProps> = ({ ordersData, errorCode }) => {
   );
 };
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const userId = context.req.cookies.userId as string;
   if (!userId) return { props: { errorCode: 401 } };
 

@@ -1,7 +1,7 @@
 import theme from "@theme/index";
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.section`
   min-width: 100%;
 `;
 

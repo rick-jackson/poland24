@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
   const matches = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <Styled.Wrapper>
+    <Styled.Footer>
       <Styled.Container>
         {!matches && (
           <div style={{ margin: "auto" }}>
@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
           </Styled.Copyright>
         </div>
       </Styled.Container>
-    </Styled.Wrapper>
+    </Styled.Footer>
   );
 };
 

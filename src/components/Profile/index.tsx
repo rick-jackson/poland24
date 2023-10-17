@@ -1,6 +1,7 @@
 import type User from "@entities/user";
-import * as Styled from "./Profile.styled";
 import UserForm from "@components/dialogs/forms/User";
+
+import * as Styled from "./Profile.styled";
 
 type ProfileProps = {
   userData: User;

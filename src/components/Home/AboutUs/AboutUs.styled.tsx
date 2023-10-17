@@ -2,7 +2,7 @@ import theme from "@theme/index";
 import styled from "styled-components";
 import CustomButton from "@components/UI/buttons";
 
-export const Container = styled.div`
+export const Container = styled.section`
   padding: 32px 16px;
 
   ${theme.breakpoints.up("lg")} {
@@ -53,4 +53,11 @@ export const Video = styled.div`
   ${theme.breakpoints.up("md")} {
     margin-top: 0;
   }
+`;
+
+export const VideoBackdrop = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: #0000007a;
 `;

@@ -1,10 +1,9 @@
-import Faq from "@components/Faq";
-import PageLayout from "@components/Layout/Page";
 import { NextPage } from "next";
 
-type FaqPageProps = {};
+import Faq from "@components/Faq";
+import PageLayout from "@components/Layout/Page";
 
-const FaqPage: NextPage<FaqPageProps> = () => {
+const FaqPage: NextPage = () => {
   return (
     <PageLayout title="FAQ">
       <Faq />

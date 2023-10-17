@@ -1,7 +1,7 @@
 import theme from "@theme/index";
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Footer = styled.footer`
   background: #1e2122;
 `;
 

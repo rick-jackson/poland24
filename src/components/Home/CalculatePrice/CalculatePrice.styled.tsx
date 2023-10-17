@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import theme from "@theme/index";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.section`
   padding: 0 16px;
   font-family: Rubik;
 

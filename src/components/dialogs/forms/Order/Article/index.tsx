@@ -181,7 +181,7 @@ const Article: React.FC<ArticleProps> = ({
             onClick={() => remove(index + 1)}
             form="circle"
             type="button"
-            style={{ marginTop: "auto" }}
+            style={{ marginTop: "auto", ...(matches && { gridRowStart: 2 }) }}
           >
             <Remove />
           </Button>

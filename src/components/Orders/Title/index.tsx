@@ -1,11 +1,14 @@
-import type Order from "@entities/order";
-import * as Styled from "./Title.styled";
 import { format } from "date-fns";
-import { Status } from "@entities/order";
-import { useTranslation } from "next-i18next";
-import { STATUS_LABELS_COLORS } from "@common/configs/colors";
 import { useMediaQuery } from "@mui/material";
+import { useTranslation } from "next-i18next";
+
+import type Order from "@entities/order";
 import theme from "@theme/index";
+import { Status } from "@entities/order";
+import { FULL_DATE } from "@common/data/dateFormat";
+import { STATUS_LABELS_COLORS } from "@common/configs/colors";
+
+import * as Styled from "./Title.styled";
 
 type OrderTitleProps = {
   orderData: Order;
@@ -30,7 +33,7 @@ const OrderTitle: React.FC<OrderTitleProps> = ({ orderData, total }) => {
         <Styled.Divider $color={STATUS_LABELS_COLORS[status]} />
         <Styled.ColumnText>
           <Styled.Text>
-            №{orderNumber} {t("from")} {format(+dateCreated, "dd.MM.yyyy")}
+            №{orderNumber} {t("from")} {format(+dateCreated, FULL_DATE)}
           </Styled.Text>
           <Styled.BoldText>{t(Status[status])}</Styled.BoldText>
         </Styled.ColumnText>
