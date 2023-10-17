@@ -7,6 +7,9 @@ export const Wrapper = styled.section`
 
   ${theme.breakpoints.down("lg")} {
     padding: 32px 16px;
+    .swiper-pagination-bullet-active{
+      background-color: #ea0c0c;
+    }
   }
 `;
 
@@ -14,6 +17,9 @@ export const Content = styled.div`
   max-width: 1290px;
   margin: auto;
   margin-bottom: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   ${theme.breakpoints.down("md")} {
     margin-bottom: 24px;
@@ -37,4 +43,12 @@ export const DaysDelivery = styled.span`
   font-size: 14px;
   display: block;
   margin-top: 16px;
+`;
+
+export const CustomButtons = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  font-size: 20px;
+  font-weight: 700;
 `;

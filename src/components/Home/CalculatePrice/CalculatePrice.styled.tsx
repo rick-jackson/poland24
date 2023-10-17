@@ -3,7 +3,7 @@ import styled from "styled-components";
 import theme from "@theme/index";
 
 export const Wrapper = styled.div`
-  padding: 10px;
+  padding: 0 16px;
   font-family: Rubik;
 
   ${theme.breakpoints.up("md")} {

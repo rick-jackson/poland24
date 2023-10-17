@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import type Store from "@entities/store";
 import { useState } from "react";
 import * as Styled from "./Shops.styled";
@@ -10,6 +11,20 @@ import "swiper/css/navigation";
 import BlockTitle from "@components/BlockTitle";
 import { useMediaQuery } from "@mui/material";
 import theme from "@theme/index";
+import Button from "@components/UI/buttons";
+import ArrowLeft from "public/images/icons/ArrowLeft.svg";
+import ArrowRight from "public/images/icons/ArrowRight.svg";
+import Link from "@components/Link";
+
+const CustomFraction = (props) => {
+  const { current, total } = props;
+
+  return (
+    <div className="custom-fraction">
+      {current} / {total}
+    </div>
+  );
+};
 
 type ShopsSwiperProps = {
   shopsData: Store[];
@@ -17,23 +32,65 @@ type ShopsSwiperProps = {
 
 const ShopsSwiper: React.FC<ShopsSwiperProps> = ({ shopsData }) => {
   const [swiperRef, setSwiperRef] = useState(null);
+  const [activeSlide, setActiveSlide] = useState(1);
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Styled.Wrapper>
       <Styled.Content>
         <BlockTitle title="Каталог магазинов" />
+        {!matches && (
+          <>
+            <Styled.CustomButtons>
+              <Button
+                size="medium"
+                variant="subtle"
+                style={{ padding: "16px" }}
+                onClick={() => swiperRef.slidePrev()}
+              >
+                <ArrowLeft />
+              </Button>
+              {activeSlide} / 16
+              <Button
+                size="medium"
+                variant="subtle"
+                style={{ padding: "16px" }}
+                onClick={() => swiperRef.slideNext()}
+              >
+                <ArrowRight />
+              </Button>
+            </Styled.CustomButtons>
+            <Link href="/shops">
+              <Button size="medium" variant="subtle">
+                все магазины
+              </Button>
+            </Link>
+          </>
+        )}
       </Styled.Content>
+
       <Swiper
         onSwiper={setSwiperRef}
-        slidesPerView={matches ? 1 : 5}
+        // slidesPerView={matches ? 1 : 5}
+        breakpoints={{
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+          1366:{
+            slidesPerView: 5,
+          }
+
+        }}
         spaceBetween={30}
         pagination={{
-          type: matches ? "bullets" : "fraction",
+          type: "bullets",
         }}
-        navigation={true}
-        modules={[Pagination, Navigation]}
+        {...(matches && { modules: [Pagination] })}
         className="mySwiper"
+        onSlideChange={(el) => setActiveSlide(el.activeIndex + 1)}
       >
         {shopsData.map((el) => (
           <SwiperSlide

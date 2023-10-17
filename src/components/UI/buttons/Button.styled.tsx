@@ -29,13 +29,12 @@ export const Button = styled.button<{
   gap: 10px;
 
   &:hover {
-
     background: ${({ $variant }) =>
-    buttonConfig.variant[$variant].active.background};
-  color: ${({ $variant }) => buttonConfig.variant[$variant].active.color};
- 
-
-
+      buttonConfig.variant[$variant].active.background};
+    color: ${({ $variant }) => buttonConfig.variant[$variant].active.color};
+    g {
+      stroke: ${({ $variant }) => buttonConfig.variant[$variant].active.color};
+    }
   }
 
   &:focus {
@@ -44,6 +43,9 @@ export const Button = styled.button<{
     color: ${({ $variant }) => buttonConfig.variant[$variant].hover.color};
     outline: ${({ $variant, $size }) =>
       `${buttonConfig.size[$size].outline} solid ${buttonConfig.variant[$variant].hover.outline}`};
+    g {
+      stroke: ${({ $variant }) => buttonConfig.variant[$variant].hover.color};
+    }
   }
 
   &:disabled {

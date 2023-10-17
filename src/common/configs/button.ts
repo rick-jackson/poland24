@@ -17,7 +17,7 @@ export const buttonConfig: ButtonConfig = {
     subtle: {
       initial: { background: "none", color: "#2D2D2D" },
       active: { background: "#BB0A0A", color: "#FFFFFF" },
-      hover: { background: "#FFFFFF", color: "#2D2D2D", outline: "#FBCECE" },
+      hover: { background: "none", color: "#2D2D2D", outline: "#FBCECE" },
       disabled: { background: "#EAEDEE", color: "#EAEDEE" },
     },
     text: {
@@ -44,7 +44,7 @@ export const buttonConfig: ButtonConfig = {
     medium: {
       padding: "14px 24px",
       fontSize: "14px",
-      outline: "6px",
+      outline: "4px",
       borderRadius: "8px",
       height: "40px",
     },
