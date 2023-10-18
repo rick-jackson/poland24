@@ -1,10 +1,22 @@
 import { setCookie } from "cookies-next";
 
 export const setUserInLocalStorage = (userData) => {
-  setCookie("userId", userData.uid);
-  // setCookie("role", role);
 
-  const [firstName, lastName] = userData.displayName.split(" ");
+  console.log(userData)
+  setCookie("userId", userData.uid || userData.id);
+  // setCookie("role", role);
+  let firstName;
+  let lastName;
+
+  if (userData.displayName) {
+    const user = userData.displayName.split(" ");
+    firstName = user[0];
+    lastName = user[1];
+  } else {
+    firstName = userData.firstName;
+    lastName = userData.lastName;
+  }
+
   localStorage.setItem(
     "userData",
     JSON.stringify({

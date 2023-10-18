@@ -14,7 +14,7 @@ const useCreateUser = ({ onClose }: any) => {
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
 
-  const saveUser = async ({ email, password, fullName, phone }) => {
+  const saveUser = async ({ email, password, fullName, phone, photoURL }) => {
     const [firstName, lastName] = fullName.split(" ");
     const auth = getAuth(app);
     setLoading(true);
@@ -30,6 +30,7 @@ const useCreateUser = ({ onClose }: any) => {
             firstName,
             lastName,
             phone,
+            photoURL,
           });
           setUserInLocalStorage(user);
           router.replace(router.asPath);
