@@ -5,11 +5,12 @@ export const Wrapper = styled.section`
   padding: 65px 0;
   margin: auto;
 
+  .swiper-pagination-bullet-active {
+    background-color: #ea0c0c;
+  }
+
   ${theme.breakpoints.down("lg")} {
     padding: 32px 16px;
-    .swiper-pagination-bullet-active{
-      background-color: #ea0c0c;
-    }
   }
 `;
 

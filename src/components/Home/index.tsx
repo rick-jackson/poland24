@@ -4,6 +4,7 @@ import Delivery from "./Banner";
 import ShopsSwiper from "./Shops";
 import HowItWorks from "./HowItWorks";
 import CalculatePrice from "./CalculatePrice";
+import DeliveryCountry from "./DeliveryCountry";
 
 type HomeProps = {
   shopsData: Store[];
@@ -16,6 +17,7 @@ const Home: React.FC<HomeProps> = ({ shopsData }) => {
       <HowItWorks />
       <AboutUs />
       <CalculatePrice />
+      <DeliveryCountry />
       <ShopsSwiper shopsData={shopsData} />
     </>
   );
