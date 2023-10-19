@@ -39,7 +39,7 @@ const ReviewForm: React.FC = () => {
           ...data,
           id: reviewsRef.id,
           rating: +rating,
-          dateCreated: new Date().valueOf(),
+          createdDate: new Date().valueOf(),
         });
         router.replace(router.asPath);
         reset(defaultReview());

@@ -1,6 +1,6 @@
 type Review = {
   id: string;
-  dateCreated: number;
+  createdDate: number;
   rating: number;
   store: string;
   text: string;

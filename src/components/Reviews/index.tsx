@@ -24,11 +24,11 @@ const Reviews: React.FC<ReviewsProps> = ({ reviewsData }) => {
           <Styled.EmptyList>{t("emptyList")}</Styled.EmptyList>
         )}
         {reviewsData.map(
-          ({ id, fullName, dateCreated, store, text, rating }) => (
+          ({ id, fullName, createdDate, store, text, rating }) => (
             <Styled.ReviewItem key={id}>
               <Styled.ReviewInfo>
                 {!isUserPage && <Styled.UserName>{fullName}</Styled.UserName>}
-                <Styled.Date>{format(+dateCreated, FULL_DATE)}</Styled.Date>
+                <Styled.Date>{format(+createdDate, FULL_DATE)}</Styled.Date>
                 {store && (
                   <Styled.Store>
                     <Styled.Date>{t("shoppingInStores")} </Styled.Date>

@@ -21,6 +21,6 @@ export const createOrder = async (orderData) => {
     status: "IN_PROGRESS",
     userId,
     id: ordersRef.id,
-    dateCreated: new Date().valueOf(),
+    createdDate: new Date().valueOf(),
   });
 };

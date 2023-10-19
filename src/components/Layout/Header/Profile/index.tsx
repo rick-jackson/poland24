@@ -64,7 +64,7 @@ const Profile = () => {
                 <User style={{ height: "24px" }} />
               </IconButton>
             )}
-            <TemporaryDrawer onOpen={handleOpen} />
+            <TemporaryDrawer />
           </div>
         )}
         <Modal

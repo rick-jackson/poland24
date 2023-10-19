@@ -1,0 +1,35 @@
+import * as React from "react";
+import MenuItem from "@mui/material/MenuItem";
+import { useTranslation } from "next-i18next";
+import FormControl from "@mui/material/FormControl";
+
+import * as Styled from "./Select.styled";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "@firebase";
+import { useRouter } from "next/router";
+
+const Select = ({ options, locale, data }) => {
+  const { t } = useTranslation(locale);
+  const router = useRouter();
+
+  const handleChange = async (e) => {
+    console.log(e.target.value)
+    const ref = doc(db, `${locale}s`, data.id);
+    await setDoc(ref, { ...data, status: e.target.value });
+    router.replace(router.asPath);
+  };
+
+  return (
+    <FormControl fullWidth variant="standard">
+      <Styled.Select value={data.status} onChange={handleChange}>
+        {Object.entries(options).map(([key, value]: [string, string]) => (
+          <MenuItem key={key} value={key}>
+            {t(value)}
+          </MenuItem>
+        ))}
+      </Styled.Select>
+    </FormControl>
+  );
+};
+
+export default Select;

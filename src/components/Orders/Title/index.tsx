@@ -13,7 +13,7 @@ type OrderTitleProps = {
 };
 
 const OrderTitle: React.FC<OrderTitleProps> = ({ orderData, total }) => {
-  const { articles, status, dateCreated, orderNumber } = orderData;
+  const { articles, status, createdDate, orderNumber } = orderData;
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation("order");
 
@@ -28,7 +28,7 @@ const OrderTitle: React.FC<OrderTitleProps> = ({ orderData, total }) => {
     <Styled.Content>
       <Styled.Info>
         <Status
-          dateCreated={dateCreated}
+          createdDate={createdDate}
           orderNumber={orderNumber}
           status={status}
         />

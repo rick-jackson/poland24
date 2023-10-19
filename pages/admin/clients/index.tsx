@@ -13,7 +13,7 @@ type ClientsPageProps = {
 };
 
 const ClientsPage: NextPage<ClientsPageProps> = ({ clientsData }) => {
-  const { t } = useTranslation("navigation");
+  const { t } = useTranslation("header");
 
   return (
     <UserPageLayout title={t("clients")}>

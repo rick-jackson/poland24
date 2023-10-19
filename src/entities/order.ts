@@ -22,7 +22,7 @@ type Order = {
   isLicense: boolean;
   fullName: string;
   email: string;
-  dateCreated: number;
+  createdDate: number;
   comment: string;
   articles: Article[];
   status: Status;

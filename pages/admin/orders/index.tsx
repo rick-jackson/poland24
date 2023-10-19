@@ -13,7 +13,7 @@ type OrdersPageProps = {
 };
 
 const OrdersPage: NextPage<OrdersPageProps> = ({ ordersData }) => {
-  const { t } = useTranslation("navigation");
+  const { t } = useTranslation("header");
 
   return (
     <UserPageLayout title={t("orders")}>

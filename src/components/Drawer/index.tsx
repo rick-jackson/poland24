@@ -1,18 +1,18 @@
 import * as React from "react";
 import { Drawer } from "@mui/material";
-
-import IconButton from "@components/UI/buttons/IconButton";
-import Close from "public/images/icons/close-dark.svg";
-import Logo from "public/images/logo/dark/logo.svg";
-import Menu from "public/images/icons/menu.svg";
 import { useTranslation } from "next-i18next";
 
-import * as Styled from "./Drawer.styled";
-import LocaleSwitcher from "@components/LocaleSwitcher";
-import Navigation from "@components/Layout/Header/Navigation";
+import Menu from "public/images/icons/menu.svg";
 import Order from "@components/Layout/Header/Order";
+import Logo from "public/images/logo/dark/logo.svg";
+import Close from "public/images/icons/close-dark.svg";
+import LocaleSwitcher from "@components/LocaleSwitcher";
+import IconButton from "@components/UI/buttons/IconButton";
+import Navigation from "@components/Layout/Header/Navigation";
 
-export default function TemporaryDrawer({ onOpen }) {
+import * as Styled from "./Drawer.styled";
+
+export default function TemporaryDrawer() {
   const [state, setState] = React.useState(false);
   const toggleDrawer = () => setState(!state);
   const { t } = useTranslation("header");

@@ -8,6 +8,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { useTranslation } from "next-i18next";
 
 import type { AdminTableProps, BaseEntity } from "src/types/table";
 
@@ -15,6 +16,8 @@ const AdminTable = <TEntity extends BaseEntity>({
   data,
   cellsConfig,
 }: AdminTableProps<TEntity>): JSX.Element => {
+  const { t } = useTranslation("admin");
+
   return (
     <TableContainer
       component={Paper}
@@ -29,7 +32,7 @@ const AdminTable = <TEntity extends BaseEntity>({
           <TableRow>
             {cellsConfig.map((cell) => (
               <TableCell key={cell.id} style={{ fontWeight: 700 }}>
-                {cell.id}
+                {t(cell.id)}
               </TableCell>
             ))}
           </TableRow>

@@ -36,10 +36,10 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   NProgress.configure({ showSpinner: matches ? true : false });
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+    const unsubscribe = auth.onAuthStateChanged(async (authUser) => {
       if (authUser) {
         const usersRef = doc(db, "users", authUser.uid);
-        getDoc(usersRef).then((res) => {
+        await getDoc(usersRef).then((res) => {
           setUserInLocalStorage(res.data());
         });
 

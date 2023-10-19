@@ -28,6 +28,8 @@ import ruRequest from "./public/static/locales/ru/request.json";
 import ukRequest from "./public/static/locales/uk/request.json";
 import ruCountry from "./public/static/locales/ru/country.json";
 import ukCountry from "./public/static/locales/uk/country.json";
+import ruAdmin from "./public/static/locales/ru/admin.json";
+import ukAdmin from "./public/static/locales/uk/admin.json";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -46,6 +48,7 @@ i18n.use(initReactI18next).init({
       common: ruCommon,
       request: ruRequest,
       country: ruCountry,
+      admin: ruAdmin,
     },
     uk: {
       banner: ukBanner,
@@ -62,6 +65,7 @@ i18n.use(initReactI18next).init({
       common: ukCommon,
       request: ukRequest,
       country: ukCountry,
+      admin: ukAdmin,
     },
   },
   fallbackLng: "uk",

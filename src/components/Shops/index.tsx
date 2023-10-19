@@ -19,7 +19,7 @@ const Shops: React.FC<ShopsProps> = ({ shopsData }) => {
 
   const shopsToDisplay = shopsData.slice(startIndex, endIndex);
 
-  const handlePageChange = (event, newPage) => {
+  const handlePageChange = (_, newPage) => {
     setCurrentPage(newPage);
   };
 
