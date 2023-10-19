@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { enqueueSnackbar } from "notistack";
 import { useTranslation } from "next-i18next";
 import { doc, setDoc } from "firebase/firestore";
+import { getAuth, updateProfile } from "firebase/auth";
 
 import type User from "@entities/user";
 import Inputs from "./Inputs";
@@ -14,12 +15,6 @@ import { filterEmptyParam } from "@common/utils/filterEmpryParams";
 import { setUserInLocalStorage } from "@common/utils/setUserInLocalStorage";
 
 import * as Styled from "./Inputs/Inputs.styled";
-import {
-  PhoneAuthCredential,
-  getAuth,
-  updatePhoneNumber,
-  updateProfile,
-} from "firebase/auth";
 
 const UserForm: React.FC<{ userData: User }> = ({ userData }) => {
   const { t } = useTranslation("profile");

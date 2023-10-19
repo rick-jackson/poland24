@@ -8,13 +8,9 @@ import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
 import theme from "@theme/index";
 import useCreateUser from "@common/hooks/useCreateUser";
 
-type FormProps = {
-  onClose: () => void;
-};
-
-const Form: React.FC<FormProps> = ({ onClose }) => {
+const Form: React.FC = () => {
   const matches = useMediaQuery(theme.breakpoints.up("md"));
-  const { saveUser, isLoading } = useCreateUser(onClose);
+  const { saveUser, isLoading } = useCreateUser();
 
   const {
     control,

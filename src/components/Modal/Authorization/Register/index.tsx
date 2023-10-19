@@ -43,7 +43,7 @@ const Register: React.FC<RegisterProps> = ({ onChangeType, onClose }) => {
           <Faceboock /> Facebook
         </Button>
       </Buttons>
-      <Form onClose={onClose} />
+      <Form />
     </div>
   );
 };

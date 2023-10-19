@@ -13,12 +13,14 @@ import theme from "@theme";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18n";
 import { useEffect } from "react";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import NProgress from "nprogress";
 import { deleteCookie, getCookie } from "cookies-next";
 import dynamic from "next/dynamic";
 import { setUserInLocalStorage } from "@common/utils/setUserInLocalStorage";
 import { useRouter } from "next/router";
+import { doc, getDoc } from "firebase/firestore";
+import { User } from "firebase/auth";
 const Layout = dynamic(() => import("@components/Layout"), { ssr: false });
 
 interface MyAppProps extends AppProps {
@@ -36,7 +38,11 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        setUserInLocalStorage(authUser);
+        const usersRef = doc(db, "users", authUser.uid);
+        getDoc(usersRef).then((res) => {
+          setUserInLocalStorage(res.data());
+        });
+
         router.replace(router.asPath);
       } else {
         deleteCookie("userId");

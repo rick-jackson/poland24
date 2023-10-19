@@ -11,6 +11,7 @@ import RequestFormInputs from "./inputs";
 import Button from "@components/UI/buttons";
 import { defaultRequest } from "@common/data/defaultRequest";
 import { filterEmptyParam } from "@common/utils/filterEmpryParams";
+import type Request from "@entities/request";
 
 import * as Styled from "./RequestForm.styled";
 
@@ -35,12 +36,12 @@ const RequestForm: React.FC = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(async (data) => {
+    onSubmit(async (data: Request) => {
       setLoading(true);
       try {
-        const requestRef = doc(collection(db, "request"));
+        const requestRef = doc(collection(db, "requests"));
         await setDoc(requestRef, {
-          ...filterEmptyParam(data),
+          ...filterEmptyParam({ createdDate: new Date().valueOf(), ...data }),
         });
         enqueueSnackbar("Request added!", { variant: "success" });
         reset(defaultRequest);

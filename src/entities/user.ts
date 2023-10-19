@@ -1,4 +1,5 @@
 type User = {
+  createdDate: number;
   id: string;
   email: string;
   phone: string;
@@ -10,6 +11,7 @@ type User = {
   telegram?: string;
   role: string;
   photoUrl?: string;
+  comment?: string;
 };
 
 export default User;

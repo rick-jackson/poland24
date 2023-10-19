@@ -1,10 +1,10 @@
 import { setCookie } from "cookies-next";
 
 export const setUserInLocalStorage = (userData) => {
+  if (!userData) return;
 
-  console.log(userData)
-  setCookie("userId", userData.uid || userData.id);
-  // setCookie("role", role);
+  setCookie("userId", userData?.uid || userData.id);
+  setCookie("role", userData.role || "USER");
   let firstName;
   let lastName;
 

@@ -45,6 +45,7 @@ export const Map = styled(MapImage)<{ $selectedCountry: "string" }>`
   display: inline-block;
 
   .map_svg__${({ $selectedCountry }) => $selectedCountry} {
+    transition: 0.3s;
     fill: #ea0c0c;
   }
 `;

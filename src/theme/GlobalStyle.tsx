@@ -47,6 +47,7 @@ const GlobalStyle = createGlobalStyle`
 
   *::-webkit-scrollbar {
     width: 7px;
+    height: 7px;
     position: fixed;
   }
 
