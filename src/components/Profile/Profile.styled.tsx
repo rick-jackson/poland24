@@ -1,3 +1,4 @@
+import theme from "@theme/index";
 import styled from "styled-components";
 
 export const Content = styled.div`
@@ -7,5 +8,8 @@ export const Content = styled.div`
   padding-top: 8px;
   margin-top: 24px;
   width: 100%;
-  max-width: 750px;
+
+  ${theme.breakpoints.up("md")} {
+    max-width: 750px;
+  }
 `;

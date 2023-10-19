@@ -1,26 +1,26 @@
-import * as React from "react";
-import type { AppProps } from "next/app";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { EmotionCache } from "@emotion/react";
-import { CssBaseline, useMediaQuery } from "@mui/material";
 import Head from "next/head";
-import { SnackbarProvider } from "notistack";
-import NextNProgress from "nextjs-progressbar";
-import createEmotionCache from "@theme/createEmotionCache";
-import ThemeProvider from "@theme/ThemeProvider";
-import theme from "@theme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18n";
-import { useEffect } from "react";
-import { auth, db } from "../firebase";
 import NProgress from "nprogress";
-import { deleteCookie, getCookie } from "cookies-next";
 import dynamic from "next/dynamic";
-import { setUserInLocalStorage } from "@common/utils/setUserInLocalStorage";
 import { useRouter } from "next/router";
+import type { AppProps } from "next/app";
+import React, { useEffect } from "react";
+import { SnackbarProvider } from "notistack";
+import { EmotionCache } from "@emotion/react";
+import NextNProgress from "nextjs-progressbar";
+import { I18nextProvider } from "react-i18next";
 import { doc, getDoc } from "firebase/firestore";
-import { User } from "firebase/auth";
+import { deleteCookie, getCookie } from "cookies-next";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { CssBaseline, useMediaQuery } from "@mui/material";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+
+import i18n from "../i18n";
+import theme from "@theme";
+import { auth, db } from "../firebase";
+import ThemeProvider from "@theme/ThemeProvider";
+import createEmotionCache from "@theme/createEmotionCache";
+import { setUserInLocalStorage } from "@common/utils/setUserInLocalStorage";
+
 const Layout = dynamic(() => import("@components/Layout"), { ssr: false });
 
 interface MyAppProps extends AppProps {

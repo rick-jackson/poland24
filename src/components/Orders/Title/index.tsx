@@ -1,12 +1,9 @@
-import { format } from "date-fns";
 import { useMediaQuery } from "@mui/material";
 import { useTranslation } from "next-i18next";
 
 import type Order from "@entities/order";
 import theme from "@theme/index";
-import { Status } from "@entities/order";
-import { FULL_DATE } from "@common/data/dateFormat";
-import { STATUS_LABELS_COLORS } from "@common/configs/colors";
+import Status from "@components/UI/Status";
 
 import * as Styled from "./Title.styled";
 
@@ -30,13 +27,11 @@ const OrderTitle: React.FC<OrderTitleProps> = ({ orderData, total }) => {
   return (
     <Styled.Content>
       <Styled.Info>
-        <Styled.Divider $color={STATUS_LABELS_COLORS[status]} />
-        <Styled.ColumnText>
-          <Styled.Text>
-            №{orderNumber} {t("from")} {format(+dateCreated, FULL_DATE)}
-          </Styled.Text>
-          <Styled.BoldText>{t(Status[status])}</Styled.BoldText>
-        </Styled.ColumnText>
+        <Status
+          dateCreated={dateCreated}
+          orderNumber={orderNumber}
+          status={status}
+        />
         {matches && totalBlock}
       </Styled.Info>
       <Styled.OrderName href={articles[0].link}>

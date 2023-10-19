@@ -3,6 +3,7 @@ import Link from "@components/Link";
 import type Order from "@entities/order";
 import { format } from "date-fns";
 import type { TableCell } from "src/types/table";
+import Status from "@components/UI/Status";
 
 export const ordersConfig: TableCell<Order>[] = [
   {
@@ -10,7 +11,7 @@ export const ordersConfig: TableCell<Order>[] = [
     render: ({ dateCreated }) => dateCreated && format(dateCreated, FULL_DATE),
   },
   {
-    id: "userName",
+    id: "user",
     render: ({ fullName, email }) => (
       <>
         <span style={{ fontWeight: 700 }}>{fullName}</span>
@@ -33,6 +34,6 @@ export const ordersConfig: TableCell<Order>[] = [
   },
   {
     id: "status",
-    render: ({ status }) => status,
+    render: (data) => <Status {...data} />,
   },
 ];

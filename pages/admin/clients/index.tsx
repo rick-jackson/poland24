@@ -16,7 +16,7 @@ const ClientsPage: NextPage<ClientsPageProps> = ({ clientsData }) => {
   const { t } = useTranslation("navigation");
 
   return (
-    <UserPageLayout title={t("editProfile")}>
+    <UserPageLayout title={t("clients")}>
       <AdminTable<User> data={clientsData} cellsConfig={clientsConfig} />
     </UserPageLayout>
   );

@@ -11,7 +11,7 @@ export const requestsConfig: TableCell<Request>[] = [
     render: ({ createdDate }) => format(createdDate, FULL_DATE),
   },
   {
-    id: "userName",
+    id: "user",
     render: ({ name, email }) => (
       <>
         <span style={{ fontWeight: 700 }}>{name}</span>

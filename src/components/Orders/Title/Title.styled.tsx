@@ -32,17 +32,6 @@ export const ColumnText = styled.div`
   }
 `;
 
-export const Divider = styled.div<{ $color: Status }>`
-  width: 3px;
-  height: 100%;
-  background-color: ${({ $color }) => $color};
-
-  ${theme.breakpoints.down("md")} {
-    height: 30px;
-    margin-right: 4px;
-  }
-`;
-
 export const Text = styled.span`
   font-size: 14px;
   font-weight: 400;

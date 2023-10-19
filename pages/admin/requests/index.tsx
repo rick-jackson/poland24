@@ -16,7 +16,7 @@ const RequestsPage: NextPage<RequestsPageProps> = ({ requestsData }) => {
   const { t } = useTranslation("navigation");
 
   return (
-    <UserPageLayout title={t("editProfile")}>
+    <UserPageLayout title={t("requests")}>
       <AdminTable<Request> data={requestsData} cellsConfig={requestsConfig} />
     </UserPageLayout>
   );

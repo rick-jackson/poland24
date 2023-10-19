@@ -10,7 +10,7 @@ export const clientsConfig: TableCell<User>[] = [
     render: ({ createdDate }) => createdDate && format(createdDate, FULL_DATE),
   },
   {
-    id: "userName",
+    id: "user",
     render: ({ firstName, lastName, email }) => (
       <>
         <span style={{ fontWeight: 700 }}>
