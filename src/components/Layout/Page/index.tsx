@@ -1,5 +1,6 @@
 import BlockTitle from "@components/BlockTitle";
 import Breadcrumbs from "@components/Breadcrumbs";
+
 import * as Styled from "./Page.styled";
 
 type PageLayoutProps = {

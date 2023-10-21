@@ -1,7 +1,9 @@
-import * as Styled from "./Socials.styled";
 import Image from "next/image";
-import Link from "@components/Link";
 import { useTranslation } from "next-i18next";
+
+import Link from "@components/Link";
+
+import * as Styled from "./Socials.styled";
 
 const Socials: React.FC = () => {
   const { t } = useTranslation("header");

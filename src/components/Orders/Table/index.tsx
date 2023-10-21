@@ -6,10 +6,9 @@ import * as Styled from "./Table.styled";
 
 type OrderTableProps = {
   orderData: Order;
-  total: number;
 };
 
-const OrderTable: React.FC<OrderTableProps> = ({ orderData, total }) => {
+const OrderTable: React.FC<OrderTableProps> = ({ orderData }) => {
   const { t } = useTranslation("order");
 
   return (

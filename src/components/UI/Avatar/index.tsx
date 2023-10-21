@@ -35,7 +35,7 @@ const Avatar: React.FC<AvatarProps> = ({
   const handleLogout = async () => {
     try {
       await auth.signOut();
-      router.replace(router.asPath);
+      router.replace('/');
     } catch (error) {
       console.error("Помилка виходу:", error);
     }

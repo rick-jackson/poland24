@@ -30,12 +30,12 @@ const Orders: React.FC<OrdersProps> = ({ ordersData }) => {
               ) => {
                 const sum =
                   calculateTotalCost(
-                    price,
-                    deliveryPrice,
+                    +price,
+                    +deliveryPrice,
                     currency,
                     [rate, rate],
                     isUsed
-                  ) * count;
+                  ) * +count;
                 return (acc += sum);
               },
               0

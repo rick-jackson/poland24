@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import Ukraine from "public/images/icons/flags/ua.svg";
-import ArrowDown from "public/images/icons/arrow_drop_down.svg";
+import Image from "next/image";
+import { setCookie } from "cookies-next";
 import { useTranslation } from "next-i18next";
+import { useEffect, useRef, useState } from "react";
 import {
   ClickAwayListener,
   Grow,
@@ -11,19 +11,16 @@ import {
   Popper,
 } from "@mui/material";
 
-import * as Styled from "./LocaleSwitcher.styled";
-import { setCookie } from "cookies-next";
-import Image from "next/image";
+import { localeConfig } from "@common/configs/locale";
+import ArrowDown from "public/images/icons/arrow_drop_down.svg";
 
-const localeConfig = [
-  { locale: "ru", label: "Руz", icon: "/images/icons/emoji.png" },
-  { locale: "uk", label: "Укр", icon: "/images/icons/flags/ua.png" },
-];
+import * as Styled from "./LocaleSwitcher.styled";
 
 const LocaleSwitcher: React.FC = () => {
-  const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLButtonElement>(null);
+  const [open, setOpen] = useState(false);
   const { i18n } = useTranslation();
+  const prevOpen = useRef(open);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -49,7 +46,6 @@ const LocaleSwitcher: React.FC = () => {
     }
   }
 
-  const prevOpen = useRef(open);
   useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current!.focus();
@@ -62,23 +58,15 @@ const LocaleSwitcher: React.FC = () => {
     <>
       {/* @ts-ignore */}
       <Styled.LocaleSwitcher ref={anchorRef} onClick={handleToggle}>
-        {i18n.language === "uk" ? (
-          <>
-            <Ukraine />
-            Укр
-          </>
-        ) : (
-          <>
-            <Image
-              alt="ru"
-              width={24}
-              height={17}
-              src="/images/icons/emoji.png"
-            />
-            Руz
-          </>
-        )}
-
+        <>
+          <Image
+            alt={i18n.language}
+            width={24}
+            height={17}
+            src={localeConfig[i18n.language].icon}
+          />
+          {localeConfig[i18n.language].label}
+        </>
         <ArrowDown />
       </Styled.LocaleSwitcher>
       <Popper
@@ -99,7 +87,7 @@ const LocaleSwitcher: React.FC = () => {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList onKeyDown={handleListKeyDown}>
-                  {localeConfig.map(({ locale, label, icon }) => (
+                  {Object.keys(localeConfig).map((locale) => (
                     <MenuItem
                       sx={{ gap: "8px", alignItems: "center" }}
                       key={locale}
@@ -109,8 +97,13 @@ const LocaleSwitcher: React.FC = () => {
                         setCookie("NEXT_LOCALE", locale);
                       }}
                     >
-                      <Image alt={locale} width={24} height={17} src={icon} />{" "}
-                      {label}
+                      <Image
+                        alt={locale}
+                        width={24}
+                        height={17}
+                        src={localeConfig[locale].icon}
+                      />{" "}
+                      {localeConfig[locale].label}
                     </MenuItem>
                   ))}
                 </MenuList>

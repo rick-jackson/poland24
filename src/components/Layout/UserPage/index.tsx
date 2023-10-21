@@ -1,17 +1,19 @@
-import BlockTitle from "@components/BlockTitle";
-import Aside from "./Aside";
-import * as Styled from "./UserPage.styled";
-import { useMediaQuery } from "@mui/material";
-import theme from "@theme/index";
-import { HtmlHTMLAttributes } from "react";
-import { getCookie } from "cookies-next";
-import { adminMenuRoutes, menuRoutes } from "@common/configs/menu";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import Link from "@components/Link";
 import Image from "next/image";
-import { MenuItem } from "@components/UI/Avatar/Avatar.styled";
+import { useRouter } from "next/router";
+import { getCookie } from "cookies-next";
+import { HtmlHTMLAttributes } from "react";
+import { useTranslation } from "next-i18next";
+import { useMediaQuery } from "@mui/material";
+
+import Aside from "./Aside";
+import theme from "@theme/index";
+import Link from "@components/Link";
 import Avatar from "@components/UI/Avatar";
+import BlockTitle from "@components/BlockTitle";
+import { MenuItem } from "@components/UI/Avatar/Avatar.styled";
+import { adminMenuRoutes, menuRoutes } from "@common/configs/menu";
+
+import * as Styled from "./UserPage.styled";
 
 type UserPageLayoutProps = {
   title?: string;

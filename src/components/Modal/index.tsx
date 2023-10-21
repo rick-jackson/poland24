@@ -1,4 +1,5 @@
 import { Backdrop, Fade, Modal as MuiModal } from "@mui/material";
+
 import CloseButton from "@components/UI/buttons/Close";
 
 import * as Styled from "./Modal.styled";

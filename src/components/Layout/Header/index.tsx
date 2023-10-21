@@ -1,14 +1,16 @@
 import { useMediaQuery } from "@mui/material";
 import { useTranslation } from "next-i18next";
+
+import Order from "./Order";
+import Profile from "./Profile";
+import Socials from "./Socials";
 import theme from "@theme/index";
 import Navigation from "./Navigation";
-import LocaleSwitcher from "@components/LocaleSwitcher";
-import * as Styled from "./Header.styled";
-import Profile from "./Profile";
-import ExchangeRate from "./ExchangeRate";
-import Socials from "./Socials";
-import Order from "./Order";
 import Logo from "@components/UI/Logo";
+import ExchangeRate from "./ExchangeRate";
+import LocaleSwitcher from "@components/LocaleSwitcher";
+
+import * as Styled from "./Header.styled";
 
 const Header: React.FC = () => {
   const matches = useMediaQuery(theme.breakpoints.down("md"));

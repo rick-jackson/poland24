@@ -1,16 +1,17 @@
 import { getCookie } from "cookies-next";
-import Button from "@components/UI/buttons";
-import Avatar from "@components/UI/Avatar";
 import { useMediaQuery } from "@mui/material";
+import { useTranslation } from "next-i18next";
+
 import theme from "@theme/index";
+import Modal from "@components/Modal";
+import Avatar from "@components/UI/Avatar";
+import Button from "@components/UI/buttons";
 import useModal from "@common/hooks/useModal";
 import TemporaryDrawer from "@components/Drawer";
-import IconButton from "@components/UI/buttons/IconButton";
 import User from "public/images/icons/white-user.svg";
-import Modal from "@components/Modal";
-import Authorization from "@components/Modal/Authorization";
 import OrderForm from "@components/dialogs/forms/Order";
-import { useTranslation } from "next-i18next";
+import IconButton from "@components/UI/buttons/IconButton";
+import Authorization from "@components/Modal/Authorization";
 
 const Profile = () => {
   const userId = getCookie("userId");
