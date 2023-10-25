@@ -104,13 +104,13 @@ const Article: React.FC<ArticleProps> = ({
           <span>
             {t("priceIn")} {currency}
           </span>
-          {/* <DialogSwitch
+          <DialogSwitch
             control={control}
             name={`articles[${index}].currency`}
             checked={currency === "zł"}
             onChange={toggleCurrency}
             style={{ margin: "auto 0 !important" }}
-          /> */}
+          />
         </Styled.Currency>
       </Styled.Price>
       <DialogTextField
@@ -136,7 +136,6 @@ const Article: React.FC<ArticleProps> = ({
           textArea
           fullWidth
           style={{ height: "100%" }}
-          defaultValue={field.description}
           required
           error={errors.articles && !!errors.articles[index]?.description}
         />

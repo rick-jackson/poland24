@@ -10,7 +10,7 @@ export const getInitialtArticle = (): Article => {
     price: 0,
     deliveryPrice: 0,
     isUsed: false,
-    description: undefined,
+    description: "",
     currency: "zł",
     rate: rate?.pln || 0,
   };

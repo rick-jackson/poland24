@@ -5,6 +5,7 @@ import { useTranslation } from "next-i18next";
 import theme from "@theme/index";
 import Modal from "@components/Modal";
 import Avatar from "@components/UI/Avatar";
+import ExchangeRate from "../ExchangeRate";
 import Button from "@components/UI/buttons";
 import useModal from "@common/hooks/useModal";
 import TemporaryDrawer from "@components/Drawer";
@@ -52,6 +53,7 @@ const Profile = () => {
 
     return (
       <>
+        <ExchangeRate />
         {matches && (
           <div style={{ display: "flex", gap: "6px" }}>
             {userId ? (

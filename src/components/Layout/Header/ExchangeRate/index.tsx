@@ -26,7 +26,7 @@ const ExchangeRate: React.FC = () => {
   );
 
   return (
-    <div style={{ minWidth: "60px" }}>
+    <Styled.ExchangeRate>
       <div>
         <Styled.Currency>zł</Styled.Currency>
         {pln?.rate.toFixed(2) || "?"}
@@ -35,7 +35,7 @@ const ExchangeRate: React.FC = () => {
         <Styled.Currency>€</Styled.Currency>
         {eur?.rate.toFixed(2) || "?"}
       </div>
-    </div>
+    </Styled.ExchangeRate>
   );
 };
 
