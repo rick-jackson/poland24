@@ -31,7 +31,6 @@ const OrderForm: React.FC<OrderFormProps> = ({ onClose, orderData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(async (data) => {
-      console.log(data);
       try {
         if (!orderData) {
           await createOrder(data);

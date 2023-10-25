@@ -33,7 +33,6 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
         onClose();
         enqueueSnackbar("Login!", { variant: "success" });
       } catch (e) {
-        console.log(e.code)
         enqueueSnackbar(`${e.message}`, { variant: "error" });
       }
     })();

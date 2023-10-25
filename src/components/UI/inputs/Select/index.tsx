@@ -13,7 +13,6 @@ const Select = ({ options, locale, data }) => {
   const router = useRouter();
 
   const handleChange = async (e) => {
-    console.log(e.target.value)
     const ref = doc(db, `${locale}s`, data.id);
     await setDoc(ref, { ...data, status: e.target.value });
     router.replace(router.asPath);
