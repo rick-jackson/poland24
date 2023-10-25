@@ -70,7 +70,6 @@ const Article: React.FC<ArticleProps> = ({
           label={`Товар ${index + 1}`}
           placeholder={t("articleLink")}
           fullWidth
-          defaultValue={field.link}
           required
           error={errors.articles && !!errors.articles[index]?.link}
         />
@@ -80,7 +79,6 @@ const Article: React.FC<ArticleProps> = ({
           label={t("articleCount")}
           type="counter"
           fullWidth
-          defaultValue={field.count}
           required
           error={errors.articles && !!errors.articles[index]?.count}
         />
@@ -90,7 +88,6 @@ const Article: React.FC<ArticleProps> = ({
           label={`${t("articlePrice")}, ${currency}`}
           type="number"
           fullWidth
-          defaultValue={field.price}
           required
           error={errors.articles && !!errors.articles[index]?.price}
         />
@@ -100,7 +97,6 @@ const Article: React.FC<ArticleProps> = ({
           label={`${t("delivery")}, ${currency}`}
           type="number"
           fullWidth
-          defaultValue={field.deliveryPrice}
           required
           error={errors.articles && !!errors.articles[index]?.deliveryPrice}
         />
@@ -108,13 +104,13 @@ const Article: React.FC<ArticleProps> = ({
           <span>
             {t("priceIn")} {currency}
           </span>
-          <DialogSwitch
+          {/* <DialogSwitch
             control={control}
             name={`articles[${index}].currency`}
             checked={currency === "zł"}
             onChange={toggleCurrency}
             style={{ margin: "auto 0 !important" }}
-          />
+          /> */}
         </Styled.Currency>
       </Styled.Price>
       <DialogTextField
@@ -122,12 +118,10 @@ const Article: React.FC<ArticleProps> = ({
         control={control}
         name={`articles[${index}].name`}
         placeholder="Название товара"
-        defaultValue={field.name}
         fullWidth
         required
         error={errors.articles && !!errors.articles[index]?.name}
       />
-
       <DialogCheckBox
         control={control}
         name={`articles[${index}].isUsed`}
