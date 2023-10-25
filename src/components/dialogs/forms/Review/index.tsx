@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
 import { useForm } from "react-hook-form";
 import { enqueueSnackbar } from "notistack";
 import { useTranslation } from "next-i18next";
+import { CircularProgress } from "@mui/material";
 import { collection, doc, setDoc } from "firebase/firestore";
 
 import type Review from "@entities/review";
@@ -15,6 +17,7 @@ import { defaultReview } from "@common/data/defaultreview";
 import * as Styled from "./Review.styled";
 
 const ReviewForm: React.FC = () => {
+  const [isLoading, setLoading] = useState(false);
   const {
     control,
     handleSubmit: onSubmit,
@@ -34,6 +37,7 @@ const ReviewForm: React.FC = () => {
       const reviewsRef = doc(collection(db, "reviews"));
 
       try {
+        setLoading(true);
         await setDoc(reviewsRef, {
           ...(userId && { userId }),
           ...data,
@@ -46,6 +50,8 @@ const ReviewForm: React.FC = () => {
         enqueueSnackbar("Review added!", { variant: "success" });
       } catch (e) {
         enqueueSnackbar(e.message, { variant: "error" });
+      } finally {
+        setLoading(false);
       }
     })();
   };
@@ -56,7 +62,11 @@ const ReviewForm: React.FC = () => {
       <Styled.Form onSubmit={handleSubmit}>
         <ReviewFormInputs control={control} errors={errors} />
         <Button type="submit" size="medium">
-          {t("send")}
+          {isLoading ? (
+            <CircularProgress color="inherit" size={17} />
+          ) : (
+            t("send")
+          )}
         </Button>
       </Styled.Form>
     </div>

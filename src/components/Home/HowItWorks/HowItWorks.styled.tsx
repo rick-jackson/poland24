@@ -32,3 +32,12 @@ export const InfoList = styled.div`
     grid-template-columns: repeat(6, 1fr);
   }
 `;
+
+export const Order = styled.div`
+  margin: auto;
+  margin-top: 48px;
+
+  ${theme.breakpoints.down("md")} {
+    margin-top: 16px;
+  }
+`;

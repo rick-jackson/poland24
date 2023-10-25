@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { enqueueSnackbar } from "notistack";
 import { useTranslation } from "next-i18next";
-import { useMediaQuery } from "@mui/material";
+import { CircularProgress, useMediaQuery } from "@mui/material";
 import { useFieldArray, useForm } from "react-hook-form";
 import { collection, doc, setDoc } from "firebase/firestore";
 
@@ -71,7 +71,7 @@ const RequestForm: React.FC = () => {
           {t("addArticle")}
         </Button>
         <Button {...(matches && { size: "medium" })}>
-          {loading ? "Loading" : t("send")}
+          {loading ? <CircularProgress color="inherit" size={24} /> : t("send")}
         </Button>
       </Styled.ButtonContainer>
     </Styled.FormContainer>

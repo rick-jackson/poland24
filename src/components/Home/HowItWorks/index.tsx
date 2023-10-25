@@ -23,9 +23,9 @@ const HowItWorks: React.FC = () => {
             />
           ))}
         </Styled.InfoList>
-        <div style={{ margin: "auto", marginTop: "48px" }}>
+        <Styled.Order>
           <Order text={t("order")} />
-        </div>
+        </Styled.Order>
       </Styled.Container>
     </Styled.Wrapper>
   );

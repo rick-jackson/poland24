@@ -3,13 +3,15 @@ import styled from "styled-components";
 
 export const Form = styled.form`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 export const Inputs = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
-  margin-top: 8px;
 
   ${theme.breakpoints.down("md")} {
     grid-template-columns: 1fr;
@@ -20,7 +22,6 @@ export const Messengers = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
-  margin-top: 8px;
 `;
 
 export const Messanger = styled.div`

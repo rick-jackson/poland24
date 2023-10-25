@@ -22,6 +22,7 @@
     "date-fns": "^2.29.3",
     "firebase": "^10.4.0",
     "hex-rgb": "^5.0.0",
+    "html-react-parser": "^4.2.9",
     "next": "13.4.9",
     "next-i18next": "^14.0.0",
     "next-transpile-modules": "^10.0.0",

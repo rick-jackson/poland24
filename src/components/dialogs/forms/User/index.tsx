@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { enqueueSnackbar } from "notistack";
@@ -15,9 +16,11 @@ import { filterEmptyParam } from "@common/utils/filterEmpryParams";
 import { setUserInLocalStorage } from "@common/utils/setUserInLocalStorage";
 
 import * as Styled from "./Inputs/Inputs.styled";
+import { CircularProgress } from "@mui/material";
 
 const UserForm: React.FC<{ userData: User }> = ({ userData }) => {
   const { t } = useTranslation("profile");
+  const [isLoading, setLoading] = useState(false);
 
   const router = useRouter();
   const {
@@ -30,11 +33,12 @@ const UserForm: React.FC<{ userData: User }> = ({ userData }) => {
     e.preventDefault();
 
     onSubmit(async (data: User) => {
-      const userRef = doc(db, "users", data.id);
-      await setDoc(userRef, {
-        ...filterEmptyParam(data),
-      })
-        .then(async () => {
+      try {
+        setLoading(true);
+        const userRef = doc(db, "users", data.id);
+        await setDoc(userRef, {
+          ...filterEmptyParam(data),
+        }).then(async () => {
           const auth = getAuth(app);
           await updateProfile(auth.currentUser, {
             displayName: `${data.firstName} ${data.lastName}`,
@@ -42,10 +46,12 @@ const UserForm: React.FC<{ userData: User }> = ({ userData }) => {
           setUserInLocalStorage(data);
           router.replace(router.asPath);
           enqueueSnackbar("Save!", { variant: "success" });
-        })
-        .catch((e) => {
-          enqueueSnackbar(e.message, { variant: "error" });
         });
+      } catch (error) {
+        enqueueSnackbar(error.message, { variant: "error" });
+      } finally {
+        setLoading(false);
+      }
     })();
   };
 
@@ -57,7 +63,8 @@ const UserForm: React.FC<{ userData: User }> = ({ userData }) => {
         size="medium"
         style={{ margin: "auto", marginTop: "16px" }}
       >
-        <Save /> {t("save")}
+        {isLoading ? <CircularProgress color="inherit" size={24} /> : <Save />}
+        {t("save")}
       </Button>
     </Styled.Form>
   );

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
+import HTMLReactParser from "html-react-parser";
 
 import * as Styled from "./About.styled";
 
@@ -24,7 +25,7 @@ const About: React.FC = () => {
         <div>
           {new Array(9).fill(null).map((_, index) => (
             <Styled.Paragraph key={index}>
-              {t(`paragraph${index + 1}`)}
+              {HTMLReactParser(t(`paragraph${index + 1}`))}
             </Styled.Paragraph>
           ))}
         </div>
