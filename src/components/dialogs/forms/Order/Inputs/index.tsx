@@ -34,13 +34,13 @@ const OrderFormInputs: React.FC<OrderFormInputsProps> = ({
   return (
     <>
       <Title title={t("orderCount")} />
-      <Articles
+      {/* <Articles
         control={control}
         errors={errors}
         watch={watch}
         setValue={setValue}
         setTotalSum={setTotalSum}
-      />
+      /> */}
       <Styled.Total>
         <Styled.BoldText>{t("deliveryThroughoutUkraine")}</Styled.BoldText>
         <div>
