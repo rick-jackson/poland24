@@ -1,7 +1,7 @@
 import type { Article } from "@entities/order";
 
 export const getInitialtArticle = (): Article => {
-  const { pln } = JSON.parse(localStorage.getItem("rate"));
+  const rate = JSON.parse(localStorage.getItem("rate"));
 
   return {
     name: "",
@@ -10,8 +10,8 @@ export const getInitialtArticle = (): Article => {
     price: 0,
     deliveryPrice: 0,
     isUsed: false,
-    description: "",
+    description: undefined,
     currency: "zł",
-    rate: pln || 0,
+    rate: rate?.pln || 0,
   };
 };
