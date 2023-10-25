@@ -20,6 +20,11 @@ const ExchangeRate: React.FC = () => {
     })();
   }, []);
 
+  localStorage.setItem(
+    "rate",
+    JSON.stringify({ eur: eur?.rate, pln: pln?.rate })
+  );
+
   return (
     <div style={{ minWidth: "60px" }}>
       <div>

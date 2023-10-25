@@ -1,6 +1,7 @@
 import { setCookie } from "cookies-next";
 
 export const setUserInLocalStorage = (userData) => {
+  console.log(userData)
   if (!userData) return;
 
   setCookie("userId", userData?.uid || userData.id);
@@ -23,9 +24,10 @@ export const setUserInLocalStorage = (userData) => {
       email: userData.email,
       firstName,
       lastName,
-      photoUrl: userData.photoURL,
+      photoUrl: userData.photoUrl,
       post: userData.post,
       city: userData.city,
+      phone: userData.phone,
     })
   );
 };

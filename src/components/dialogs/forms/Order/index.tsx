@@ -1,42 +1,43 @@
-import { useForm } from "react-hook-form";
-import { defaultOrder } from "@common/data/defaultOrder";
-import Button from "@components/UI/buttons";
-import { enqueueSnackbar } from "notistack";
-import OrderFormInputs from "./Inputs";
-import type Order from "@entities/order";
 import { useRouter } from "next/router";
-import { createOrder } from "@gateways/order/save";
-import { editOrder } from "@gateways/order/edit";
+import { useForm } from "react-hook-form";
+import { enqueueSnackbar } from "notistack";
 import { useTranslation } from "next-i18next";
 
+import { createOrder } from "@gateways/order/save";
+import { editOrder } from "@gateways/order/edit";
+import Button from "@components/UI/buttons";
+import OrderFormInputs from "./Inputs";
+import { getInitialValue, OrderInitialValues } from "@common/data/defaultOrder";
+import Order from "@entities/order";
+
 type OrderFormProps = {
-  onClose: () => void;
-  defaultValues?: Partial<Order>;
+  onClose?: () => void;
+  orderData?: Order;
 };
 
-const OrderForm: React.FC<OrderFormProps> = ({ onClose, defaultValues }) => {
+const OrderForm: React.FC<OrderFormProps> = ({ onClose, orderData }) => {
+  const { t } = useTranslation("order");
   const router = useRouter();
   const {
-    control,
-    handleSubmit: onSubmit,
     formState: { errors },
-    register,
-    setValue,
+    control,
     watch,
-  } = useForm({
-    defaultValues: defaultOrder(defaultValues),
+    setValue,
+    handleSubmit: onSubmit,
+  } = useForm<OrderInitialValues>({
+    defaultValues: orderData ? getInitialValue(orderData) : getInitialValue(),
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    onSubmit(async (data: any) => {
+    onSubmit(async (data) => {
+      console.log(data);
       try {
-        if (!defaultValues) {
+        if (!orderData) {
           await createOrder(data);
           enqueueSnackbar("Order added!", { variant: "success" });
         } else {
-          await editOrder({ ...defaultValues, ...data });
+          await editOrder(data);
           enqueueSnackbar("Order edit!", { variant: "success" });
         }
         onClose();
@@ -47,17 +48,13 @@ const OrderForm: React.FC<OrderFormProps> = ({ onClose, defaultValues }) => {
     })();
   };
 
-  const { t } = useTranslation("order");
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ display: "grid", gap: "16px" }}>
       <OrderFormInputs
         control={control}
-        register={register}
         errors={errors}
         watch={watch}
         setValue={setValue}
-        defaultValues={defaultValues}
       />
       <Button style={{ margin: "auto", marginTop: "16px" }} type="submit">
         {t("send")}

@@ -10,7 +10,7 @@ import { useTranslation } from "next-i18next";
 type OrderProps = {
   text: string;
   size?: "small" | "medium" | "large";
-  defaultValues?: Partial<OrderType>;
+  defaultValues?: OrderType;
   disabled?: boolean;
   fullwidth?: boolean;
 };
@@ -38,7 +38,7 @@ const Order: React.FC<OrderProps> = ({
         {!userId ? (
           <Authorization onClose={handleClose} />
         ) : (
-          <OrderForm onClose={handleClose} defaultValues={defaultValues} />
+          <OrderForm onClose={handleClose} orderData={defaultValues} />
         )}
       </Modal>
     </>

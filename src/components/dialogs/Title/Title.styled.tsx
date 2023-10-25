@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-  margin-top: 16px;
-`;
+export const Wrapper = styled.div``;
 
 export const Title = styled.span`
   font-size: 16px;

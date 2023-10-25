@@ -1,96 +1,46 @@
-import DialogTextField from "@components/dialogs/inputs/TextField";
-import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
-import Article from "../Article";
+import { useState } from "react";
 import { useTranslation } from "next-i18next";
+import type {
+  Control,
+  FieldErrors,
+  UseFormSetValue,
+  UseFormWatch,
+} from "react-hook-form";
+
+import type { OrderInitialValues } from "@common/data/defaultOrder";
+import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
+import Title from "@components/dialogs/Title";
+import OrderInfo from "../OrderInfo";
+import Articles from "../Articles";
 
 import * as Styled from "./Inputs.styled";
-import { useFieldArray } from "react-hook-form";
-import Title from "@components/dialogs/Title";
-import { useEffect, useState } from "react";
-import { getExchangeRate } from "@gateways/getExchangeRate";
-import { calculateTotalCost } from "@common/utils/calculateTotalCost";
 
-const OrderFormInputs = ({
+type OrderFormInputsProps = {
+  control: Control<OrderInitialValues, object>;
+  errors: FieldErrors<OrderInitialValues>;
+  watch: UseFormWatch<OrderInitialValues>;
+  setValue: UseFormSetValue<OrderInitialValues>;
+};
+
+const OrderFormInputs: React.FC<OrderFormInputsProps> = ({
   control,
-  register,
   errors,
   watch,
   setValue,
-  defaultValues,
 }) => {
-  const [totalSum, setTotalSum] = useState(0);
-  const [exchangeRate, setExchangeRate] = useState<Record<string, unknown>[]>([
-    { rate: 0 },
-    { rate: 0 },
-  ]);
-
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "articles",
-  });
-
-  useEffect(() => {
-    if (!!defaultValues?.articles[0].rate) {
-      setTotalSum(
-        defaultValues?.articles.reduce(
-          (
-            acc,
-            { price, deliveryPrice, currency, rate, isUsedArticle, count },
-            index
-          ) => {
-            const totalArticle =
-              calculateTotalCost(
-                price,
-                deliveryPrice,
-                currency,
-                [rate, rate],
-                isUsedArticle
-              ) * count;
-
-            acc[`articles[${index}]`] = totalArticle;
-            return acc;
-          },
-          {}
-        )
-      );
-    }
-
-    (async () => {
-      try {
-        const data: Record<string, unknown>[] = await getExchangeRate();
-        setExchangeRate(
-          data.filter((el) => el.cc === "PLN" || el.cc === "EUR")
-        );
-      } catch (e) {
-        setExchangeRate([]);
-      }
-    })();
-  }, []);
-
+  const [totalSum, setTotalSum] = useState<number>(0);
   const { t } = useTranslation("order");
 
   return (
     <>
       <Title title={t("orderCount")} />
-      {fields.map((field, index: number) => (
-        <Article
-          key={index}
-          control={control}
-          index={index}
-          append={append}
-          remove={remove}
-          register={register}
-          field={field}
-          isLastField={fields.length - 1 === index}
-          errors={errors}
-          watch={watch}
-          setValue={setValue}
-          setTotalSum={setTotalSum}
-          totalSum={totalSum}
-          exchangeRate={exchangeRate}
-          defaultValues={defaultValues?.articles[index]}
-        />
-      ))}
+      <Articles
+        control={control}
+        errors={errors}
+        watch={watch}
+        setValue={setValue}
+        setTotalSum={setTotalSum}
+      />
       <Styled.Total>
         <Styled.BoldText>{t("deliveryThroughoutUkraine")}</Styled.BoldText>
         <div>
@@ -119,95 +69,12 @@ const OrderFormInputs = ({
             <span
               style={{ fontSize: "24px", fontWeight: 700, display: "block" }}
             >
-              {Object.values(totalSum)
-                .reduce((acc, value) => {
-                  return (acc += value);
-                }, 0)
-                .toFixed(2)}
+              {totalSum.toFixed(2)}
             </span>
           </Styled.BoldText>
         </div>
       </Styled.Total>
-      <Title title={t("customerData")} />
-      <Styled.Customer>
-        <DialogTextField
-          control={control}
-          name="fullName"
-          placeholder={t("fullName")}
-          fullWidth
-          required
-          error={!!errors.fullName}
-        />
-        <DialogTextField
-          control={control}
-          name="phone"
-          placeholder={t("phoneNumber")}
-          type="tel"
-          fullWidth
-          required
-          error={!!errors.phone}
-        />
-        <DialogTextField
-          control={control}
-          name="email"
-          placeholder="Email"
-          type="email"
-          fullWidth
-        />
-        <DialogTextField
-          control={control}
-          name="post"
-          placeholder={t("city")}
-          fullWidth
-          required
-          error={!!errors.post}
-        />
-        <DialogTextField
-          control={control}
-          name="reservedPost"
-          placeholder={t("reservedPost")}
-          fullWidth
-        />
-      </Styled.Customer>
-      <Styled.License>
-        <DialogTextField
-          textArea
-          control={control}
-          name="comment"
-          placeholder={t("comment")}
-          fullWidth
-          style={{ height: "100%" }}
-        />
-        <div
-          style={{
-            flex: "none",
-            display: "flex",
-            gap: "8px",
-            flexDirection: "column",
-          }}
-        >
-          <DialogCheckBox
-            name="isCall"
-            control={control}
-            label={t("notCall")}
-            style={{ fontSize: "12px" }}
-          />
-          <DialogCheckBox
-            name="isLicense"
-            control={control}
-            label={t("terms")}
-            style={{ fontSize: "12px" }}
-          />
-
-          <Styled.List>
-            {new Array(6).fill(null).map((_, index) => (
-              <Styled.ListItem key={index}>
-                {t(`info${index + 1}`)}
-              </Styled.ListItem>
-            ))}
-          </Styled.List>
-        </div>
-      </Styled.License>
+      <OrderInfo control={control} errors={errors} />
     </>
   );
 };

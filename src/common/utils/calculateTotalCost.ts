@@ -1,23 +1,21 @@
 export const calculateTotalCost = (
-  productPrice = 0,
+  costOfGoods = 0,
   shippingCost = 0,
-  currency,
-  exchangeRates,
-  isUsedArticle = false
+  hasInvoice = false,
+  quantity = 0
 ): number => {
-  let exchangeRate;
+  let commission = 0;
+  if (!quantity || !costOfGoods || !shippingCost) return 0;
 
-  if (currency === "zł") {
-    exchangeRate = exchangeRates[0];
-  } else if (currency === "€") {
-    exchangeRate = exchangeRates[1];
+  if (hasInvoice && costOfGoods >= 250) {
+    commission = costOfGoods * 0.0638;
+  } else if (costOfGoods >= 250) {
+    commission = costOfGoods * 0.1638;
   } else {
-    throw new Error("Unsupported currency");
+    commission = 50;
   }
 
-  const totalProductPrice = productPrice * exchangeRate;
-  const totalShippingCost = (shippingCost + 20) * exchangeRate;
-  const total = totalProductPrice + totalShippingCost;
+  const totalCostInUAH = costOfGoods * quantity + shippingCost + commission;
 
-  return +(total + (total / 100) * (isUsedArticle ? 15 : 6)).toFixed(2);
+  return totalCostInUAH;
 };

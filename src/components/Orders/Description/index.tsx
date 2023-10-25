@@ -47,7 +47,7 @@ const OrderDescription: React.FC<OrderDescriptionProps> = ({
         </Styled.DeliveryInfo>
         <Styled.Articles>
           <Title title={t("order")} />
-          <OrderTable orderData={orderData} total={total} />
+          <OrderTable orderData={orderData} />
           <Styled.Total>
             {t("total")}: {total} грн
           </Styled.Total>

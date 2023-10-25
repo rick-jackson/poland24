@@ -26,7 +26,6 @@ export const useSignInWithGoogle = (onClose: () => void) => {
       .then(async (result) => {
         const user = result.user;
         const [firstName, lastName] = user.displayName.split(" ");
-
         const userRef = doc(db, "users", user.uid);
 
         const snap = await getCountFromServer(
@@ -40,6 +39,7 @@ export const useSignInWithGoogle = (onClose: () => void) => {
             firstName,
             lastName,
             phone: user.phoneNumber,
+            photoUrl: user.photoURL,
           }).then(() => {
             setLoading(false);
             enqueueSnackbar("Login!", { variant: "success" });

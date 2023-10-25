@@ -1,19 +1,69 @@
 import type Order from "@entities/order";
-import { defaultArticle } from "./defaultArticle";
+import type { Intersect } from "src/types";
+import { getInitialtArticle } from "./defaultArticle";
 
-export const defaultOrder = (orderData?: any): Partial<Order> => {
+export type OerderFields = Pick<
+  Order,
+  | "isEmail"
+  | "isViber"
+  | "isTelegram"
+  | "fullName"
+  | "phone"
+  | "email"
+  | "post"
+  | "reservedPost"
+  | "comment"
+  | "isCall"
+  | "isLicense"
+  | "articles"
+>;
+
+export const orderInitailValues = {
+  isEmail: false,
+  isViber: false,
+  isTelegram: false,
+  fullName: "",
+  phone: null,
+  email: "",
+  post: "",
+  reservedPost: "",
+  comment: "",
+  isCall: false,
+  isLicense: true,
+  articles: [],
+} as const;
+
+export type OrderInitialValues = Intersect<
+  OerderFields,
+  typeof orderInitailValues
+>;
+
+const getPost = (city = "", post = "") => {
+  if (!city && !post) return;
+
+  return `${city} ${post}`.trim();
+};
+
+export const getInitialValue = (
+  orderData?: Partial<Order>
+): OrderInitialValues => {
+  const { email, firstName, lastName, phone, city, post } = JSON.parse(
+    localStorage.getItem("userData")
+  );
+
   return {
-    isEmail: orderData?.isEmail || false,
-    isViber: orderData?.isViber || false,
-    isTelegram: orderData?.isTelegram || false,
-    fullName: orderData?.fullName || "",
-    phone: orderData?.phone || "380",
-    email: orderData?.email || "",
-    post: orderData?.post || "",
-    reservedPost: orderData?.reservedPost || "",
-    comment: orderData?.comment || "",
-    isCall: orderData?.isCall || false,
-    isLicense: orderData?.isLicense || true,
-    articles: orderData?.articles || [defaultArticle],
+    ...orderData,
+    isEmail: orderData?.isEmail || orderInitailValues.isEmail,
+    isViber: orderData?.isViber || orderInitailValues.isViber,
+    isTelegram: orderData?.isTelegram || orderInitailValues.isTelegram,
+    fullName: orderData ? orderData?.fullName : `${firstName} ${lastName}`,
+    phone: orderData?.phone || phone || orderInitailValues.phone,
+    email: orderData?.email || email,
+    post: orderData?.post || getPost(city, post) || orderInitailValues.post,
+    reservedPost: orderData?.reservedPost || orderInitailValues.reservedPost,
+    comment: orderData?.comment || orderInitailValues.comment,
+    isCall: orderData?.isCall || orderInitailValues.isCall,
+    isLicense: orderData?.isLicense || orderInitailValues.isLicense,
+    articles: orderData?.articles || [getInitialtArticle()],
   };
 };

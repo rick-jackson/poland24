@@ -26,13 +26,7 @@ const CalculatePrice: React.FC = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(({ price, delivery, vat }: any) => {
-      const result = calculateTotalCost(
-        +price,
-        +delivery,
-        activeTab,
-        [8, 40],
-        vat
-      );
+      const result = calculateTotalCost(+price, +delivery, false, 1);
       setTotal(result);
     })();
   };
