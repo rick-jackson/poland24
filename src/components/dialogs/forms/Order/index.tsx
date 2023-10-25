@@ -24,7 +24,9 @@ const OrderForm: React.FC<OrderFormProps> = ({ onClose, orderData }) => {
     watch,
     setValue,
     handleSubmit: onSubmit,
-  } = useForm<OrderInitialValues>( );
+  } = useForm<OrderInitialValues>({
+    defaultValues: orderData ? getInitialValue(orderData) : getInitialValue(),
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();

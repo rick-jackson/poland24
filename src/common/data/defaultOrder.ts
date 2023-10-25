@@ -23,7 +23,7 @@ export const orderInitailValues = {
   isViber: false,
   isTelegram: false,
   fullName: "",
-  phone: null,
+  phone: undefined,
   email: "",
   post: "",
   reservedPost: "",
@@ -56,9 +56,11 @@ export const getInitialValue = (
     isEmail: orderData?.isEmail || orderInitailValues.isEmail,
     isViber: orderData?.isViber || orderInitailValues.isViber,
     isTelegram: orderData?.isTelegram || orderInitailValues.isTelegram,
-    fullName: orderData ? orderData?.fullName : `${firstName} ${lastName}`,
+    fullName: orderData
+      ? orderData?.fullName || orderInitailValues.fullName
+      : `${firstName} ${lastName}`,
     phone: orderData?.phone || phone || orderInitailValues.phone,
-    email: orderData?.email || email,
+    email: orderData?.email || email || orderInitailValues.email,
     post: orderData?.post || getPost(city, post) || orderInitailValues.post,
     reservedPost: orderData?.reservedPost || orderInitailValues.reservedPost,
     comment: orderData?.comment || orderInitailValues.comment,
