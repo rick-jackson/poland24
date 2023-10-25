@@ -136,7 +136,6 @@ const Article: React.FC<ArticleProps> = ({
           textArea
           fullWidth
           style={{ height: "100%" }}
-          defaultValue={field.description}
           required
           error={errors.articles && !!errors.articles[index]?.description}
         />
