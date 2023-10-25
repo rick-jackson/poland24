@@ -47,21 +47,20 @@ const getPost = (city = "", post = "") => {
 export const getInitialValue = (
   orderData?: Partial<Order>
 ): OrderInitialValues => {
-  const { email, firstName, lastName, phone, city, post } = JSON.parse(
-    localStorage.getItem("userData")
-  );
+  // const { email, firstName, lastName, phone, city, post } = JSON.parse(
+  //   localStorage.getItem("userData")
+  // );
 
   return {
     ...orderData,
     isEmail: orderData?.isEmail || orderInitailValues.isEmail,
     isViber: orderData?.isViber || orderInitailValues.isViber,
     isTelegram: orderData?.isTelegram || orderInitailValues.isTelegram,
-    fullName: orderData
-      ? orderData?.fullName || orderInitailValues.fullName
-      : `${firstName} ${lastName}`,
-    phone: orderData?.phone || phone || orderInitailValues.phone,
-    email: orderData?.email || email || orderInitailValues.email,
-    post: orderData?.post || getPost(city, post) || orderInitailValues.post,
+    fullName: orderData ? orderData?.fullName : orderInitailValues.fullName,
+
+    phone: orderData?.phone || orderInitailValues.phone,
+    email: orderData?.email || orderInitailValues.email,
+    post: orderData?.post || orderInitailValues.post,
     reservedPost: orderData?.reservedPost || orderInitailValues.reservedPost,
     comment: orderData?.comment || orderInitailValues.comment,
     isCall: orderData?.isCall || orderInitailValues.isCall,
