@@ -53,9 +53,13 @@ const Contacts: React.FC = () => {
 
       <Styled.Column>
         <Styled.ColumnTitle>{t("email")}</Styled.ColumnTitle>
-        <Styled.ColumnInfo>info@poland24.com.ua</Styled.ColumnInfo>
+        <Styled.ColumnInfo>
+          <Link href="mailto: info@poland24.com.ua">info@poland24.com.ua</Link>
+        </Styled.ColumnInfo>
         <Styled.ColumnTitle>{t("phone")}</Styled.ColumnTitle>
-        <Styled.ColumnInfo>+38 (093) 496 58 00</Styled.ColumnInfo>
+        <Styled.ColumnInfo>
+          <Link href="telto: +38 (093) 496 58 00">+38 (093) 496 58 00</Link>
+        </Styled.ColumnInfo>
       </Styled.Column>
     </Styled.Contacts>
   );

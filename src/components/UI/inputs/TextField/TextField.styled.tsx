@@ -20,9 +20,23 @@ export const TextField = styled(({ textArea, ...props }) =>
   $error: boolean;
   textArea: boolean;
 }>`
+  @keyframes colorChange {
+    0% {
+      background-color: #fbcece;
+    }
+    50% {
+      background-color: #e29a9a;
+    }
+    100% {
+      background-color: #fbcece;
+    }
+  }
+
   border: 1px solid #bdbdbd;
   outline: none;
-  background: ${({ $error }) => ($error ? "#fbcece" : "#f2f2f2")};
+  ${({ $error }) => $error && "animation: colorChange 3s infinite;"}
+
+  background: #f2f2f2;
   border-radius: 8px;
   padding: ${({ $size }) => ($size === "small" ? "14px" : "25px")};
   font-size: 16px;

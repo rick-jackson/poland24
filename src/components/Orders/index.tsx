@@ -34,7 +34,7 @@ const Orders: React.FC<OrdersProps> = ({ ordersData }) => {
                   isUsed,
                   count
                 );
-                return (acc += sum);
+                return (acc += sum * rate);
               },
               0
             )

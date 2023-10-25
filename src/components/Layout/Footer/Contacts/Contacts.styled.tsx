@@ -19,7 +19,7 @@ export const BlockTitle = styled.h5`
 
 export const ContactsColums = styled.div`
   display: flex;
-  margin-top: 11px;
+  margin-top: 8px;
 
   ${theme.breakpoints.up("md")} {
     flex-direction: column;

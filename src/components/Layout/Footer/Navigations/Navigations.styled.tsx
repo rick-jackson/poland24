@@ -1,3 +1,4 @@
+import Link from "@components/Link";
 import theme from "@theme/index";
 import styled from "styled-components";
 
@@ -16,29 +17,14 @@ export const Title = styled.h5`
   }
 `;
 
-export const Columns = styled.div`
-  margin-top: 7px;
-  display: flex;
-  justify-content: space-between;
-
-  ${theme.breakpoints.up("md")} {
-    gap: 32px;
-  }
+export const Column = styled.ul`
+  display: grid;
+  grid-template-columns: max-content max-content;
+  gap: 8px 18px;
+  margin-top: 8px;
 `;
 
-export const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  max-width: 130px;
-
-  ${theme.breakpoints.up("md")} {
-    max-width: max-content;
-    gap: 8px;
-  }
-`;
-
-export const ColumnItem = styled.div`
+export const ColumnItem = styled.li`
   font-size: 14px;
   font-weight: 400;
 `;

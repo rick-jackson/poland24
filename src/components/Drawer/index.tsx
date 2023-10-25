@@ -11,6 +11,7 @@ import IconButton from "@components/UI/buttons/IconButton";
 import Navigation from "@components/Layout/Header/Navigation";
 
 import * as Styled from "./Drawer.styled";
+import Link from "@components/Link";
 
 export default function TemporaryDrawer() {
   const [state, setState] = React.useState(false);
@@ -30,7 +31,9 @@ export default function TemporaryDrawer() {
             <Close onClick={toggleDrawer} />
           </Styled.Head>
           <Styled.Info>
-            info@poland24.com.ua
+            <Link href="mailto: info@poland24.com.ua">
+              info@poland24.com.ua
+            </Link>
             <LocaleSwitcher />
           </Styled.Info>
           <Styled.Divider />
