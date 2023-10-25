@@ -66,6 +66,6 @@ export const getInitialValue = (
     comment: orderData?.comment || orderInitailValues.comment,
     isCall: orderData?.isCall || orderInitailValues.isCall,
     isLicense: orderData?.isLicense || orderInitailValues.isLicense,
-    articles: orderData?.articles || [],
+    articles: orderData?.articles || [getInitialtArticle()],
   };
 };
