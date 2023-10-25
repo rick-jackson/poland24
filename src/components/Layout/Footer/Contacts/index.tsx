@@ -34,7 +34,7 @@ const Contacts: React.FC = () => {
             <Styled.Icon>
               <Phone />
             </Styled.Icon>
-            <Link href="telto: +38 (093) 496 58 00">+38 (093) 496 58 00</Link>
+            <Link href="tel: +38 (093) 496 58 00">+38 (093) 496 58 00</Link>
           </Styled.PhoneContactItem>
           <Styled.MailContactItem>
             <Styled.Icon>
