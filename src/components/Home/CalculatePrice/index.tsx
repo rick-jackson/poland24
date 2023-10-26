@@ -25,11 +25,13 @@ const CalculatePrice: React.FC = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(({ price, delivery, vat }: any) => {
+    onSubmit(({ price, delivery }: { price: number; delivery: number }) => {
       const result = calculateTotalCost(+price, +delivery, false, 1);
       setTotal(result);
     })();
   };
+
+  const { pln, eur } = JSON.parse(localStorage.getItem("rate"));
 
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const deliveryOfcurrency = activeTab === "zł" ? 250 : 50;
@@ -113,13 +115,14 @@ const CalculatePrice: React.FC = () => {
               Сумма,
               <div style={{ display: "flex", alignItems: "center" }}>
                 <Styled.CurrencySum>
-                  ₴<Styled.Total>{total.toFixed(2)}</Styled.Total>
+                  ₴
+                  <Styled.Total>
+                    {(total * (activeTab === "zł" ? pln : eur)).toFixed(2)}{" "}
+                  </Styled.Total>
                 </Styled.CurrencySum>
                 <Styled.CurrencySum>
                   {activeTab}
-                  <Styled.Total>
-                    {(total / (activeTab === "zł" ? 8 : 40)).toFixed(2)}
-                  </Styled.Total>
+                  <Styled.Total>{total.toFixed(2)}</Styled.Total>
                 </Styled.CurrencySum>
               </div>
             </Styled.Sum>

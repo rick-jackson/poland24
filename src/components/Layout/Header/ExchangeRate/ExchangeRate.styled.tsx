@@ -2,7 +2,7 @@ import theme from "@theme/index";
 import styled from "styled-components";
 
 export const ExchangeRate = styled.div`
-  min-widt: 60px;
+  min-width: 60px;
 
   ${theme.breakpoints.down("md")} {
     display: none;

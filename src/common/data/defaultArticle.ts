@@ -6,7 +6,7 @@ export const getInitialtArticle = (): Article => {
   return {
     name: "",
     link: "",
-    count: 0,
+    count: 1,
     price: 0,
     deliveryPrice: 0,
     isUsed: false,

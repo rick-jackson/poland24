@@ -8,6 +8,7 @@ export const Status = styled.div`
   line-height: 16px;
   margin-left: 8px;
   margin-right: 30px;
+  min-width: 145px;
 
   ${theme.breakpoints.down("md")} {
     margin: 0;
