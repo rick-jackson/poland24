@@ -53,9 +53,9 @@ const Profile = () => {
 
     return (
       <>
-        <ExchangeRate />
         {matches && (
           <div style={{ display: "flex", gap: "6px" }}>
+            <ExchangeRate />
             {userId ? (
               <Avatar
                 firstName={userData.firstName}
