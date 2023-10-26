@@ -89,7 +89,12 @@ const ShopsSwiper: React.FC<ShopsSwiperProps> = ({ shopsData }) => {
               borderRadius: "10px",
             }}
           >
-            <img src={el.logo} alt={el.name} height={56} />
+            <img
+              src={el.logo}
+              alt={el.name}
+              height={56}
+              style={{ maxWidth: "100%", objectFit: "contain" }}
+            />
             <Styled.ShopName>{el.name}</Styled.ShopName>
             <Styled.ShopDescription>
               Швидка та надійна доставка товарів з магазину Amazon.pl (Амазон

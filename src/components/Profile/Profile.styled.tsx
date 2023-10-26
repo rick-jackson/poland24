@@ -6,7 +6,7 @@ export const Content = styled.div`
   background: #fff;
   padding: 16px;
   padding-top: 8px;
-  margin-top: 24px;
+  margin-top: 16px;
   width: 100%;
 
   ${theme.breakpoints.up("md")} {

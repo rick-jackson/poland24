@@ -23,7 +23,7 @@ const AdminTable = <TEntity extends BaseEntity>({
       component={Paper}
       style={{
         borderRadius: "10px",
-        marginTop: "24px",
+        marginTop: "16px",
         boxShadow: "none",
       }}
     >
