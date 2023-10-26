@@ -9,9 +9,25 @@ import theme from "@theme/index";
 import { ButtonText } from "@components/Modal/Authorization/Authorization.styled";
 import { login } from "@gateways/signIn";
 import { enqueueSnackbar } from "notistack";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "@firebase";
+import { emailPattern } from "@common/data/pattern";
 
 type FormProps = {
   onClose: () => void;
+};
+
+const customErrorMessages = {
+  email: {
+    required: "Це поле обов'язкове",
+    pattern: {
+      value: emailPattern,
+      message: "Введіть коректний email",
+    },
+  },
+  password: {
+    required: "Це поле обов'язкове",
+  },
 };
 
 const Form: React.FC<FormProps> = ({ onClose }) => {
@@ -21,12 +37,19 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
     control,
     handleSubmit: onSubmit,
     formState: { errors },
+    watch,
+    setError,
   } = useForm({
     defaultValues: { email: "", password: "", remember: false },
   });
 
+  const email = watch("email");
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!emailPattern.test(email)) {
+      setError("email", { type: "custom", message: "Невірний формат" });
+    }
     onSubmit(async (data) => {
       try {
         await login(data);
@@ -36,6 +59,27 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
         enqueueSnackbar(`${e.message}`, { variant: "error" });
       }
     })();
+  };
+
+  const handleResetPassword = async () => {
+    if (!emailPattern.test(email)) {
+      setError("email", { type: "custom", message: "Невірний формат" });
+      return;
+    }
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        enqueueSnackbar(
+          `Лист для оновлення пароля відправлено на пошту ${email}!`,
+          {
+            variant: "success",
+          }
+        );
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        enqueueSnackbar(errorMessage, { variant: "error" });
+      });
   };
 
   return (
@@ -56,7 +100,7 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
           type="email"
           placeholder="Введите е-mail"
           required
-          error={!!errors.email}
+          error={errors.email}
         />
         <DialogTextField
           control={control}
@@ -66,7 +110,7 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
           type="password"
           placeholder="Введиите пароль"
           required
-          error={!!errors.password}
+          error={errors.password}
         />
       </div>
       <div
@@ -77,7 +121,9 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
         }}
       >
         <CheckBox name="remember" label="Запомнить меня" />
-        <ButtonText>Забыли пароль?</ButtonText>
+        <ButtonText onClick={handleResetPassword} type="button">
+          Забыли пароль?
+        </ButtonText>
       </div>
 
       <Button {...(!matches && { size: "medium" })} type="submit">

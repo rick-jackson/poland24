@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { enqueueSnackbar } from "notistack";
 import { useTranslation } from "next-i18next";
 import { doc, setDoc } from "firebase/firestore";
-import { getAuth, updateProfile } from "firebase/auth";
+import { getAuth, updateEmail, updateProfile } from "firebase/auth";
 
 import type User from "@entities/user";
 import Inputs from "./Inputs";

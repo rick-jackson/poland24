@@ -71,7 +71,7 @@ const Article: React.FC<ArticleProps> = ({
           placeholder={t("articleLink")}
           fullWidth
           required
-          error={errors.articles && !!errors.articles[index]?.link}
+          error={errors.articles && errors.articles[index]?.link}
         />
         <DialogTextField
           control={control}
@@ -80,7 +80,7 @@ const Article: React.FC<ArticleProps> = ({
           type="counter"
           fullWidth
           required
-          error={errors.articles && !!errors.articles[index]?.count}
+          error={errors.articles && errors.articles[index]?.count}
         />
         <DialogTextField
           control={control}
@@ -89,7 +89,7 @@ const Article: React.FC<ArticleProps> = ({
           type="number"
           fullWidth
           required
-          error={errors.articles && !!errors.articles[index]?.price}
+          error={errors.articles && errors.articles[index]?.price}
         />
         <DialogTextField
           control={control}
@@ -98,7 +98,7 @@ const Article: React.FC<ArticleProps> = ({
           type="number"
           fullWidth
           required
-          error={errors.articles && !!errors.articles[index]?.deliveryPrice}
+          error={errors.articles && errors.articles[index]?.deliveryPrice}
         />
         <Styled.Currency>
           <span>
@@ -120,7 +120,7 @@ const Article: React.FC<ArticleProps> = ({
         placeholder="Название товара"
         fullWidth
         required
-        error={errors.articles && !!errors.articles[index]?.name}
+        error={errors.articles && errors.articles[index]?.name}
       />
       <DialogCheckBox
         control={control}
@@ -137,7 +137,7 @@ const Article: React.FC<ArticleProps> = ({
           fullWidth
           style={{ height: "100%" }}
           required
-          error={errors.articles && !!errors.articles[index]?.description}
+          error={errors.articles && errors.articles[index]?.description}
         />
         <Total
           watch={watch}

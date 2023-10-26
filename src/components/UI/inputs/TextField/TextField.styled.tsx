@@ -10,6 +10,7 @@ export const Label = styled.label<{ $fullWidth: boolean }>`
   gap: 4px;
   transition: 0.1s;
   ${({ $fullWidth }) => $fullWidth && "width: 100%;"}
+  position: relative;
 `;
 
 export const TextField = styled(({ textArea, ...props }) =>
@@ -32,9 +33,10 @@ export const TextField = styled(({ textArea, ...props }) =>
     }
   }
 
-  border: 1px solid #bdbdbd;
+  border: 1px solid ${({ $error }) => ($error ? "#ff5959" : "#bdbdbd")};
   outline: none;
-  ${({ $error }) => $error && "animation: colorChange 3s infinite;"}
+  ${({ $error }) =>
+    $error && "animation: colorChange 3s infinite; color: #fff;"}
 
   background: #f2f2f2;
   border-radius: 8px;
@@ -61,4 +63,10 @@ export const TextField = styled(({ textArea, ...props }) =>
     -webkit-appearance: none;
     margin: 0;
   }
+`;
+
+export const ErrorText = styled.span`
+  font-size: 12px;
+  color: #ff5959;
+  font-weight: 400;
 `;

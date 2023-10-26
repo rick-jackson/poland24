@@ -14,7 +14,7 @@ const ReviewFormInputs = ({ control, errors }) => {
         control={control}
         name="fullName"
         placeholder={t("userName")}
-        error={!!errors.fullName}
+        error={errors.fullName}
         fullWidth
         required
       />
@@ -22,14 +22,14 @@ const ReviewFormInputs = ({ control, errors }) => {
         control={control}
         name="email"
         placeholder={t("userEmail")}
-        error={!!errors.email}
+        error={errors.email}
         fullWidth
       />
       <DialogTextField
         control={control}
         name="text"
         placeholder={t("userReview")}
-        error={!!errors.text}
+        error={errors.text}
         fullWidth
         textArea
         required
@@ -38,7 +38,7 @@ const ReviewFormInputs = ({ control, errors }) => {
         control={control}
         name="store"
         placeholder={t("store")}
-        error={!!errors.store}
+        error={errors.store}
         fullWidth
       />
       <Styled.Rating>

@@ -1,10 +1,11 @@
+import type { FieldError } from "react-hook-form";
 import { InputHTMLAttributes } from "react";
 import * as Styled from "./TextField.styled";
 
 export type TextFieldProps = {
   name: string;
   label?: string;
-  error?: boolean;
+  error?: FieldError;
   fullWidth?: boolean;
   placeholder?: string;
   size?: "small" | "large";
@@ -15,7 +16,7 @@ export type TextFieldProps = {
 const TextField: React.FC<TextFieldProps> = ({
   name,
   label = "",
-  error = false,
+  error,
   size = "small",
   type = "text",
   placeholder = "",
@@ -37,6 +38,11 @@ const TextField: React.FC<TextFieldProps> = ({
         placeholder={placeholder}
         {...props}
       />
+      {error && (
+        <Styled.ErrorText>
+          {error.type === "required" ? "Це поле обов'язкове!" : error.message}
+        </Styled.ErrorText>
+      )}
     </Styled.Label>
   );
 };

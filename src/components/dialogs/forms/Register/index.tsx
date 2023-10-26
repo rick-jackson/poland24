@@ -31,6 +31,13 @@ const Form: React.FC = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (watch("password") !== watch("repeatPassword")) {
+      setError("repeatPassword", {
+        type: "custom",
+        message: "Паролі не співпадають",
+      });
+      return;
+    }
 
     onSubmit(async ({ license, repeatPassword, ...data }: any) => {
       if (!watch("license")) {
@@ -60,7 +67,7 @@ const Form: React.FC = () => {
           {...(matches && { size: "large" })}
           type="text"
           placeholder="Имя фамилия"
-          error={!!errors.fullName}
+          error={errors.fullName}
           required
         />
         <DialogTextField
@@ -70,7 +77,7 @@ const Form: React.FC = () => {
           {...(matches && { size: "large" })}
           type="email"
           placeholder="E-mail"
-          error={!!errors.email}
+          error={errors.email}
           required
         />
         <DialogTextField
@@ -80,7 +87,7 @@ const Form: React.FC = () => {
           {...(matches && { size: "large" })}
           type="tel"
           placeholder="Номер телефона"
-          error={!!errors.phone}
+          error={errors.phone}
           required
         />
         <DialogTextField
@@ -90,7 +97,7 @@ const Form: React.FC = () => {
           {...(matches && { size: "large" })}
           type="password"
           placeholder="Пароль"
-          error={!!errors.password}
+          error={errors.password}
           required
         />
         <DialogTextField
@@ -100,14 +107,13 @@ const Form: React.FC = () => {
           {...(matches && { size: "large" })}
           type="password"
           placeholder="Повторить пароль"
-          error={watch("password") !== watch("repeatPassword")}
+          error={errors.repeatPassword}
           required
         />
         <DialogCheckBox
           control={control}
           name="license"
           label="согласен с публичным договором предоставлния услуг"
-          error={!!errors.license}
         />
       </div>
       <Button type="submit" {...(!matches && { size: "medium" })}>

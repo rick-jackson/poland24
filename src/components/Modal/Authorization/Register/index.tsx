@@ -39,7 +39,7 @@ const Register: React.FC<RegisterProps> = ({ onChangeType, onClose }) => {
         >
           <Google /> Google
         </Button>
-        <Button style={{ flex: 1 }} size="medium">
+        <Button disabled style={{ flex: 1 }} size="medium">
           <Faceboock /> Facebook
         </Button>
       </Buttons>

@@ -23,7 +23,7 @@ export const orderInitailValues = {
   isViber: false,
   isTelegram: false,
   fullName: "",
-  phone: undefined,
+  phone: '',
   email: "",
   post: "",
   reservedPost: "",

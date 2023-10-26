@@ -11,7 +11,6 @@ export const Container = styled.div`
   transform: translate(-50%, -50%);
   padding: 22px;
   max-height: calc(100% - 50px);
-  overflow: hidden;
   width: max-content;
   max-width: 1280px;
 
@@ -37,6 +36,7 @@ export const Content = styled.div`
   max-height: calc(100vh - 150px);
   overflow: auto;
   padding: 10px;
+  position: relative;
 
   ${theme.breakpoints.down("md")} {
     padding-top: 0;

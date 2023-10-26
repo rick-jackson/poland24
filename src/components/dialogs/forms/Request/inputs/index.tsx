@@ -25,7 +25,7 @@ const RequestFormInputs = ({ control, errors, fields, remove }) => {
             placeholder={t("name")}
             fullWidth
             required
-            error={!!errors.name}
+            error={errors.name}
           />
           <DialogTextField
             control={control}
@@ -34,7 +34,7 @@ const RequestFormInputs = ({ control, errors, fields, remove }) => {
             placeholder={t("phone")}
             fullWidth
             required
-            error={!!errors.phoneNumber}
+            error={errors.phoneNumber}
           />
           <DialogTextField
             control={control}
@@ -43,7 +43,7 @@ const RequestFormInputs = ({ control, errors, fields, remove }) => {
             placeholder={t("email")}
             fullWidth
             required
-            error={!!errors.email}
+            error={errors.email}
           />
         </Styled.UserFields>
       </Styled.SectionContainer>
@@ -57,7 +57,7 @@ const RequestFormInputs = ({ control, errors, fields, remove }) => {
               label={t("articleLink")}
               fullWidth
               required
-              error={!!errors.articles && !!errors.articles[index]?.articleName}
+              error={!!errors.articles && errors.articles[index]?.articleName}
             />
             <Styled.ArticleComment>
               <DialogTextField

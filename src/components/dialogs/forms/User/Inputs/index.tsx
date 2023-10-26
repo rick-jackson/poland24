@@ -21,7 +21,7 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
           control={control}
           name="firstName"
           placeholder={t("firstName")}
-          error={!!errors.firstName}
+          error={errors.firstName}
           fullWidth
           required
         />
@@ -29,7 +29,7 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
           control={control}
           name="lastName"
           placeholder={t("lastName")}
-          error={!!errors.lastName}
+          error={errors.lastName}
           fullWidth
           required
         />
@@ -37,7 +37,7 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
           control={control}
           name="email"
           placeholder={t("email")}
-          error={!!errors.email}
+          error={errors.email}
           fullWidth
           required
         />
@@ -45,8 +45,8 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
           control={control}
           name="phone"
           placeholder={t("phone")}
-          error={!!errors.phone}
-          type="number"
+          error={errors.phone}
+          type="tel"
           fullWidth
           required
         />
@@ -54,14 +54,14 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
           control={control}
           name="city"
           placeholder={t("city")}
-          error={!!errors.city}
+          error={errors.city}
           fullWidth
         />
         <DialogTextField
           control={control}
           name="post"
           placeholder={t("post")}
-          error={!!errors.post}
+          error={errors.post}
           fullWidth
         />
       </Styled.Inputs>
@@ -80,7 +80,7 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
           control={control}
           name="viber"
           placeholder={t("userName")}
-          error={!!errors.viber}
+          error={errors.viber}
           fullWidth
         />
         <Styled.Messanger>
@@ -96,7 +96,7 @@ const Inputs: React.FC<InputsProps> = ({ control, errors }) => {
           control={control}
           name="telegram"
           placeholder={t("userName")}
-          error={!!errors.telegram}
+          error={errors.telegram}
           fullWidth
         />
       </Styled.Messengers>

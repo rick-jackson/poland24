@@ -26,7 +26,7 @@ const OrderInfo: React.FC<OrderInfoProps> = ({ control, errors }) => {
           placeholder={t("fullName")}
           fullWidth
           required
-          error={!!errors.fullName}
+          error={errors.fullName}
         />
         <DialogTextField
           control={control}
@@ -35,7 +35,7 @@ const OrderInfo: React.FC<OrderInfoProps> = ({ control, errors }) => {
           type="tel"
           fullWidth
           required
-          error={!!errors.phone}
+          error={errors.phone}
         />
         <DialogTextField
           control={control}
@@ -43,6 +43,8 @@ const OrderInfo: React.FC<OrderInfoProps> = ({ control, errors }) => {
           placeholder="Email"
           type="email"
           fullWidth
+          required
+          error={errors.email}
         />
         <DialogTextField
           control={control}
@@ -50,7 +52,7 @@ const OrderInfo: React.FC<OrderInfoProps> = ({ control, errors }) => {
           placeholder={t("city")}
           fullWidth
           required
-          error={!!errors.post}
+          error={errors.post}
         />
         <DialogTextField
           control={control}

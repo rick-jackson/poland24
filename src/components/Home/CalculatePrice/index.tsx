@@ -20,7 +20,7 @@ const CalculatePrice: React.FC = () => {
     handleSubmit: onSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: { price: undefined, delivery: undefined, vat: false },
+    defaultValues: { price: "", delivery: "", vat: false },
   });
 
   const handleSubmit = (e) => {
@@ -84,7 +84,7 @@ const CalculatePrice: React.FC = () => {
               placeholder={`${t("calculatorPrice")}*, ${activeTab}`}
               {...(!matches && { size: "large" })}
               required
-              error={!!errors.price}
+              error={errors.price}
             />
             <DialogTextField
               control={control}
@@ -93,7 +93,7 @@ const CalculatePrice: React.FC = () => {
               type="number"
               placeholder={`${t("calculatorDelivery")}*, ${activeTab}`}
               {...(!matches && { size: "large" })}
-              error={!!errors.delivery}
+              error={errors.delivery}
               required
             />
             <DialogCheckBox
@@ -117,7 +117,7 @@ const CalculatePrice: React.FC = () => {
                 <Styled.CurrencySum>
                   ₴
                   <Styled.Total>
-                    {(total * (activeTab === "zł" ? pln : eur)).toFixed(2)}{" "}
+                    {(total * (activeTab === "zł" ? pln : eur)).toFixed(2)}
                   </Styled.Total>
                 </Styled.CurrencySum>
                 <Styled.CurrencySum>
