@@ -61,7 +61,6 @@ const ShopsSwiper: React.FC<ShopsSwiperProps> = ({ shopsData }) => {
 
       <Swiper
         onSwiper={setSwiperRef}
-        // slidesPerView={matches ? 1 : 5}
         breakpoints={{
           768: {
             slidesPerView: 2,

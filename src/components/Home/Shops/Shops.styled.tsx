@@ -52,4 +52,6 @@ export const CustomButtons = styled.div`
   gap: 21px;
   font-size: 20px;
   font-weight: 700;
+  min-width: 220px;
+  justify-content: space-between;
 `;
