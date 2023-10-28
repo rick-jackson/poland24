@@ -3,15 +3,18 @@ import Link from "@components/Link";
 import type Order from "@entities/order";
 import { format } from "date-fns";
 import type { TableCell } from "src/types/table";
-// import Status from "@components/UI/Status";
-import Select from "@components/UI/inputs/Select";
 import { Status } from "@entities/order";
-import { STATUS_LABELS_COLORS } from "@common/configs/colors";
+import { ORDER_STATUS_LABELS_COLORS } from "@common/configs/colors";
+import StatusSelect from "@components/UI/StatusSelect";
 
 export const ordersConfig: TableCell<Order>[] = [
   {
     id: "createdDate",
     render: ({ createdDate }) => createdDate && format(createdDate, FULL_DATE),
+  },
+  {
+    id: "orderNumber",
+    render: ({ orderNumber }) => orderNumber,
   },
   {
     id: "user",
@@ -37,18 +40,14 @@ export const ordersConfig: TableCell<Order>[] = [
   },
   {
     id: "status",
-    // render: ({ status }) => <Status status={status} />,
     render: (order) => {
       return (
-        <div style={{ display: "flex", gap: "4px" }}>
-          <div
-            style={{
-              minWidth: "3px",
-              background: STATUS_LABELS_COLORS[order.status],
-            }}
-          />
-          <Select options={Status} locale={"order"} data={order} />
-        </div>
+        <StatusSelect
+          data={order}
+          background={ORDER_STATUS_LABELS_COLORS[order.status]}
+          options={Status}
+          locale={"order"}
+        />
       );
     },
   },

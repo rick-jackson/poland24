@@ -8,8 +8,15 @@ type Request = {
   email: string;
   name: string;
   phoneNumber: number;
-  status: string;
+  status: Status;
   comment?: string;
 };
+
+export enum Status {
+  NEW = "new",
+  IS_CONSIDERED = "isConsidered",
+  CLOSED = "closed",
+  SUCCESSFUL = "successful",
+}
 
 export default Request;

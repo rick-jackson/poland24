@@ -1,9 +1,11 @@
-import CloseButton from "@components/UI/buttons/Close";
-
-import * as Styled from "./Authorization.styled";
 import { useState } from "react";
+
 import Login from "./Login";
 import Register from "./Register";
+import Button from "@components/UI/buttons";
+import Close from "public/images/icons/close-small.svg";
+
+import * as Styled from "./Authorization.styled";
 
 type AuthorizationProps = {
   onClose: () => void;
@@ -16,7 +18,15 @@ const Authorization: React.FC<AuthorizationProps> = ({ onClose }) => {
     <Styled.Container>
       <Styled.Head>
         {isLoginType ? "Вход" : "Регистрация"}
-        <CloseButton onClick={onClose} />
+        <Button
+          size="medium"
+          form="circle"
+          style={{ flex: "none" }}
+          onClick={onClose}
+          variant="secondary"
+        >
+          <Close />
+        </Button>
       </Styled.Head>
       <Styled.Content>
         {isLoginType ? (

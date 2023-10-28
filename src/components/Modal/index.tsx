@@ -1,6 +1,7 @@
 import { Backdrop, Fade, Modal as MuiModal } from "@mui/material";
 
-import CloseButton from "@components/UI/buttons/Close";
+import Close from "public/images/icons/close-small.svg";
+import Button from "@components/UI/buttons";
 
 import * as Styled from "./Modal.styled";
 
@@ -31,7 +32,16 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
         <Styled.Container>
           {title && (
             <Styled.Head>
-              {title} <CloseButton style={{ flex: "none" }} onClick={onClose} />
+              {title}{" "}
+              <Button
+                size="medium"
+                form="circle"
+                style={{ flex: "none" }}
+                onClick={onClose}
+                variant="secondary"
+              >
+                <Close />
+              </Button>
             </Styled.Head>
           )}
           <Styled.Content>{children}</Styled.Content>

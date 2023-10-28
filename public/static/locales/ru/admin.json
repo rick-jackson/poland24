@@ -6,5 +6,6 @@
   "post": "Почта",
   "comment": "Комментарий",
   "articles": "Товар",
-  "status": "Статус"
+  "status": "Статус",
+  "orderNumber": "№"
 }

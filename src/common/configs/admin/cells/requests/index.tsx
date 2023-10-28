@@ -1,9 +1,13 @@
+import React from "react";
+import { format } from "date-fns";
+
+import type { TableCell } from "src/types/table";
+import type Request from "@entities/request";
 import { FULL_DATE } from "@common/data/dateFormat";
 import Link from "@components/Link";
-import type Request from "@entities/request";
-import { format } from "date-fns";
-import React from "react";
-import type { TableCell } from "src/types/table";
+import StatusSelect from "@components/UI/StatusSelect";
+import { Status } from "@entities/request";
+import { REQUEST_STATUS_LABELS_COLORS } from "@common/configs/colors";
 
 export const requestsConfig: TableCell<Request>[] = [
   {
@@ -70,6 +74,13 @@ export const requestsConfig: TableCell<Request>[] = [
   },
   {
     id: "status",
-    render: ({ status }) => status,
+    render: (request) => (
+      <StatusSelect
+        data={request}
+        background={REQUEST_STATUS_LABELS_COLORS[request.status]}
+        options={Status}
+        locale={"request"}
+      />
+    ),
   },
 ];

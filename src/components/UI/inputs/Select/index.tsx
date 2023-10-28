@@ -3,10 +3,10 @@ import MenuItem from "@mui/material/MenuItem";
 import { useTranslation } from "next-i18next";
 import FormControl from "@mui/material/FormControl";
 
-import * as Styled from "./Select.styled";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@firebase";
 import { useRouter } from "next/router";
+import * as Styled from "./Select.styled";
 
 const Select = ({ options, locale, data }) => {
   const { t } = useTranslation(locale);

@@ -41,7 +41,12 @@ const RequestForm: React.FC = () => {
       try {
         const requestRef = doc(collection(db, "requests"));
         await setDoc(requestRef, {
-          ...filterEmptyParam({ createdDate: new Date().valueOf(), ...data, status: 'NEW' }),
+          ...filterEmptyParam({
+            createdDate: new Date().valueOf(),
+            id: requestRef.id,
+            ...data,
+            status: "NEW",
+          }),
         });
         enqueueSnackbar("Request added!", { variant: "success" });
         reset(defaultRequest);

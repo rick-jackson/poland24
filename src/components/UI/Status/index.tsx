@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next";
 
 import { FULL_DATE } from "@common/data/dateFormat";
 import Order, { Status as StatusEnum } from "@entities/order";
-import { STATUS_LABELS_COLORS } from "@common/configs/colors";
+import { ORDER_STATUS_LABELS_COLORS } from "@common/configs/colors";
 
 import * as Styled from "./Status.styled";
 
@@ -20,7 +20,7 @@ const Status: React.FC<StatusProps> = ({
 
   return (
     <div style={{ display: "flex" }}>
-      <Styled.Divider $color={STATUS_LABELS_COLORS[status]} />
+      <Styled.Divider $color={ORDER_STATUS_LABELS_COLORS[status]} />
       <Styled.Status>
         {orderNumber && (
           <Styled.Text>

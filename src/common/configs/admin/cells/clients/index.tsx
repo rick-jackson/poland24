@@ -1,8 +1,12 @@
-import { FULL_DATE } from "@common/data/dateFormat";
-import Link from "@components/Link";
-import type User from "@entities/user";
 import { format } from "date-fns";
+
 import type { TableCell } from "src/types/table";
+import type User from "@entities/user";
+import Image from "next/image";
+import Link from "@components/Link";
+import Button from "@components/UI/buttons";
+import { FULL_DATE } from "@common/data/dateFormat";
+import ClientsActions from "./Actions";
 
 export const clientsConfig: TableCell<User>[] = [
   {
@@ -36,5 +40,9 @@ export const clientsConfig: TableCell<User>[] = [
   {
     id: "comment",
     render: ({ comment }) => comment && comment,
+  },
+  {
+    id: " ",
+    render: (userData) => <ClientsActions {...userData} />,
   },
 ];
