@@ -1,10 +1,11 @@
+import { useTranslation } from "next-i18next";
+
 import Button from "@components/UI/buttons";
 import { ButtonText } from "../Authorization.styled";
 import Google from "public/images/icons/socials/google.svg";
 import Faceboock from "public/images/icons/socials/u_facebook-f.svg";
 import Form from "@components/dialogs/forms/Login";
 import { useSignInWithGoogle } from "@common/hooks/useSignInWithGoogle";
-import { useSignInWithFacebook } from "@common/hooks/useSignInWithFacebook";
 
 import * as Styled from "./Login.styled";
 import { Alert, Backdrop, CircularProgress, Snackbar } from "@mui/material";
@@ -18,10 +19,9 @@ const Login: React.FC<LoginProps> = ({ onChangeType, onClose }) => {
   const { loading: googleAuthLoading, handleSignIn: handleGoogleSignIn } =
     useSignInWithGoogle(onClose);
 
-  const { loading: facebookAuthLoading, handleSignIn: handleFacebookSignIn } =
-    useSignInWithFacebook(onClose);
+  const { t } = useTranslation("common");
 
-  const loading = googleAuthLoading || facebookAuthLoading;
+  const loading = googleAuthLoading;
 
   return (
     <>
@@ -36,7 +36,7 @@ const Login: React.FC<LoginProps> = ({ onChangeType, onClose }) => {
         }}
       >
         <Alert severity="info" sx={{ width: "100%", textAlign: "left" }}>
-          Тестові дані для входу:
+          {t("testData")}:
           <div
             style={{
               display: "grid",
@@ -64,8 +64,8 @@ const Login: React.FC<LoginProps> = ({ onChangeType, onClose }) => {
           </Backdrop>
         )}
         <span style={{ fontSize: "16px" }}>
-          У вас еще нету аккаунта?{" "}
-          <ButtonText onClick={onChangeType}>Зарегистрируйтесь</ButtonText>
+          {t("dontHaveAccountYetSignUp")}{" "}
+          <ButtonText onClick={onChangeType}>{t("register")}</ButtonText>
         </span>
         <Styled.Buttons>
           <Button
@@ -77,14 +77,7 @@ const Login: React.FC<LoginProps> = ({ onChangeType, onClose }) => {
           >
             <Google /> Google
           </Button>
-          <Button
-            style={{ flex: 1 }}
-            size="medium"
-            disabled
-            onClick={async () => {
-              await handleFacebookSignIn();
-            }}
-          >
+          <Button style={{ flex: 1 }} size="medium" disabled>
             <Faceboock /> Facebook
           </Button>
         </Styled.Buttons>

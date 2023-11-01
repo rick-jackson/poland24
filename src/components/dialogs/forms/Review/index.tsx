@@ -57,7 +57,7 @@ const ReviewForm: React.FC = () => {
   };
 
   return (
-    <div>
+    <div style={{ marginTop: "16px" }}>
       <BlockTitle title={t("saveReview")} />
       <Styled.Form onSubmit={handleSubmit}>
         <ReviewFormInputs control={control} errors={errors} />

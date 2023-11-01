@@ -75,6 +75,7 @@ const LocaleSwitcher: React.FC = () => {
         placement="bottom-start"
         transition
         disablePortal
+        sx={{ zIndex: 10 }}
       >
         {({ TransitionProps, placement }) => (
           <Grow

@@ -2,12 +2,7 @@ import theme from "@theme/index";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 24px;
   width: 100%;
-
-  ${theme.breakpoints.down("md")} {
-    padding: 0;
-  }
 `;
 
 export const Head = styled.div`

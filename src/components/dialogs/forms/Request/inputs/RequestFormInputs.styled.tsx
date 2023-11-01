@@ -18,7 +18,6 @@ export const SectionContainer = styled.div`
   background: #fff;
   padding: 16px;
   border-radius: 16px;
-  padding-top: 0;
 `;
 
 export const GridContainer = styled.div`

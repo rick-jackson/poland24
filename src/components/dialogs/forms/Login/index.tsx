@@ -1,37 +1,25 @@
-import Button from "@components/UI/buttons";
-
-import CheckBox from "@components/UI/inputs/Checkbox";
 import { useForm } from "react-hook-form";
-import DialogTextField from "@components/dialogs/inputs/TextField";
-
-import { useMediaQuery } from "@mui/material";
-import theme from "@theme/index";
-import { ButtonText } from "@components/Modal/Authorization/Authorization.styled";
-import { login } from "@gateways/signIn";
 import { enqueueSnackbar } from "notistack";
+import { useTranslation } from "next-i18next";
+import { useMediaQuery } from "@mui/material";
 import { sendPasswordResetEmail } from "firebase/auth";
+
+import theme from "@theme/index";
 import { auth } from "@firebase";
+import { login } from "@gateways/signIn";
+import Button from "@components/UI/buttons";
 import { emailPattern } from "@common/data/pattern";
+import CheckBox from "@components/UI/inputs/Checkbox";
+import DialogTextField from "@components/dialogs/inputs/TextField";
+import { ButtonText } from "@components/Modal/Authorization/Authorization.styled";
 
 type FormProps = {
   onClose: () => void;
 };
 
-const customErrorMessages = {
-  email: {
-    required: "Це поле обов'язкове",
-    pattern: {
-      value: emailPattern,
-      message: "Введіть коректний email",
-    },
-  },
-  password: {
-    required: "Це поле обов'язкове",
-  },
-};
-
 const Form: React.FC<FormProps> = ({ onClose }) => {
   const matches = useMediaQuery(theme.breakpoints.up("md"));
+  const { t } = useTranslation("common");
 
   const {
     control,
@@ -98,7 +86,7 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
           name="email"
           {...(matches && { size: "large" })}
           type="email"
-          placeholder="Введите е-mail"
+          placeholder={t("enterE-mail")}
           required
           error={errors.email}
         />
@@ -108,7 +96,7 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
           name="password"
           {...(matches && { size: "large" })}
           type="password"
-          placeholder="Введиите пароль"
+          placeholder={t("enterPassword")}
           required
           error={errors.password}
         />
@@ -120,14 +108,14 @@ const Form: React.FC<FormProps> = ({ onClose }) => {
           margin: "16px 0px",
         }}
       >
-        <CheckBox name="remember" label="Запомнить меня" />
+        <CheckBox name="remember" label={t("rememberMe")} />
         <ButtonText onClick={handleResetPassword} type="button">
-          Забыли пароль?
+          {t("forgotYourPassword")}
         </ButtonText>
       </div>
 
-      <Button {...(!matches && { size: "medium" })} type="submit">
-        Войти
+      <Button size="medium" fullwidth type="submit">
+        {t("logIn")}
       </Button>
     </form>
   );

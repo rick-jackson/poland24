@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "next-i18next";
 
 import Login from "./Login";
 import Register from "./Register";
@@ -14,10 +15,12 @@ type AuthorizationProps = {
 const Authorization: React.FC<AuthorizationProps> = ({ onClose }) => {
   const [modalType, setModalType] = useState("login");
   const isLoginType = modalType === "login";
+  const { t } = useTranslation("common");
+
   return (
     <Styled.Container>
       <Styled.Head>
-        {isLoginType ? "Вход" : "Регистрация"}
+        {isLoginType ? t("entry") : t("sign-up")}
         <Button
           size="medium"
           form="circle"

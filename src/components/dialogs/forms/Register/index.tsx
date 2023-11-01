@@ -1,15 +1,16 @@
 import { useForm } from "react-hook-form";
-
-import Button from "@components/UI/buttons";
-
-import DialogTextField from "@components/dialogs/inputs/TextField";
+import { useTranslation } from "next-i18next";
 import { CircularProgress, useMediaQuery } from "@mui/material";
-import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
+
 import theme from "@theme/index";
+import Button from "@components/UI/buttons";
 import useCreateUser from "@common/hooks/useCreateUser";
+import DialogCheckBox from "@components/dialogs/inputs/Checkbox";
+import DialogTextField from "@components/dialogs/inputs/TextField";
 
 const Form: React.FC = () => {
   const matches = useMediaQuery(theme.breakpoints.up("md"));
+  const { t } = useTranslation("common");
   const { saveUser, isLoading } = useCreateUser();
 
   const {
@@ -66,7 +67,7 @@ const Form: React.FC = () => {
           name="fullName"
           {...(matches && { size: "large" })}
           type="text"
-          placeholder="Имя фамилия"
+          placeholder={t("fullName")}
           error={errors.fullName}
           required
         />
@@ -76,7 +77,7 @@ const Form: React.FC = () => {
           name="email"
           {...(matches && { size: "large" })}
           type="email"
-          placeholder="E-mail"
+          placeholder={t("eMail")}
           error={errors.email}
           required
         />
@@ -86,7 +87,7 @@ const Form: React.FC = () => {
           name="phone"
           {...(matches && { size: "large" })}
           type="tel"
-          placeholder="Номер телефона"
+          placeholder={t("phoneNumber")}
           error={errors.phone}
           required
         />
@@ -96,7 +97,7 @@ const Form: React.FC = () => {
           name="password"
           {...(matches && { size: "large" })}
           type="password"
-          placeholder="Пароль"
+          placeholder={t("password")}
           error={errors.password}
           required
         />
@@ -106,18 +107,18 @@ const Form: React.FC = () => {
           name="repeatPassword"
           {...(matches && { size: "large" })}
           type="password"
-          placeholder="Повторить пароль"
+          placeholder={t("confirmPassword")}
           error={errors.repeatPassword}
           required
         />
         <DialogCheckBox
           control={control}
           name="license"
-          label="согласен с публичным договором предоставлния услуг"
+          label={t("agreeToTermsOfService")}
         />
       </div>
-      <Button type="submit" {...(!matches && { size: "medium" })}>
-        {isLoading ? <CircularProgress color="inherit" /> : "Регистрация"}
+      <Button size="medium" fullwidth>
+        {isLoading ? <CircularProgress color="inherit" /> : t("register")}
       </Button>
     </form>
   );
